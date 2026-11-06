@@ -50,8 +50,8 @@ button{-webkit-tap-highlight-color:transparent}
 
 /* bottom tabs */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs .in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr)}
-nav.tabs button{font:inherit;font-size:11px;letter-spacing:-.03em;border:0;background:none;color:var(--sub);height:var(--tab-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:0}
+nav.tabs .in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(8,1fr)}
+nav.tabs button{font:inherit;font-size:10.5px;letter-spacing:-.04em;white-space:nowrap;border:0;background:none;color:var(--sub);height:var(--tab-h);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:0}
 nav.tabs svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 nav.tabs button[aria-selected="true"]{color:var(--ink);font-weight:700}
 nav.tabs button[aria-selected="true"] svg{stroke-width:2.2}
@@ -256,6 +256,31 @@ mark.hl{background:#ffe066;color:#111;border-radius:3px;padding:0 1px}
 .flash{animation:flash 1.8s ease}
 @keyframes flash{0%,40%{box-shadow:0 0 0 4px #ffe066;background:#ffe066;border-radius:6px}100%{box-shadow:0 0 0 0 transparent}}
 
+/* accordion */
+details.acc{border-top:1px solid var(--line)}
+.pane>details.acc:first-child,.pane>section:first-child>details.acc:first-child{border-top:0}
+details.acc>summary,details.daydet>summary,details.pmore>summary{list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+details.acc>summary::-webkit-details-marker,details.daydet>summary::-webkit-details-marker,details.pmore>summary::-webkit-details-marker{display:none}
+details.acc>summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0}
+details.acc>summary h2{margin:0 !important;font-size:19px}
+details.acc>summary::after,details.daydet>summary::after{content:"";flex:none;width:9px;height:9px;margin:0 4px 3px 0;border-right:2px solid var(--sub);border-bottom:2px solid var(--sub);transform:rotate(45deg);transition:transform .2s}
+details.acc[open]>summary::after,details.daydet[open]>summary::after{transform:rotate(-135deg);margin-bottom:-3px}
+.accbody{padding-bottom:18px}
+.accbody>.card:first-child{border-top:0;padding-top:4px}
+section.flat>h2{margin-top:26px}
+details.daydet{border-top:1px solid var(--line)}
+details.daydet:first-child{border-top:0}
+details.daydet>summary{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+details.daydet>summary b{font-size:17px}
+details.daydet>summary small{color:var(--sub);font-size:13px;margin-left:8px;font-weight:400}
+details.daydet .timeline{margin-bottom:14px}
+details.pmore{margin-top:8px}
+details.pmore>summary{display:inline-block;font-size:13px;font-weight:600;color:var(--blue);padding:6px 0}
+details.pmore>summary::before{content:"자세히 보기 ▾"}
+details.pmore[open]>summary::before{content:"접기 ▴"}
+.place{padding:14px 0}
+.offstat{font-size:12px;color:var(--sub)}
+
 footer{margin-top:48px;color:var(--sub);font-size:12px;line-height:1.6}
 footer a{color:var(--sub)}
 
@@ -304,6 +329,7 @@ footer a{color:var(--sub)}
     <p style="text-align:center;margin:0;color:var(--sub)">No. 5, Emei St., Wanhua Dist., Taipei City 108<br>가까운 역: MRT 시먼역(西門) 6번 출구 · 택시 기사님께 이 화면을 보여주세요</p>
   </div>
   <div class="note info"><b>시차</b>대만은 한국보다 1시간 느립니다. 한국이 오전 9시면 대만은 오전 8시입니다. 이 문서의 대만 시간은 모두 현지 시간입니다.</div>
+  <p class="offstat" id="offstat"></p>
 </section><section id="plan"><h2>일정</h2><div id="plan-body"></div><div class="grid" style="margin-top:12px"><div class="note ok" style="margin:8px 0"><b>꼭 먹을 것 ① 딘타이펑</b>7일 12시 푸싱점 예정입니다. 대기가 길 수 있으니 번호표를 먼저 받으세요. 지점 정보는 <a href="#places" data-go="places">장소 탭</a>에 있습니다.</div><div class="note warn" style="margin:8px 0"><b>이갑자(一甲子) 영업일 주의</b>일요일 휴무, 토요일은 14시까지입니다. 7일 21시 배달은 어려우니 월요일(9일) 점심 등으로 옮기는 것을 권합니다. 숙소에서 걸어서 10~15분입니다.</div></div></section><section id="weather">
   <h2>날씨 예보 (시먼딩 기준)</h2>
   <div class="card">
@@ -315,7 +341,7 @@ footer a{color:var(--sub)}
     <div class="note info"><b> 우산</b>강수확률은 낮지만 11월 타이베이는 갑자기 소나기가 오는 일이 많습니다. <b>접이식 우산 하나는 챙기시길 권합니다.</b> 편의점에서도 쉽게 살 수 있습니다.</div>
     <p style="font-size:13px;color:var(--sub);margin:0">※ 11월 5일 기준 예보입니다. 출발 전에 한 번 더 확인해 주세요.</p>
   </div>
-</section></div><div class="pane" id="tab-before" role="tabpanel"><section id="check"><h2>출발 전 체크리스트</h2>
+</section></div><div class="pane" id="tab-plan" role="tabpanel"><section id="plan2" class="flat"><h2>일정 (11/7–11/10)</h2><div id="plan-body2"></div><div class="grid" id="plan-notes2" style="margin-top:12px"></div></section></div><div class="pane" id="tab-before" role="tabpanel"><section id="check"><h2>출발 전 체크리스트</h2>
 <div class="card">
   <h3 style="margin-top:0"> 서류·입국</h3>
   <ul class="check">
@@ -798,6 +824,7 @@ footer a{color:var(--sub)}
 
 <nav class="tabs" role="tablist"><div class="in">
 <button role="tab" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>요약</button>
+<button role="tab" data-tab="plan"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>일정</button>
 <button role="tab" data-tab="before"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>출발 전</button>
 <button role="tab" data-tab="move"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l2-4M15 21l-2-4"/></svg>이동</button>
 <button role="tab" data-tab="places"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>장소</button>
@@ -837,7 +864,7 @@ footer a{color:var(--sub)}
     e.preventDefault();
     var b=document.querySelector('nav.tabs button[data-tab="'+a.dataset.go+'"]'); b&&b.click();
     var t=a.getAttribute('href'); var el=t&&t.length>1&&document.getElementById(t.slice(1));
-    if(el) setTimeout(function(){el.scrollIntoView()},60);
+    if(el) setTimeout(function(){window.openAnc&&openAnc(el);el.scrollIntoView()},60);
   });
   btns.forEach(function(b){b.addEventListener('click',function(){
     if(history.replaceState) history.replaceState(null,'','#'+b.dataset.tab); show(b.dataset.tab); window.scrollTo(0,0);
@@ -845,7 +872,7 @@ footer a{color:var(--sub)}
   var h=(location.hash||'').slice(1), saved=null; try{saved=localStorage.getItem('taipei-tab')}catch(e){}
   var el=h&&document.getElementById(h); var p=el&&el.closest&&el.closest('.pane');
   show(p?p.id.replace('tab-',''):(h&&document.getElementById('tab-'+h)?h:(saved||'home')));
-  if(p&&el.tagName==='SECTION') setTimeout(function(){el.scrollIntoView()},0);
+  if(p&&el.tagName==='SECTION') setTimeout(function(){window.openAnc&&openAnc(el);el.scrollIntoView()},0);
 })();
 
 /* ---------- 일정 (여기만 고치면 됩니다) ----------
@@ -879,14 +906,22 @@ footer a{color:var(--sub)}
     ['15:45–20:00','공항 → 광주']
    ]]
   ];
-  var h=document.getElementById('plan-body'); if(!h) return;
   function e(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
-  h.innerHTML=PLAN.map(function(d){
-    return '<div class="day"><h3>'+e(d[0])+'</h3><div class="timeline">'+d[1].map(function(i){
-      return '<div class="t'+(i[3]==='k'?' key':'')+'"><span class="time">'+e(i[0])+'</span> '+e(i[1])+
-        (i[2]?'<span class="sub2"'+(i[3]==='w'?' style="color:var(--accent)"':'')+'>'+e(i[2])+'</span>':'')+'</div>';
-    }).join('')+'</div></div>';
-  }).join('');
+  var now=new Date(), today=(now.getFullYear()===2026&&now.getMonth()===10)?now.getDate():0;
+  function render(h){
+    if(!h) return;
+    h.innerHTML=PLAN.map(function(d){
+      var n=parseInt(d[0],10);
+      return '<details class="daydet" open><summary><span><b>'+e(d[0])+'</b>'+(n===today?'<small style="color:var(--accent);font-weight:700">오늘</small>':'<small>'+d[1].length+'개 일정</small>')+'</span></summary><div class="timeline">'+d[1].map(function(i){
+        return '<div class="t'+(i[3]==='k'?' key':'')+'"><span class="time">'+e(i[0])+'</span> '+e(i[1])+
+          (i[2]?'<span class="sub2"'+(i[3]==='w'?' style="color:var(--accent)"':'')+'>'+e(i[2])+'</span>':'')+'</div>';
+      }).join('')+'</div></details>';
+    }).join('');
+  }
+  render(document.getElementById('plan-body'));
+  render(document.getElementById('plan-body2'));
+  var src=document.querySelector('#plan>.grid'), dst=document.getElementById('plan-notes2');
+  if(src&&dst) dst.innerHTML=src.innerHTML;
 })();
 
 /* ---------- checklist memory ---------- */
@@ -1242,7 +1277,7 @@ footer a{color:var(--sub)}
     close(); clearMarks();
     var btn=document.querySelector('nav.tabs button[data-tab="'+r.tab+'"]'); if(btn) btn.click();
     setTimeout(function(){
-      markIn(r.el,q); idx=null;
+      window.openAnc&&openAnc(r.el); markIn(r.el,q); idx=null;
       var y=r.el.getBoundingClientRect().top+window.pageYOffset-150; window.scrollTo(0,y);
       r.el.classList.remove('flash'); void r.el.offsetWidth; r.el.classList.add('flash');
     },80);
@@ -1262,9 +1297,54 @@ footer a{color:var(--sub)}
   });
 })();
 
+/* ---------- 접기/펼치기 (스크롤 줄이기) ---------- */
+window.openAnc=function(el){
+  for(var n=el;n&&n!==document.body;n=n.parentElement){ if(n.tagName==='DETAILS') n.open=true; }
+  var pl=el.closest&&el.closest('article.place'); if(pl){var m=pl.querySelector('details.pmore'); if(m) m.open=true;}
+};
+(function(){
+  /* 장소 카드: 이름·지도·메모만 보이고 나머지는 '자세히 보기' */
+  [].forEach.call(document.querySelectorAll('article.place'),function(a){
+    var rest=[].filter.call(a.children,function(c){return !c.classList.contains('ptop')&&!c.classList.contains('memo')});
+    if(!rest.length) return;
+    var d=document.createElement('details'); d.className='pmore'; d.appendChild(document.createElement('summary'));
+    rest.forEach(function(c){d.appendChild(c)}); a.appendChild(d);
+  });
+  /* 큰 섹션: 제목을 누르면 펼쳐짐. 요약·비상만 처음부터 펼침 */
+  var OPEN={summary:1,sos:1}, SKIP={talk:1,places:1,plan2:1};
+  [].forEach.call(document.querySelectorAll('.pane>section[id]'),function(sec){
+    if(SKIP[sec.id]) return;
+    var h=[].filter.call(sec.children,function(c){return c.tagName==='H2'})[0]; if(!h) return;
+    var d=document.createElement('details'); d.className='acc'; if(OPEN[sec.id]) d.open=true;
+    var sm=document.createElement('summary'); sm.appendChild(h);
+    var body=document.createElement('div'); body.className='accbody';
+    while(sec.firstChild) body.appendChild(sec.firstChild);
+    d.appendChild(sm); d.appendChild(body); sec.appendChild(d);
+  });
+  /* 장소 탭: 지도 두 장은 한 번에 접어두기 */
+  var pl=document.getElementById('places');
+  if(pl){
+    var maps=[].filter.call(pl.children,function(c){return c.classList.contains('card')&&c.querySelector('.mapwrap')});
+    if(maps.length){
+      var md=document.createElement('details'); md.className='acc';
+      var ms=document.createElement('summary'); ms.innerHTML='<h2>지도 (시내 · 시먼딩 확대)</h2>';
+      var mb=document.createElement('div'); mb.className='accbody';
+      maps[0].parentNode.insertBefore(md,maps[0]); md.appendChild(ms); md.appendChild(mb);
+      maps.forEach(function(m){mb.appendChild(m)});
+    }
+  }
+  window.addEventListener('beforeprint',function(){[].forEach.call(document.querySelectorAll('details'),function(d){d.open=true})});
+})();
+
 /* ---------- offline (installed web app) ---------- */
 if('serviceWorker' in navigator && /^https?:/.test(location.protocol)){
-  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
+  var os=document.getElementById('offstat');
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){ if(os) os.textContent='오프라인 저장을 지원하지 않는 브라우저입니다.'; });
+    navigator.serviceWorker.ready.then(function(){ if(os) os.textContent='✓ 오프라인 저장 완료 · 인터넷 없이도 열립니다'; });
+  });
+}else{
+  var os2=document.getElementById('offstat'); if(os2&&location.protocol==='file:') os2.textContent='파일로 열린 상태입니다. 이 파일을 폰에 저장해 두면 오프라인에서도 열립니다.';
 }
 </script>
 </body>

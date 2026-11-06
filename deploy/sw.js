@@ -1,6 +1,7 @@
-// 오프라인 캐시: 처음 한 번 열면 이후엔 인터넷 없이 열립니다.
-// 내용을 고쳐서 다시 올릴 때는 아래 버전 숫자를 올리세요.
-const VERSION = 'taipei-v2';
+// 오프라인 캐시: 한 번 열어두면 이후엔 인터넷 없이 열립니다.
+// 온라인일 땐 항상 최신본을 먼저 받아오고(3초 안에 응답 없으면 저장본 사용),
+// 오프라인이면 저장본을 보여줍니다. 그래서 GitHub에서 고치면 별도 작업 없이 반영됩니다.
+const VERSION = 'taipei-v3';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
 
 self.addEventListener('install', e => {
@@ -12,16 +13,27 @@ self.addEventListener('activate', e => {
       .then(() => self.clients.claim())
   );
 });
-// 캐시를 먼저 보여주고, 인터넷이 되면 뒤에서 새 버전으로 갱신
+
+async function respond(req) {
+  const cache = await caches.open(VERSION);
+  const fromCache = async () =>
+    (await cache.match(req, { ignoreSearch: true })) ||
+    (req.mode === 'navigate' ? await cache.match('./index.html') : undefined);
+  const net = fetch(req, { cache: 'no-cache' }).then(r => {
+    if (r && r.ok) cache.put(req, r.clone());
+    return r;
+  });
+  net.catch(() => {});
+  const timeout = new Promise(res => setTimeout(() => res(fromCache()), 3000));
+  try {
+    const r = await Promise.race([net, timeout]);
+    return r || net;
+  } catch (err) {
+    return (await fromCache()) || Response.error();
+  }
+}
+
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
-  e.respondWith(
-    caches.match(e.request, { ignoreSearch: true }).then(hit => {
-      const net = fetch(e.request).then(r => {
-        if (r && r.ok) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); }
-        return r;
-      }).catch(() => hit);
-      return hit || net;
-    })
-  );
+  e.respondWith(respond(e.request));
 });
