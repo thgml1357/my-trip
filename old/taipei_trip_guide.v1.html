@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>타이베이 여행 가이드</title>
+<style>
+:root{
+  --bg:#f6f5f1; --card:#ffffff; --ink:#1d1d1f; --sub:#5d5d63; --line:#e3e1da;
+  --accent:#c8102e; --accent-soft:#fbe9ec; --blue:#1f5fbf; --blue-soft:#e8f0fc;
+  --purple:#7b3fb3; --purple-soft:#f1e9f9; --green:#1f8a4c; --green-soft:#e6f5ec;
+  --warn:#b45309; --warn-soft:#fdf3e2; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141416; --card:#1e1e21; --ink:#f2f2f4; --sub:#a8a8b0; --line:#323237;
+    --accent:#ff5a6e; --accent-soft:#3a1c22; --blue:#6ea2ff; --blue-soft:#1b2740;
+    --purple:#b98af0; --purple-soft:#2c2140; --green:#4fcb84; --green-soft:#16301f;
+    --warn:#f0a94a; --warn-soft:#352812;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 64px}
+header.hero{background:linear-gradient(135deg,#c8102e 0%,#8a0b20 100%);color:#fff;padding:40px 16px 32px}
+header.hero .in{max-width:860px;margin:0 auto}
+.hero h1{margin:0 0 6px;font-size:clamp(22px,6.5vw,30px);word-break:keep-all;letter-spacing:-.02em}
+.hero p{margin:0;opacity:.9}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:14px}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+nav.toc .in{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;gap:6px}
+nav.toc a{color:var(--sub);text-decoration:none;font-size:14px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+nav.toc a:hover{color:var(--ink)}
+section{margin-top:28px}
+h2{font-size:21px;margin:0 0 12px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-size:14px}
+h3{font-size:16px;margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card + .card{margin-top:12px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}
+.kv dt{color:var(--sub)}
+.kv dd{margin:0;font-weight:600}
+ul,ol{padding-left:20px;margin:6px 0}
+li{margin:4px 0}
+.note{border-radius:12px;padding:12px 14px;margin:12px 0;font-size:15px}
+.note.warn{background:var(--warn-soft);border-left:4px solid var(--warn)}
+.note.bad{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.note.ok{background:var(--green-soft);border-left:4px solid var(--green)}
+.note.info{background:var(--blue-soft);border-left:4px solid var(--blue)}
+.note > b:first-child{display:block;margin-bottom:2px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--sub);font-weight:600;font-size:13px}
+.tbl{overflow-x:auto}
+.big-addr{font-size:26px;font-weight:700;letter-spacing:.02em;text-align:center;padding:18px 8px;border:2px dashed var(--accent);border-radius:12px;margin:8px 0}
+.mono{font-family:var(--mono)}
+.check li{list-style:none;margin-left:-20px}
+.check label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:6px 0}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.check input:checked + span{color:var(--sub);text-decoration:line-through}
+.phrase{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.phrase:last-child{border-bottom:0}
+.phrase .zh{font-size:20px;font-weight:700}
+.phrase .py{color:var(--sub);font-size:14px}
+.phrase .ko{grid-column:1/-1;font-size:14px}
+.tag{display:inline-block;white-space:nowrap;font-size:12px;padding:1px 8px;border-radius:999px;font-weight:600}
+.tag.main{background:var(--green-soft);color:var(--green)}
+.tag.sub{background:var(--blue-soft);color:var(--blue)}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:inherit}
+.timeline{position:relative;margin:8px 0 0 6px;padding-left:22px;border-left:3px solid var(--line)}
+.timeline .t{position:relative;padding:6px 0 12px}
+.timeline .t::before{content:"";position:absolute;left:-31px;top:11px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--accent)}
+.timeline .time{font-family:var(--mono);font-weight:700;color:var(--accent)}
+.timeline .t.key::before{background:var(--accent)}
+footer{margin-top:40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+@media print{
+  nav.toc{display:none}
+  header.hero{background:#c8102e !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card{break-inside:avoid}
+}
+
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .in{max-width:860px;margin:0 auto;padding:8px 12px;display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+nav.tabs button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--sub);padding:6px 2px;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav.tabs .ti{font-size:20px;line-height:1}
+nav.tabs button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.pane{display:none}.pane.on{display:block}
+.pane section:first-child{margin-top:20px}
+.ghead{font-size:17px;margin:24px 0 10px}
+.plist{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.place{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.ptop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.pzh{font-size:19px;font-weight:700}
+.pko{font-size:14px;color:var(--sub)}
+.pmap{flex:none;font-size:13px;text-decoration:none;color:var(--blue);background:var(--blue-soft);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.memo{margin-top:10px;background:var(--warn-soft);border-radius:8px;padding:6px 10px;font-size:14px}
+.pdesc{font-size:15px;margin:10px 0}
+.pinfo{margin:0;font-size:14px;display:grid;gap:4px}
+.pinfo div{display:grid;grid-template-columns:40px 1fr;gap:8px}
+.pinfo dt{color:var(--sub)}.pinfo dd{margin:0}
+.closed{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:12px;padding:1px 8px;border-radius:999px}
+.ptip{margin-top:10px;font-size:14px;color:var(--sub)}
+@media (max-width:360px){nav.tabs button{font-size:11px}}
+@media print{nav.tabs{display:none}.pane{display:block !important}}
+
+#map{height:min(62vh,520px);border-radius:10px;z-index:0;background:var(--line)}
+.mapf{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.mapf button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer;display:flex;align-items:center;gap:5px}
+.mapf button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mapf i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mapnote{font-size:13px;color:var(--sub);margin:8px 2px 0}
+.pin{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);display:grid;place-items:center}
+.pin span{transform:rotate(45deg);color:#fff;font-size:12px;font-weight:700;font-family:sans-serif}
+.pin.home{background:#111;border-radius:6px;transform:none}.pin.home span{transform:none}
+.leaflet-popup-content{font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:13px;line-height:1.5;margin:10px 12px}
+.pp b{font-size:15px}.pp .m{background:#fdf3e2;border-radius:6px;padding:2px 6px;margin:4px 0;display:inline-block;color:#1d1d1f}
+.pp a{display:inline-block;margin-top:6px;color:#1f5fbf;font-weight:600}
+.ptop .num{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;margin-right:6px;vertical-align:2px}
+
+.pmapsvg{display:block;width:100%;height:auto;border-radius:10px}
+.pmapsvg text{font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+.mbg{fill:#f3f1ea}.river{stroke:#bcd9ee}.rv{fill:#4a86b5;font-style:italic}
+.ml{fill:#1d1d1f;font-weight:600;paint-order:stroke;stroke:#f3f1ea;stroke-width:3px}
+.sl{fill:#5d5d63;paint-order:stroke;stroke:#f3f1ea;stroke-width:3px}
+.rl{fill:#8a8a90}.stn{fill:#fff;stroke:#555;stroke-width:2}
+.rd{stroke:#ffffff;stroke-width:7}.rdM{stroke:#fff;stroke-width:11}
+.lgbg{fill:#ffffff;fill-opacity:.88}.sc{stroke:#1d1d1f}
+@media (prefers-color-scheme: dark){
+ .mbg{fill:#24242a}.river{stroke:#22384f}.rv{fill:#6ea2ff}
+ .ml{fill:#f2f2f4;stroke:#24242a}.sl{fill:#a8a8b0;stroke:#24242a}
+ .rl{fill:#8a8a95}.stn{fill:#24242a;stroke:#ccc}
+ .rd{stroke:#3a3a42}.rdM{stroke:#47474f}.lgbg{fill:#1e1e21}.sc{stroke:#f2f2f4}
+}
+a.jump{font-size:13px;color:var(--blue);text-decoration:none;margin-left:4px}
+section{scroll-margin-top:84px}
+.sub2{display:block;color:var(--sub);font-size:14px}.dev-legend{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.dev{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:4px;vertical-align:2px}.dev.g{background:var(--green-soft);color:var(--green)}.dev.i{background:var(--blue-soft);color:var(--blue)}
+.sbtn{position:fixed;right:16px;bottom:20px;z-index:20;width:54px;height:54px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:24px;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
+.sov{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.45);display:none}
+.sov.on{display:block}
+.sbox{background:var(--bg);max-width:860px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+.shead{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--card)}
+.shead input{flex:1;font:inherit;font-size:17px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
+.shead button{font:inherit;border:0;background:transparent;color:var(--sub);font-size:15px;cursor:pointer;padding:0 4px}
+.schips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 0}
+.schips button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer}
+.sres{overflow-y:auto;padding:8px 16px 40px;flex:1}
+.sitem{display:block;width:100%;text-align:left;font:inherit;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:8px;color:var(--ink);cursor:pointer}
+.sitem .where{font-size:12px;color:var(--accent);font-weight:700}
+.sitem .snip{font-size:14px;margin-top:2px}
+.scount{font-size:13px;color:var(--sub);margin-top:8px}
+mark.hl{background:#ffe066;color:#1d1d1f;border-radius:3px;padding:0 1px}
+.flash{animation:flash 1.8s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 3px var(--accent);border-radius:8px}100%{box-shadow:0 0 0 0 transparent}}
+@media print{.sbtn,.sov{display:none !important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="in">
+    <h1>타이베이 3박 4일 여행 가이드</h1>
+    <p>2026년 11월 7일(토) ~ 11월 10일(화) · 시먼딩 숙박</p>
+    <div class="chips">
+      <span class="chip">OZ711 인천 → 타오위안</span>
+      <span class="chip">OZ712 타오위안 → 인천</span>
+      <span class="chip">무비자 (최대 90일)</span>
+      <span class="chip">TWAC 필수</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist"><div class="in"><button role="tab" data-tab="home"><span class="ti">🏠</span>요약</button><button role="tab" data-tab="before"><span class="ti">🧳</span>출발 전</button><button role="tab" data-tab="move"><span class="ti">🚇</span>이동</button><button role="tab" data-tab="places"><span class="ti">📍</span>장소</button><button role="tab" data-tab="local"><span class="ti">🇹🇼</span>대만에서</button><button role="tab" data-tab="sos"><span class="ti">🆘</span>비상</button></div></nav>
+<main class="wrap">
+<div class="pane" id="tab-home" role="tabpanel"><section id="summary">
+  <h2>여행 요약</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0">✈ 가는 편 · 11/7(토)</h3>
+      <dl class="kv">
+        <dt>항공편</dt><dd>아시아나 OZ711</dd>
+        <dt>출발</dt><dd>인천 08:00 (제2터미널)</dd>
+        <dt>도착</dt><dd>타오위안 09:50 (현지시간)</dd>
+        <dt>공항 도착</dt><dd>05:30~06:00 권장</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">✈ 오는 편 · 11/10(화)</h3>
+      <dl class="kv">
+        <dt>항공편</dt><dd>아시아나 OZ712</dd>
+        <dt>출발</dt><dd>타오위안 11:05</dd>
+        <dt>도착</dt><dd>인천 14:40 (제2터미널)</dd>
+        <dt>숙소 출발</dt><dd>07:15 전후</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3 style="margin-top:0">🏨 숙소 (4일 동안 같은 곳)</h3>
+    <div class="big-addr">台北市萬華區峨眉街5號</div>
+    <p style="text-align:center;margin:0;color:var(--sub)">No. 5, Emei St., Wanhua Dist., Taipei City 108<br>가까운 역: MRT 시먼역(西門) 6번 출구 · 택시 기사님께 이 화면을 보여주세요</p>
+  </div>
+  <div class="note info"><b>시차</b>대만은 한국보다 1시간 느립니다. 한국이 오전 9시면 대만은 오전 8시입니다. 이 문서의 대만 시간은 모두 현지 시간입니다.</div>
+</section><section id="plan"><h2>우리 일정 (초안)</h2>
+<div class="card">
+  <div class="timeline">
+    <div class="t key"><span class="time">11/7 토</span> 09:50 도착 → 12시경 숙소(짐 보관) → 시먼딩 점심 → <b>저녁: 스린 야시장</b><br><span class="sub2">MRT 시먼(초록) → 중산 환승(빨강) → 젠탄역 1번 출구, 약 25분 · 현금 준비</span></div>
+    <div class="t"><span class="time">11/8 일</span> 자유 일정<br><span class="sub2">⚠ 일요일 휴무: 이갑자, 류산동 우육면, 연길 과일가게</span></div>
+    <div class="t key"><span class="time">11/9 월</span> <b>지우펀</b> (오후 출발 → 노을·홍등 → 저녁 복귀)<br><span class="sub2">다음 날 아침 일찍 출국하니 너무 늦지 않게 돌아오기 · 짐 정리는 이날 밤</span></div>
+    <div class="t key"><span class="time">11/10 화</span> 07:15 숙소 출발 → 11:05 OZ712</div>
+  </div>
+</div>
+<div class="grid" style="margin-top:12px">
+  <div class="note ok" style="margin:0"><b>꼭 먹을 것 ① 딘타이펑</b>일정 중 한 번. 지점과 대기 팁은 <a href="#places" data-go="places">장소 탭</a> 아래쪽에 있습니다.</div>
+  <div class="note ok" style="margin:0"><b>꼭 먹을 것 ② 이갑자(一甲子)</b>우버이츠 배달 예정. <b>일요일 휴무, 토요일 14시까지</b>라 월요일(9일) 점심이나 토요일 점심이 맞습니다. 숙소에서 걸어서 10~15분이라 직접 가도 됩니다.</div>
+</div>
+</section><section id="weather">
+  <h2>날씨 예보 (시먼딩 기준)</h2>
+  <div class="card">
+    <svg viewBox="0 0 560 260" role="img" aria-label="11월 7일부터 10일까지 기온 예보 차트">
+      <!-- axis: y from 16 to 30 → 200 to 40 -->
+      <g stroke="currentColor" stroke-opacity=".12">
+        <line x1="50" y1="40" x2="540" y2="40"/>
+        <line x1="50" y1="94" x2="540" y2="94"/>
+        <line x1="50" y1="148" x2="540" y2="148"/>
+        <line x1="50" y1="200" x2="540" y2="200"/>
+      </g>
+      <g font-size="12" fill="currentColor" fill-opacity=".6" text-anchor="end">
+        <text x="42" y="44">30°</text><text x="42" y="98">25°</text><text x="42" y="152">20°</text><text x="42" y="204">15°</text>
+      </g>
+      <!-- x positions: 110, 240, 370, 500 ; y = 40 + (30-t)*10.8 -->
+      <polyline fill="none" stroke="#c8102e" stroke-width="3" points="110,101.5 240,59.4 370,111.3 500,148"/>
+      <polyline fill="none" stroke="#1f5fbf" stroke-width="3" points="110,124.4 240,125.4 370,166.4 500,165.3"/>
+      <g fill="#c8102e"><circle cx="110" cy="101.5" r="5"/><circle cx="240" cy="59.4" r="5"/><circle cx="370" cy="111.3" r="5"/><circle cx="500" cy="148" r="5"/></g>
+      <g fill="#1f5fbf"><circle cx="110" cy="124.4" r="5"/><circle cx="240" cy="125.4" r="5"/><circle cx="370" cy="166.4" r="5"/><circle cx="500" cy="165.3" r="5"/></g>
+      <g font-size="13" font-weight="700" text-anchor="middle" fill="#c8102e">
+        <text x="110" y="90">24°</text><text x="240" y="48">28°</text><text x="370" y="100">23°</text><text x="500" y="137">20°</text>
+      </g>
+      <g font-size="13" font-weight="700" text-anchor="middle" fill="#1f5fbf">
+        <text x="110" y="143">22°</text><text x="240" y="144">22°</text><text x="370" y="185">18°</text><text x="500" y="184">18°</text>
+      </g>
+      <g font-size="14" text-anchor="middle" fill="currentColor">
+        <text x="110" y="226">11/7 토</text><text x="240" y="226">11/8 일</text><text x="370" y="226">11/9 월</text><text x="500" y="226">11/10 화</text>
+      </g>
+      <g font-size="12" text-anchor="middle" fill="currentColor" fill-opacity=".65">
+        <text x="110" y="246">☂ 15%</text><text x="240" y="246">☀ 0%</text><text x="370" y="246">☂ 15%</text><text x="500" y="246">☂ 15%</text>
+      </g>
+      <g font-size="12" fill="currentColor">
+        <rect x="380" y="10" width="12" height="4" fill="#c8102e"/><text x="397" y="16">최고</text>
+        <rect x="440" y="10" width="12" height="4" fill="#1f5fbf"/><text x="457" y="16">최저</text>
+      </g>
+    </svg>
+    <div class="grid" style="margin-top:12px">
+      <div class="note info" style="margin:0"><b>7~8일 (토·일)</b>반팔이 맞는 날씨입니다. 일요일은 낮 28℃까지 올라 덥습니다.</div>
+      <div class="note warn" style="margin:0"><b>9~10일 (월·화)</b>최저 18℃로 쌀쌀해집니다. 얇은 겉옷이나 가디건을 꼭 챙기세요.</div>
+    </div>
+    <div class="note info"><b>☂ 우산</b>강수확률은 낮지만 11월 타이베이는 갑자기 소나기가 오는 일이 많습니다. <b>접이식 우산 하나는 챙기시길 권합니다.</b> 편의점에서도 쉽게 살 수 있습니다.</div>
+    <p style="font-size:13px;color:var(--sub);margin:0">※ 11월 5일 기준 예보입니다. 출발 전에 한 번 더 확인해 주세요.</p>
+  </div>
+</section></div><div class="pane" id="tab-before" role="tabpanel"><section id="check"><h2>출발 전 체크리스트</h2>
+<div class="card">
+  <h3 style="margin-top:0">📄 서류·입국</h3>
+  <ul class="check">
+    <li><label><input type="checkbox"><span><b>TWAC 온라인 입국신고서 제출</b> → 완료 메일 확인 <a href="#twac" class="jump">방법 ↓</a></span></label></li>
+    <li><label><input type="checkbox"><span>여권 유효기간 확인 (6개월 이상 남은 것이 안전)</span></label></li>
+    <li><label><input type="checkbox" checked><span>여행자 보험 가입 (카카오페이 ✔)</span></label></li>
+  </ul>
+  <h3>💳 결제</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" checked><span>트래블월렛에 대만달러(TWD) 충전 ✔</span></label></li>
+    <li><label><input type="checkbox"><span>와이프 토스: <b>외화통장을 해외결제 계좌로 설정</b></span></label></li>
+    <li><label><input type="checkbox"><span>트래블월렛·토스·신한카드 모두 <b>해외 원화결제(DCC) 차단</b></span></label></li>
+    <li><label><input type="checkbox"><span>신한카드 해외 사용 가능 상태인지 확인</span></label></li>
+    <li><label><input type="checkbox"><span>라인페이(신한카드 앱) 대만 결제 되는지 확인</span></label></li>
+  </ul>
+  <h3>📱 앱 (한국에서 미리)</h3>
+  <ul class="check">
+    <li><label><input type="checkbox"><span><b>Uber 앱</b> 로그인 + 카드 등록 (택시용, 한 명만 해도 됨) <a href="#apps" class="jump">이유 ↓</a></span></label></li>
+    <li><label><input type="checkbox"><span><b>Uber Eats 앱</b> 로그인 + 카드 등록 (배달용)</span></label></li>
+    <li><label><input type="checkbox"><span>eSIM 또는 유심 구매·설치</span></label></li>
+    <li><label><input type="checkbox"><span>구글 지도 '대만' 목록 열리는지 확인</span></label></li>
+    <li><label><input type="checkbox"><span>🤖🍎 <b>구글 지도 오프라인 지도</b> 받기: 타이베이 시내 + 지우펀 (두 폰 모두, 와이파이) <a href="#offmap" class="jump">방법 ↓</a></span></label></li>
+    <li><label><input type="checkbox"><span>🤖 <b>갤럭시 AI 언어팩</b> 중국어·한국어 받기 (와이파이) <a href="#translate" class="jump">방법 ↓</a></span></label></li>
+    <li><label><input type="checkbox"><span>🍎 <b>아이폰 번역 언어</b> 중국어(번체)·한국어 받기 (와이프)</span></label></li>
+    <li><label><input type="checkbox"><span>🤖🍎 <b>구글 번역 오프라인 중국어(번체)</b> 받기 + 파파고 설치 (두 폰 모두)</span></label></li>
+    <li><label><input type="checkbox"><span>비행기 모드에서 카메라 번역·통역 되는지 테스트</span></label></li>
+  </ul>
+  <h3>🎒 짐</h3>
+  <ul class="check">
+    <li><label><input type="checkbox"><span><b>A타입(11자) 플러그 어댑터</b></span></label></li>
+    <li><label><input type="checkbox"><span>접이식 우산, 얇은 겉옷 (9~10일 쌀쌀, 지우펀은 더 추움)</span></label></li>
+    <li><label><input type="checkbox"><span>보조배터리는 <b>기내 가방</b>에 (100Wh 이하)</span></label></li>
+    <li><label><input type="checkbox"><span>가방에 <b>고기 든 음식, 생과일, 전자담배</b> 없는지 확인 <a href="#ban" class="jump">목록 ↓</a></span></label></li>
+    <li><label><input type="checkbox"><span>편한 신발 (지우펀 계단·비탈)</span></label></li>
+  </ul>
+  <h3>🚗 출발일</h3>
+  <ul class="check">
+    <li><label><input type="checkbox"><span>인천공항 <b>제2터미널</b> 05:30~06:00 도착할 교통편·첫차 확인</span></label></li>
+  </ul>
+  <p style="font-size:13px;color:var(--sub);margin:8px 0 0">※ 체크 표시는 이 파일을 닫으면 초기화됩니다.</p>
+</div>
+<h3>콘센트 모양</h3>
+  <div class="card">
+    <svg viewBox="0 0 520 170" role="img" aria-label="한국 콘센트와 대만 콘센트 비교">
+      <g>
+        <rect x="30" y="20" width="180" height="120" rx="18" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/>
+        <circle cx="120" cy="80" r="40" fill="none" stroke="currentColor" stroke-opacity=".6" stroke-width="2"/>
+        <circle cx="103" cy="80" r="7" fill="currentColor"/>
+        <circle cx="137" cy="80" r="7" fill="currentColor"/>
+        <text x="120" y="162" text-anchor="middle" font-size="15" fill="currentColor">한국 · 220V (둥근 핀)</text>
+      </g>
+      <g>
+        <path d="M245 80 h40" stroke="#c8102e" stroke-width="3" marker-end="url(#ar)"/>
+        <text x="265" y="68" text-anchor="middle" font-size="12" fill="#c8102e">어댑터</text>
+      </g>
+      <g>
+        <rect x="310" y="20" width="180" height="120" rx="18" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/>
+        <rect x="378" y="60" width="8" height="38" rx="2" fill="currentColor"/>
+        <rect x="414" y="60" width="8" height="38" rx="2" fill="currentColor"/>
+        <text x="400" y="162" text-anchor="middle" font-size="15" fill="currentColor">대만 · 110V (납작한 11자, A타입)</text>
+      </g>
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c8102e"/></marker></defs>
+    </svg>
+    <p style="margin:8px 0 0;font-size:15px">휴대폰과 노트북 충전기는 대부분 프리볼트(100~240V)라 <b>어댑터만 끼우면 됩니다.</b> 드라이기나 고데기 같은 220V 전용 기기는 쓸 수 없습니다.</p>
+  </div>
+</section><section id="apps"><h2>앱 미리 설치·설정</h2>
+<div class="note warn"><b>왜 한국에서 미리 해야 하나요?</b>로그인할 때 <b>문자 인증</b>이 필요한 경우가 많은데, 데이터 전용 eSIM을 쓰면 대만에서 한국 번호로 문자를 못 받을 수 있습니다. 카드 등록도 미리 해두면 현지에서 바로 쓸 수 있습니다.</div>
+<div class="card tbl">
+  <table>
+    <tr><th>앱</th><th>용도</th><th>미리 할 일</th></tr>
+    <tr><td><b>Uber</b></td><td>택시·차량 호출</td><td>한국 계정 로그인, 트래블월렛 카드 등록</td></tr>
+    <tr><td><b>Uber Eats</b></td><td>숙소로 음식 배달</td><td>로그인, 트래블월렛 카드 등록 (거절되면 신한카드)</td></tr>
+    <tr><td><b>구글 지도</b></td><td>길찾기, 버스 시간, 저장한 '대만' 목록</td><td>목록 확인 + 오프라인 지도 받기</td></tr>
+    <tr><td><b>구글 번역 · 파파고</b></td><td>메뉴판 카메라 번역</td><td>설치 + 오프라인 언어 받기 (아래 번역 준비 참고)</td></tr>
+    <tr><td><b>트래블월렛 · 토스</b></td><td>잔액 확인, 카드 정지</td><td>로그인 상태 확인</td></tr>
+    <tr><td><b>카카오페이</b></td><td>여행자 보험 확인·청구</td><td>보험 가입 내역과 긴급지원 연락처 확인</td></tr>
+    <tr><td><b>카카오 T</b> (선택)</td><td>해외 차량 호출</td><td>대만 지원 여부를 앱에서 확인 <a href="#transit" class="jump" data-go="move">→ 이동 탭</a></td></tr>
+  </table>
+</div>
+<p style="font-size:13px;color:var(--sub)">Uber Eats는 위치가 대만으로 바뀌기 전에는 대만 가게가 안 보이는 게 정상입니다. 주문 방법은 '대만에서' 탭에 있습니다.</p>
+</section><section id="translate"><h2>번역 준비 (폴드7 · 아이폰)</h2>
+<div class="dev-legend"><span class="dev g">🤖 갤럭시 폴드7 (요한)</span><span class="dev i">🍎 아이폰 (와이프)</span></div>
+<div class="note info"><b>어떤 언어를 받아야 하나요?</b>대만은 <b>중국어(만다린)</b>를 쓰고 글자는 <b>번체자(繁體)</b>입니다. 언어를 고를 때 <b>'중국어(번체)'</b>나 <b>'중국어(대만)'</b>이 있으면 그것을, 없으면 그냥 '중국어'를 받으세요. '대만어(台語)'는 받을 필요 없습니다. 말소리(만다린)는 중국 본토와 같아서 통역도 '중국어'로 됩니다.</div>
+<div class="note warn"><b>언제 하나요?</b>언어팩은 수백 MB까지 될 수 있으니 <b>출국 전 집 와이파이에서</b> 받으세요. 받은 뒤 <b>비행기 모드로 켜서 테스트</b>하면, 현지에서 데이터가 안 될 때도 쓸 수 있는지 확인됩니다.</div>
+
+<div class="card">
+  <h3 style="margin-top:0"><span class="dev g">🤖 폴드7</span> ① 갤럭시 AI 언어팩 <span class="tag main">필수</span></h3>
+  <p style="margin:0 0 6px">폴드7에 들어 있는 <b>통역(대화 통역), 실시간 통화 통역, 채팅 번역, 사진 속 글자 번역</b>이 이 언어팩을 씁니다.</p>
+  <ol>
+    <li><b>설정 → Galaxy AI</b>로 들어갑니다.</li>
+    <li><b>통역</b>(또는 '실시간 통역') 항목을 누르고, 안에 있는 <b>언어팩</b> 메뉴로 들어갑니다.</li>
+    <li><b>중국어</b>와 <b>한국어</b> 옆의 다운로드 버튼을 누릅니다.</li>
+    <li>같은 화면이나 Galaxy AI 설정에 <b>'기기에서만 데이터 처리'</b> 옵션이 있으면 켜서 오프라인으로 되는지 확인해 보세요. 평소에는 꺼두셔도 됩니다.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--sub);margin:4px 0 0">※ 메뉴 이름과 위치는 소프트웨어 버전에 따라 조금 다를 수 있습니다. 설정 맨 위 검색창에 <b>'언어팩'</b>이나 <b>'통역'</b>을 검색하면 바로 찾을 수 있습니다.</p>
+  <h3>폴드7에서 통역 쓰는 법</h3>
+  <ul>
+    <li><b>대화 통역</b>: 빠른 설정 패널(위에서 아래로 쓸어내리기)에 '통역' 버튼을 추가해 두면 바로 켤 수 있습니다. 한국어 ↔ 중국어를 고르고 말하면 번역해서 읽어줍니다.</li>
+    <li><b>마주 보고 대화</b>: 화면을 반쯤 접어 세우거나, 대화 모드에서 <b>커버 화면에 상대방 쪽 번역</b>을 띄우는 기능을 쓰면 상대가 바로 읽을 수 있습니다.</li>
+    <li><b>통화 통역</b>: 식당 예약 등으로 전화할 때 전화 앱의 통화 통역 기능을 켜면 통화 중에 번역됩니다.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0"><span class="dev i">🍎 아이폰</span> ① 애플 번역 언어 다운로드 <span class="tag main">필수</span></h3>
+  <p style="margin:0 0 6px">아이폰 기본 <b>번역 앱, 카메라·사진의 글자 인식(라이브 텍스트) 번역</b>이 이 언어를 씁니다.</p>
+  <ol>
+    <li><b>설정 → 앱 → 번역</b>으로 들어갑니다. (iOS 버전에 따라 <b>설정 → 번역</b>)</li>
+    <li><b>다운로드된 언어</b>를 누르고 <b>중국어(번체)</b>(또는 '중국어(대만)')와 <b>한국어</b> 옆의 다운로드 버튼을 누릅니다.</li>
+    <li>같은 화면의 <b>'기기 내 모드'</b>를 켜면 인터넷 없이 번역되는지 확인할 수 있습니다.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--sub);margin:4px 0 0">※ 설정 검색창에 '번역'을 검색하면 바로 찾을 수 있습니다.</p>
+  <h3>아이폰에서 쓰는 법</h3>
+  <ul>
+    <li><b>메뉴판 비추기</b>: <b>번역 앱 → 카메라</b> 탭에서 메뉴판을 비추면 글자 위에 한국어가 덮여 보입니다.</li>
+    <li><b>카메라 앱으로 바로</b>: 카메라를 글자에 비추면 오른쪽 아래에 <b>글자 인식 버튼</b>이 나옵니다. 누르고 <b>번역</b>을 고르세요.</li>
+    <li><b>찍어둔 사진</b>: 사진 앱에서 사진을 열고 <b>글자 인식 버튼 → 번역</b>.</li>
+    <li><b>대화</b>: 번역 앱 → <b>대화</b> 탭에서 한국어 ↔ 중국어로 말하면 번역해서 읽어줍니다. 화면을 상대에게 보여주는 모드도 있습니다.</li>
+    <li><b>빠르게 켜기</b>: 설정 → 제어 센터에 <b>번역</b> 버튼을 추가해 두면 바로 열 수 있습니다.</li>
+  </ul>
+</div>
+<div class="card">
+  <h3 style="margin-top:0"><span class="dev g">🤖</span><span class="dev i">🍎</span> ② 구글 번역 앱 + 오프라인 중국어 <span class="tag main">둘 다 필수</span></h3>
+  <p style="margin:0 0 6px">메뉴판·간판을 <b>카메라로 비추면 바로 번역</b>되는 기능이 가장 쓸모 있습니다.</p>
+  <ol>
+    <li><b>Google 번역</b>을 설치하거나 업데이트합니다. (폴드7은 플레이스토어, 아이폰은 앱스토어)</li>
+    <li>앱 위쪽 언어 선택에서 <b>중국어(번체)</b> → <b>한국어</b>로 맞춥니다.</li>
+    <li>언어 이름을 누르면 나오는 목록에서 중국어 옆의 <b>다운로드(↓) 아이콘</b>을 눌러 오프라인 언어를 받습니다. 한국어도 함께 받으세요. <br><span class="sub2">🤖 폴드7: 프로필 아이콘 → 설정 → '오프라인 번역 언어' · 🍎 아이폰: 프로필 아이콘 → <b>오프라인 언어</b>에서도 받을 수 있습니다.</span></li>
+    <li>비행기 모드에서 <b>카메라 → 실시간 번역</b>이 되는지 확인합니다.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--sub);margin:4px 0 0">※ 오프라인에서는 글자·카메라 번역은 잘 되지만, 음성 번역은 인터넷이 있을 때가 더 정확합니다.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0"><span class="dev g">🤖</span><span class="dev i">🍎</span> ③ 파파고 <span class="tag sub">추천</span></h3>
+  <p style="margin:0 0 6px">한국어 번역 품질이 자연스러워 메뉴 설명을 읽을 때 좋습니다. <b>이미지 번역</b>으로 메뉴판 사진을 찍으면 글자 위에 한국어가 덮여 보입니다.</p>
+  <ol>
+    <li>파파고 설치 → 언어를 <b>중국어(번체)</b> ↔ 한국어로 설정</li>
+    <li>앱 설정에 <b>오프라인 번역</b> 메뉴가 있으면 한국어-중국어 팩을 받아 두세요.</li>
+  </ol>
+  <p style="font-size:13px;color:var(--sub);margin:4px 0 0">※ 파파고 이미지 번역은 인터넷이 필요할 수 있습니다. 데이터가 안 될 때는 ②의 구글 번역을 쓰세요.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">④ 있으면 편한 것 <span class="tag sub">선택</span></h3>
+  <p style="margin:0 0 4px;font-weight:700">🤖 폴드7</p>
+  <ul>
+    <li><b>서클 투 서치</b>: 아무 화면에서나 <b>하단 네비게이션 바(홈)를 길게 누르고</b> 글자에 동그라미 → '번역'. 인스타·구글 지도 리뷰의 중국어를 바로 번역할 때 좋습니다. 인터넷이 필요합니다.</li>
+    <li><b>사진 속 글자 복사</b>: 갤러리에서 사진을 열면 글자를 인식하는 버튼(T 모양)이 나옵니다. 누르면 글자를 복사하거나 번역할 수 있어, 낮에 찍은 메뉴판·안내문을 나중에 번역할 때 좋습니다.</li>
+    <li><b>삼성 키보드에 중국어 추가</b>: 설정 → 일반 → 삼성 키보드 설정 → 언어 및 입력 방식 → 언어 관리에서 <b>中文(臺灣)</b>을 추가하면 손글씨로 한자를 써서 검색할 수 있습니다. 키보드 안의 <b>번역</b> 버튼으로 한국어를 쳐서 중국어로 바꿔 보내는 것도 됩니다 (우버이츠 기사님께 메시지 보낼 때 유용).</li>
+  </ul>
+  <p style="margin:10px 0 4px;font-weight:700">🍎 아이폰</p>
+  <ul>
+    <li><b>구글 앱의 렌즈</b>: 구글 앱(또는 구글 번역)에서 렌즈를 열어 글자를 비추면 번역됩니다. 갤럭시의 서클 투 서치와 비슷하게 쓸 수 있습니다. 인터넷이 필요합니다.</li>
+    <li><b>중국어 키보드 추가</b>: 설정 → 일반 → 키보드 → 키보드 → 새로운 키보드 추가 → <b>중국어(번체)</b> → <b>필기</b>를 고르면 손글씨로 한자를 써서 검색할 수 있습니다.</li>
+    <li><b>메시지 번역</b>: 한국어로 쓴 글을 번역 앱에 붙여넣어 중국어로 바꾼 뒤 복사해서 보내면 됩니다.</li>
+  </ul>
+</div>
+</section><section id="offmap"><h2>지도 오프라인 저장</h2>
+<div class="card">
+  <h3 style="margin-top:0">① 구글 지도 오프라인 지도 <span class="tag main">필수</span></h3>
+  <ol>
+    <li>구글 지도 앱 오른쪽 위 <b>프로필 사진</b> → <b>오프라인 지도</b></li>
+    <li><b>내 지도 선택</b> → 네모 칸을 움직여 <b>타이베이 시내 전체</b>(스린 야시장~융캉제)가 들어가게 맞춤 → <b>다운로드</b></li>
+    <li>같은 방법으로 <b>지우펀·루이팡</b> 쪽도 따로 하나 더 받기 (시내와 떨어져 있음)</li>
+    <li>오프라인 지도 설정(⚙)에서 <b>'Wi-Fi에서만 다운로드'</b>와 <b>자동 업데이트</b>를 켜두면 편합니다.</li>
+    <li>🍎 <b>아이폰도 구글 지도 앱에서 똑같이</b> 하면 됩니다. 두 폰 모두 받아두면 한 명 데이터가 끊겨도 괜찮습니다.</li>
+  </ol>
+  <div class="note warn" style="margin-bottom:0"><b>오프라인 지도로 되는 것과 안 되는 것</b>지도 보기, 내 위치(GPS), 장소 검색, <b>자동차 길찾기</b>는 됩니다. <b>대중교통·도보 길찾기, 실시간 버스 시간, 영업 여부, 리뷰</b>는 인터넷이 있어야 합니다. 데이터가 끊겼을 때 "지금 어디 있지?"를 확인하는 비상용으로 생각하세요.</div>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">② MRT 노선도 저장 <span class="tag sub">추천</span></h3>
+  <ul>
+    <li>타이베이 MRT 공식 노선도 이미지를 휴대폰에 저장해 두면 인터넷 없이 볼 수 있습니다. 역에도 크게 붙어 있습니다.</li>
+    <li>이 가이드의 장소 탭 지도도 인터넷 없이 보입니다. 파일을 휴대폰에 저장해 가세요.</li>
+  </ul>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">🍎 애플 지도 오프라인 <span class="tag sub">아이폰 선택</span></h3>
+  <p style="margin:0">아이폰은 기본 <b>지도 앱 → 프로필(오른쪽 위 또는 검색창 옆) → 오프라인 지도 → 새로운 지도 다운로드</b>로 지역을 받을 수 있습니다. 애플 지도 오프라인은 <b>도보 길찾기</b>도 되는 편이라 구글 지도와 함께 받아두면 좋습니다. 지원 범위는 지역에 따라 다를 수 있습니다.</p>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">③ 완전 오프라인 지도 앱 <span class="tag sub">선택</span></h3>
+  <p style="margin:0">인터넷 없이 <b>도보 길찾기</b>까지 되는 앱을 원하시면 <b>Organic Maps</b> 같은 오프라인 지도 앱에서 대만 지도를 받아 두는 방법도 있습니다. 대부분은 구글 지도만으로 충분합니다.</p>
+</div>
+</section><section id="payprep"><h2>결제 준비</h2>
+<div class="card">
+  <ul>
+    <li><b>트래블월렛</b>: TWD 충전 완료. 앱에서 <b>해외 원화결제 차단</b>이 켜져 있는지 확인하세요.</li>
+    <li><b>토스 체크카드 (와이프)</b>: 토스 외화통장을 카드의 <b>해외결제 계좌로 설정</b>해야 해외 ATM 출금 수수료가 면제됩니다. 현지 은행이 받는 ATM 수수료는 따로 붙을 수 있습니다.</li>
+    <li><b>신한카드</b>: 해외 사용이 막혀 있지 않은지, 원화결제 차단을 했는지 카드 앱에서 확인하세요.</li>
+  </ul>
+</div>
+<div class="note warn"><b>라인페이 확인해 주세요</b>대만의 LINE Pay 가맹점은 한국인도 쓸 수 있는데, 2023년 기사 기준으로 <b>신한카드 앱(당시 '신한pLay')에서 QR을 스캔해 결제하는 방식</b>입니다. 한국 라인 메신저 계정의 라인페이와는 다를 수 있습니다. 준비해 두신 방식이 결제되는지 출국 전에 앱에서 '해외 결제/LINE Pay 가맹점' 메뉴를 확인해 보세요. 안 되면 카드와 현금으로 충분합니다.</div>
+</section><section id="twac">
+  <h2>온라인 입국신고서 (TWAC)</h2>
+  <div class="card">
+    <p style="margin-top:0">2025년 10월부터 종이 입국카드가 없어지고 <b>온라인으로만</b> 받습니다. 일본의 Visit Japan Web 같은 절차라고 보시면 됩니다.</p>
+    <dl class="kv">
+      <dt>사이트</dt><dd class="mono">twac.immigration.gov.tw</dd>
+      <dt>비용</dt><dd>무료 (돈을 받는 비슷한 사이트 주의)</dd>
+      <dt>제출 시기</dt><dd>도착 며칠 전부터 가능 (자료마다 3일 또는 7일로 다름)</dd>
+      <dt>언어</dt><dd>한국어 안내 지원</dd>
+    </dl>
+    <h3>입력할 내용</h3>
+    <table>
+      <tr><th>항목</th><th>입력값</th></tr>
+      <tr><td>여권 정보</td><td>여권 사진면을 찍으면 자동 입력</td></tr>
+      <tr><td>항공편</td><td class="mono">OZ711</td></tr>
+      <tr><td>도착일</td><td class="mono">2026-11-07</td></tr>
+      <tr><td>숙소 주소</td><td>台北市萬華區峨眉街5號<br><span style="color:var(--sub);font-size:14px">No. 5, Emei St., Wanhua Dist., Taipei City 108</span></td></tr>
+      <tr><td>방문 목적</td><td>관광 (Sightseeing)</td></tr>
+    </table>
+    <div class="note ok"><b>완료 후</b>확인 메일만 받아두면 되고 출력은 필요 없습니다.</div>
+  </div>
+</section><section id="ban">
+  <h2>반입 금지 물품 (벌금이 매우 큽니다)</h2>
+  <div class="tbl card" style="padding:6px 12px">
+    <table>
+      <tr><th>품목</th><th>예시</th><th>벌금</th></tr>
+      <tr><td><b>🥩 육류 제품 전체</b></td><td>육포, 소시지, 햄 샌드위치, 고기 든 컵라면·삼각김밥, 기내식 남은 것</td><td><b style="color:var(--accent)">최대 NT$200,000</b><br>(약 900만 원), 입국 거부 가능</td></tr>
+      <tr><td><b>🚭 전자담배·가열담배</b></td><td>액상 전자담배, 아이코스, 릴 등</td><td><b style="color:var(--accent)">NT$50,000~5,000,000</b></td></tr>
+      <tr><td><b>🍎 생과일</b></td><td>기내식 과일 포함</td><td>NT$3,000~15,000</td></tr>
+      <tr><td><b>🥛 생우유·생크림</b></td><td>생크림빵, 생우유 제품, 날계란</td><td>NT$3,000</td></tr>
+    </table>
+  </div>
+  <div class="note ok"><b>가져가도 되는 것</b>멸균우유, 분유, 완전히 익힌 삶은 달걀, 해물 컵라면, 참치마요 삼각김밥, 고기가 없는 통조림·레토르트 식품</div>
+</section></div><div class="pane" id="tab-move" role="tabpanel"><section id="arrive">
+  <h2>도착일: 공항에서 숙소까지 (11/7)</h2>
+  <div class="card">
+    <svg viewBox="0 0 360 430" style="max-width:420px;margin:0 auto" role="img" aria-label="타오위안 공항에서 시먼역까지 가는 노선도">
+      <line x1="40" y1="40" x2="40" y2="210" stroke="#7b3fb3" stroke-width="10" stroke-linecap="round"/>
+      <line x1="40" y1="210" x2="40" y2="320" stroke="#1f5fbf" stroke-width="10" stroke-linecap="round"/>
+      <line x1="40" y1="320" x2="40" y2="395" stroke="currentColor" stroke-opacity=".5" stroke-width="3" stroke-dasharray="6 6"/>
+      <circle cx="40" cy="40" r="15" fill="var(--card)" stroke="#7b3fb3" stroke-width="5"/>
+      <circle cx="40" cy="210" r="15" fill="var(--card)" stroke="#1f5fbf" stroke-width="5"/>
+      <circle cx="40" cy="210" r="8" fill="#7b3fb3"/>
+      <circle cx="40" cy="320" r="15" fill="var(--card)" stroke="#1f5fbf" stroke-width="5"/>
+      <rect x="24" y="390" width="32" height="32" rx="7" fill="#c8102e"/>
+      <text x="40" y="412" text-anchor="middle" font-size="16" fill="#fff">H</text>
+      <g fill="currentColor">
+        <text x="72" y="38" font-size="18" font-weight="700">타오위안 공항</text>
+        <text x="72" y="60" font-size="14" fill-opacity=".7">機場第二航廈 (A13)</text>
+        <text x="72" y="208" font-size="18" font-weight="700">타이베이역</text>
+        <text x="72" y="230" font-size="14" fill-opacity=".7">台北車站 (A1) · 환승 통로 약 10분</text>
+        <text x="72" y="318" font-size="18" font-weight="700">시먼역 6번 출구</text>
+        <text x="72" y="340" font-size="14" fill-opacity=".7">西門 (BL11)</text>
+        <text x="72" y="404" font-size="18" font-weight="700">숙소</text>
+        <text x="72" y="424" font-size="14" fill-opacity=".7">峨眉街5號</text>
+      </g>
+      <g>
+        <rect x="68" y="100" width="270" height="62" rx="10" fill="#7b3fb3" fill-opacity=".12"/>
+        <text x="82" y="126" font-size="15" font-weight="700" fill="#7b3fb3">공항 MRT 직통 (보라색)</text>
+        <text x="82" y="148" font-size="14" fill="currentColor" fill-opacity=".8">약 35~40분 · 약 NT$150</text>
+        <rect x="68" y="248" width="270" height="52" rx="10" fill="#1f5fbf" fill-opacity=".12"/>
+        <text x="82" y="270" font-size="15" font-weight="700" fill="#1f5fbf">반난선 (파란색) 板南線</text>
+        <text x="82" y="290" font-size="14" fill="currentColor" fill-opacity=".8">1정거장 · 약 3분</text>
+        <text x="72" y="370" font-size="14" fill="currentColor" fill-opacity=".8">🚶 도보 약 5분</text>
+      </g>
+    </svg>
+    <div class="note warn" style="margin-bottom:0"><b>환승 안내</b>타이베이역에서 공항 MRT와 일반 MRT 역은 떨어져 있어 갈아타는 통로가 꽤 깁니다(약 10분). "Taipei Metro / 捷運 板南線" 표지판을 따라가세요.</div>
+  </div>
+
+  <h3>시간표</h3>
+  <div class="card">
+    <div class="timeline">
+      <div class="t"><span class="time">05:30~06:00</span> 인천공항 <b>제2터미널</b> 도착 (아시아나는 2026년 1월부터 T2 사용)</div>
+      <div class="t key"><span class="time">08:00</span> OZ711 출발</div>
+      <div class="t key"><span class="time">09:50</span> 타오위안 도착 (아시아나 공식 안내 기준 제2터미널, 탑승권에서 확인)</div>
+      <div class="t"><span class="time">~10:50</span> 입국심사, 짐 찾기</div>
+      <div class="t"><span class="time">~11:00</span> 입국장에서 하기: ① 國泰世華 ATM에서 현금 인출 ② 이지카드(悠遊卡) 구매·충전 ③ eSIM 연결 확인</div>
+      <div class="t"><span class="time">~11:10</span> 공항 MRT 직통열차 탑승</div>
+      <div class="t key"><span class="time">~12:00</span> 숙소 도착 → 체크인 전이면 <b>짐만 맡기고</b> 시먼딩에서 점심</div>
+    </div>
+  </div>
+
+  <div class="note info"><b>이지카드 (悠遊卡, EasyCard)</b>MRT, 버스, 편의점 결제에 모두 쓰는 교통카드입니다. 공항 MRT 카운터나 편의점에서 사서 충전하세요. 4일 내내 편하게 쓰실 수 있습니다.</div>
+
+</section><section id="transit"><h2>시내 교통</h2>
+<div class="card">
+  <h3 style="margin-top:0">🚇 MRT · 이지카드 (기본)</h3>
+  <p style="margin:0">시내는 MRT가 가장 편하고 쌉니다. 공항에서 산 <b>이지카드(悠遊卡)</b>를 찍고 타면 되고, 잔액이 부족하면 역 충전기나 편의점에서 충전합니다. 노선은 장소 탭의 시내 지도를 참고하세요.</p>
+</div>
+<div class="card">
+  <h3 style="margin-top:0">🚕 택시 타는 법</h3>
+  <div class="tbl">
+  <table>
+    <tr><th>방법</th><th>추천</th><th>설명</th></tr>
+    <tr><td><b>Uber</b></td><td><span class="tag main">추천</span></td><td>한국 계정·한국 번호 그대로 사용, 등록한 카드로 자동 결제됩니다. 목적지를 앱에 입력하니 말이 안 통해도 됩니다. 요금이 미리 나오지만 붐비는 시간에는 비싸집니다.</td></tr>
+    <tr><td><b>길에서 잡기</b></td><td><span class="tag sub">가능</span></td><td>노란 택시가 많아 손을 들면 섭니다. 미터 요금이고 <b>현금을 준비하세요</b> (카드 안 되는 차가 많음). 숙소 주소 화면이나 구글 지도 목적지를 보여주세요.</td></tr>
+    <tr><td><b>카카오 T</b></td><td><span class="tag sub">확인 필요</span></td><td>2023년 기사 기준으로 대만 YOXI와 연동해 한국 카카오 T 앱으로 호출할 수 있었습니다. 지금도 되는지 앱의 해외 호출 메뉴에서 확인해 보세요.</td></tr>
+    <tr><td>55688 · LINE GO</td><td>비추천</td><td>대만 현지 앱. <b>대만 전화번호가 있어야 가입</b>할 수 있습니다.</td></tr>
+  </table>
+  </div>
+  <h3>타이베이 택시 요금 (미터)</h3>
+  <dl class="kv">
+    <dt>기본요금</dt><dd>NT$85 (첫 1.25km)</dd>
+    <dt>이후</dt><dd>200m마다 NT$5</dd>
+    <dt>대기</dt><dd>저속 60초마다 NT$5</dd>
+    <dt>심야</dt><dd>23:00~06:00 1회당 NT$20 추가</dd>
+  </dl>
+  <p style="font-size:14px;color:var(--sub);margin:8px 0 0">계산해 보면 숙소 → 타이베이역(약 1.5km)은 NT$90~100 정도입니다. 시내 다른 곳도 거리에 따라 대략 계산해 보실 수 있습니다. 공항 택시는 요금 체계가 따로 있어 더 비쌉니다.</p>
+  <h3>택시에서 쓰는 말</h3>
+  <div class="phrase"><span class="zh">我要去這裡</span><span class="py">wǒ yào qù zhèlǐ</span><span class="ko">여기로 가주세요 (주소를 보여주며)</span></div>
+  <div class="phrase"><span class="zh">到這裡就好</span><span class="py">dào zhèlǐ jiù hǎo</span><span class="ko">여기서 세워주세요</span></div>
+  <div class="phrase"><span class="zh">可以刷卡嗎？</span><span class="py">kěyǐ shuākǎ ma</span><span class="ko">카드 되나요?</span></div>
+</div>
+<div class="note info"><b>귀국일 아침(11/10) 택시로 갈 경우</b>Uber 앱에서 <b>미리 예약</b>(최소 30분 전부터 가능)해 두면 07:15 출발이 편합니다. 숙소에 콜택시를 부탁하는 방법도 있습니다.</div>
+</section><section id="shilin"><h2>11/7(토) 스린 야시장 가는 법</h2>
+<div class="card">
+  <ol>
+    <li>숙소 → <b>MRT 시먼역</b>(西門)</li>
+    <li><b>초록선</b>(쑹산신뎬선, 쑹산 방향) → <b>중산역(中山)</b>에서 <b>빨간선</b>(단수이 방향)으로 환승<br><span class="sub2">또는 파란선 → 타이베이역 → 빨간선</span></li>
+    <li><b>젠탄역(劍潭)</b> 하차 → <b>1번 출구</b>, 길 건너면 야시장. 약 25~30분</li>
+  </ol>
+  <div class="note info" style="margin-bottom:0"><b>팁</b>16시부터 열고 저녁 7~9시가 가장 붐빕니다. 현금을 넉넉히, 물티슈를 챙기세요. 지하 푸드코트(士林市場 美食區)는 에어컨이 있어 앉아서 먹기 좋습니다. 돌아올 때는 젠탄역에서 같은 길로 오면 됩니다.</div>
+</div>
+</section><section id="jiufen"><h2>11/9(월) 지우펀 가는 법</h2>
+<div class="card">
+  <table>
+    <tr><th>방법</th><th>타는 곳</th><th>시간·요금</th></tr>
+    <tr><td><b>965번 버스</b></td><td><b>시먼 정류장</b> (숙소 근처)</td><td>약 1시간~ · 이지카드 가능</td></tr>
+    <tr><td><b>1062번 버스</b></td><td>MRT 충샤오푸싱역(忠孝復興) 근처</td><td>약 1~1.5시간 · 약 NT$100 안팎</td></tr>
+    <tr><td><b>기차 + 버스</b></td><td>타이베이역 → 루이팡(瑞芳)역 → 788·827번 버스</td><td>기차 약 1시간 + 버스 15~20분</td></tr>
+    <tr><td><b>택시</b></td><td>루이팡역 → 지우펀</td><td>약 NT$200</td></tr>
+    <tr><td><b>Uber</b></td><td>숙소 → 지우펀 바로</td><td>약 1시간 · 가장 편하지만 비쌈 (시내→지우펀 택시 약 NT$1,000 수준)</td></tr>
+  </table>
+  <div class="note warn"><b>주의</b>지우펀은 산 위라 시내보다 <b>쌀쌀하고 비·안개가 잦습니다.</b> 9일은 시내 최저 18℃ 예보라 겉옷과 우산을 꼭 챙기세요. 계단과 비탈이 많으니 편한 신발을 신으세요. 825번 버스는 주말에만 다닙니다.</div>
+  <div class="note info" style="margin-bottom:0"><b>추천 흐름</b>14~15시 출발 → 지우펀 골목 구경과 간식(위위안 芋圓, 땅콩 아이스크림) → 노을과 홍등 → 저녁에 복귀. <b>저녁 귀가 버스는 줄이 길 수 있으니</b> 여유 있게 움직이시고, 버스 시간은 현지에서 구글 지도로 확인하세요. 다음 날 아침 7시대에 출발하니 너무 늦게 돌아오지 않는 게 좋습니다.</div>
+</div></section><section id="return">
+  <h2>귀국일: 숙소에서 공항까지 (11/10)</h2>
+  <div class="card">
+    <div class="timeline">
+      <div class="t"><span class="time">전날 밤</span> 짐 정리, 동전 쓰기, 택스리펀 서류 챙기기</div>
+      <div class="t key"><span class="time">07:15~07:30</span> 체크아웃 후 출발</div>
+      <div class="t"><span class="time">~07:35</span> 시먼역에서 파란선을 타고 타이베이역으로 (1정거장)</div>
+      <div class="t"><span class="time">~07:50</span> 타이베이역에서 공항 MRT 직통열차 탑승</div>
+      <div class="t key"><span class="time">08:30~08:45</span> 타오위안 공항 도착, 체크인 (출발 2시간 30분 전)</div>
+      <div class="t"><span class="time">~10:35</span> 탑승 시작</div>
+      <div class="t key"><span class="time">11:05</span> OZ712 출발 → <b>14:40 인천 T2 도착</b></div>
+    </div>
+  </div>
+  <div class="note warn"><b>화요일 아침 출근 시간</b>7~9시에는 MRT가 붐빕니다. 캐리어를 들고 환승 통로를 지나야 하니 여유를 두세요. 짐이 많으면 <b>택시나 우버로 숙소에서 공항까지 바로</b> 가셔도 됩니다(약 40~60분, NT$1,000~1,200 정도).</div>
+  <div class="note info"><b>도심공항 체크인 (타이베이역 A1)</b>이용할 수 있으면 짐을 미리 부치고 공항에서는 보안검색만 하시면 됩니다. 이용 가능한 항공사가 정해져 있으니 아시아나가 포함되는지 앱이나 현장에서 확인해 주세요.</div>
+  <div class="card">
+    <h3 style="margin-top:0">택스리펀 (부가세 환급)</h3>
+    <ul>
+      <li>"TRS" 표시가 있는 매장에서 <b>하루에 한 매장에서 NT$2,000 이상</b> 사면 대상</li>
+      <li>공항 환급 카운터에 <b>영수증, 환급 서류, 여권</b>을 가져가세요</li>
+    </ul>
+    <h3>한국으로 가져올 때 주의</h3>
+    <ul>
+      <li>한국도 <b>육포, 소시지 같은 육류 가공품 반입이 금지</b>입니다</li>
+      <li>생과일도 반입할 수 없습니다</li>
+      <li>펑리수, 누가크래커, 우롱차 같은 과자와 차는 괜찮습니다</li>
+    </ul>
+  </div>
+</section></div><div class="pane" id="tab-places" role="tabpanel"><section id="places"><h2>저장한 장소 17곳</h2>
+<div class="card" style="padding:10px"><h3 style="margin:4px 4px 8px">🗺 타이베이 시내</h3><svg viewBox="0 0 700 796" class="pmapsvg" role="img" aria-label="타이베이 시내 장소 개략 지도"><rect width="700" height="796" class="mbg"/><polyline points="15.9,796.1 58.3,632.2 116.7,515.1 159.1,398.0 180.3,281.0 148.5,163.9 74.2,0.0" fill="none" class="river" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><polyline points="180.3,245.9 275.8,193.2 403.0,175.6 562.1,204.9 700.0,251.7" fill="none" class="river" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><text x="80" y="398" font-size="12" class="rv" transform="rotate(-70 80 398)">단수이강</text><text x="509" y="158" font-size="12" class="rv">지룽강</text><polyline points="269.4,560.8 233.3,526.8 127.3,444.9 0.0,374.6" fill="none" stroke="#8e44ad" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 5" opacity=".85"/><polyline points="326.7,793.8 277.9,717.7 201.5,684.9 170.8,607.6 194.1,521.0 301.2,483.5 434.8,491.7 551.5,491.7 721.2,492.9" fill="none" stroke="#008659" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"  opacity=".85"/><polyline points="10.6,749.3 84.8,687.2 170.8,607.6 269.4,560.8 330.9,577.2 433.8,604.1 548.3,613.5 624.7,615.8 721.2,617.0" fill="none" stroke="#0070bd" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"  opacity=".85"/><polyline points="362.7,5.9 351.1,108.9 297.0,264.6 289.5,367.6 304.4,425.0 301.2,483.5 269.4,560.8 257.7,617.0 277.9,717.7 389.2,703.6 463.5,714.1 546.2,714.1 643.8,710.6 721.2,710.6" fill="none" stroke="#e3002c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"  opacity=".85"/><text x="16" y="382" font-size="12" fill="#8e44ad" font-weight="700">↖ 공항철도</text><circle cx="351.1" cy="108.9" r="5" class="stn"/><text x="339.1" y="112.9" text-anchor="end" font-size="11" class="sl">젠탄 劍潭</text><circle cx="301.2" cy="483.5" r="5" class="stn"/><text x="289.2" y="477.5" text-anchor="end" font-size="11" class="sl">중산 中山</text><circle cx="269.4" cy="560.8" r="5" class="stn"/><text x="255.4" y="552.8" text-anchor="end" font-size="11" class="sl">타이베이역</text><circle cx="170.8" cy="607.6" r="5" class="stn"/><circle cx="277.9" cy="717.7" r="5" class="stn"/><text x="265.9" y="731.7" text-anchor="end" font-size="11" class="sl">중정기념당</text><circle cx="389.2" cy="703.6" r="5" class="stn"/><text x="389.2" y="693.6" text-anchor="middle" font-size="11" class="sl">동먼 東門</text><circle cx="548.3" cy="613.5" r="5" class="stn"/><text x="548.3" y="603.5" text-anchor="middle" font-size="11" class="sl">충샤오푸싱</text><circle cx="624.7" cy="615.8" r="5" class="stn"/><text x="632.7" y="605.8" text-anchor="start" font-size="11" class="sl">충샤오둔화</text><rect x="88.0" y="556.1" width="94.4" height="120.6" rx="10" fill="#c8102e" fill-opacity=".12" stroke="#c8102e" stroke-width="2" stroke-dasharray="5 4"/><text x="92.0" y="692.7" font-size="12" font-weight="700" fill="#c8102e">시먼딩 1~8 · 숙소</text><text x="92.0" y="707.7" font-size="11" class="sl">↓ 아래 확대 지도</text><g><circle cx="230.8" cy="565.3" r="11" fill="#1f5fbf" stroke="#fff" stroke-width="2"/><text x="230.8" y="569.3" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">9</text></g><text x="216.8" y="583.3" text-anchor="end" font-size="13" class="ml">류산동</text><g><circle cx="264.5" cy="561.5" r="11" fill="#1f5fbf" stroke="#fff" stroke-width="2"/><text x="264.5" y="565.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">10</text></g><text x="280.5" y="551.5" text-anchor="start" font-size="13" class="ml">팀호완</text><g><circle cx="318.6" cy="588.9" r="11" fill="#1f5fbf" stroke="#fff" stroke-width="2"/><text x="318.6" y="592.9" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">11</text></g><text x="334.6" y="593.9" text-anchor="start" font-size="13" class="ml">문문푸드</text><g><circle cx="271.2" cy="671.7" r="11" fill="#1f5fbf" stroke="#fff" stroke-width="2"/><text x="271.2" y="675.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">12</text></g><text x="255.2" y="676.7" text-anchor="end" font-size="13" class="ml">자유광장</text><g><circle cx="308.7" cy="488.1" r="11" fill="#1f8a4c" stroke="#fff" stroke-width="2"/><text x="308.7" y="492.1" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">13</text></g><text x="324.7" y="493.1" text-anchor="start" font-size="13" class="ml">신예</text><g><circle cx="593.2" cy="611.3" r="11" fill="#1f8a4c" stroke="#fff" stroke-width="2"/><text x="593.2" y="615.3" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">14</text></g><text x="593.2" y="637.3" text-anchor="middle" font-size="13" class="ml">딩하오 만두</text><g><circle cx="383.0" cy="714.9" r="11" fill="#1f8a4c" stroke="#fff" stroke-width="2"/><text x="383.0" y="718.9" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">15</text></g><text x="383.0" y="740.9" text-anchor="middle" font-size="13" class="ml">융캉 우육면</text><g><circle cx="343.1" cy="64.4" r="11" fill="#1f8a4c" stroke="#fff" stroke-width="2"/><text x="343.1" y="68.4" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">16</text></g><text x="359.1" y="69.4" text-anchor="start" font-size="13" class="ml">스린 야시장</text><g transform="translate(550,340)"><rect width="140" height="58" rx="10" fill="#7b3fb3" fill-opacity=".12" stroke="#7b3fb3"/><circle cx="20" cy="29" r="11" fill="#7b3fb3" stroke="#fff" stroke-width="2"/><text x="20" y="33" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">17</text><text x="38" y="25" font-size="13" font-weight="700" class="ml">지우펀 →</text><text x="38" y="43" font-size="11" class="sl">동쪽 약 40km</text></g><g transform="translate(12,12)"><rect width="168" height="88" rx="8" class="lgbg"/><line x1="10" x2="30" y1="16" y2="16" stroke="#e3002c" stroke-width="5" stroke-linecap="round"/><text x="38" y="20" font-size="11" class="ml">단수이신이선 (빨강)</text><line x1="10" x2="30" y1="35" y2="35" stroke="#0070bd" stroke-width="5" stroke-linecap="round"/><text x="38" y="39" font-size="11" class="ml">반난선 (파랑)</text><line x1="10" x2="30" y1="54" y2="54" stroke="#008659" stroke-width="5" stroke-linecap="round"/><text x="38" y="58" font-size="11" class="ml">쑹산신뎬선 (초록)</text><line x1="10" x2="30" y1="73" y2="73" stroke="#8e44ad" stroke-width="5" stroke-linecap="round"/><text x="38" y="77" font-size="11" class="ml">공항철도</text></g><text x="690" y="788" text-anchor="end" font-size="10" class="sl">개략도 · 실제 모양과 거리는 다를 수 있음 · 위가 북쪽</text></svg></div>
+<div class="card" style="padding:10px"><h3 style="margin:4px 4px 8px">🔍 시먼딩 확대 (1~8번 · 숙소)</h3><svg viewBox="0 0 700 885" class="pmapsvg" role="img" aria-label="시먼딩 확대 개략 지도"><rect width="700" height="885" class="mbg"/><rect x="408" y="64" width="204" height="258" rx="8" fill="#f0a94a" fill-opacity=".14"/><text x="510" y="80" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">시먼딩 보행자 거리</text><polyline points="627.1,0.0 656.3,885.4" fill="none" class="rdM" stroke-linecap="round"/><text x="634" y="628" font-size="11" class="rl" transform="rotate(-90 634 628)" dy="-6">中華路 중화로</text><polyline points="415.6,0.0 437.5,708.3" fill="none" class="rd" stroke-linecap="round"/><text x="423" y="612" font-size="11" class="rl" transform="rotate(-90 423 612)" dy="-6">西寧南路 시닝남로</text><polyline points="561.5,0.0 510.4,547.3" fill="none" class="rd" stroke-linecap="round"/><text x="551" y="129" font-size="11" class="rl" transform="rotate(-90 551 129)" dy="-6">漢中街 한중가</text><polyline points="116.7,0.0 160.4,885.4" fill="none" class="rdM" stroke-linecap="round"/><text x="124" y="225" font-size="11" class="rl" transform="rotate(-90 124 225)" dy="-6">康定路 캉딩로</text><polyline points="0.0,370.2 700.0,378.3" fill="none" class="rdM" stroke-linecap="round"/><text x="241" y="382" font-size="11" class="rl" dy="-5">成都路 청두로</text><polyline points="204.2,273.7 627.1,273.7" fill="none" class="rd" stroke-linecap="round"/><text x="219" y="262" font-size="11" class="rl" dy="-5">峨眉街 어메이가</text><polyline points="204.2,177.1 627.1,177.1" fill="none" class="rd" stroke-linecap="round"/><text x="219" y="165" font-size="11" class="rl" dy="-5">漢口街 한커우가</text><polyline points="204.2,88.5 627.1,88.5" fill="none" class="rd" stroke-linecap="round"/><text x="219" y="76" font-size="11" class="rl" dy="-5">武昌街 우창가</text><polyline points="0.0,507.1 641.7,507.1" fill="none" class="rd" stroke-linecap="round"/><text x="241" y="495" font-size="11" class="rl" dy="-5">內江街 / 長沙街</text><polyline points="0.0,804.9 700.0,804.9" fill="none" class="rdM" stroke-linecap="round"/><text x="204" y="793" font-size="11" class="rl" dy="-5">愛國西路 아이궈서로</text><g><circle cx="576" cy="378" r="13" fill="#0070bd" stroke="#fff" stroke-width="3"/><text x="576" y="382" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">M</text><text x="594" y="404" text-anchor="end" font-size="12" font-weight="700" fill="#0070bd">MRT 시먼역</text></g><text x="551" y="336" text-anchor="end" font-size="10" fill="#0070bd" font-weight="700">6번 출구</text><g><circle cx="379.0" cy="248.6" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="379.0" y="252.6" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="363.0" y="244.6" text-anchor="end" font-size="13" class="ml">에슬라이트</text><g><circle cx="420.4" cy="286.6" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="420.4" y="290.6" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text></g><text x="404.4" y="302.6" text-anchor="end" font-size="13" class="ml">파파목장</text><g><circle cx="555.5" cy="131.0" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="555.5" y="135.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text></g><text x="571.5" y="136.0" text-anchor="start" font-size="13" class="ml">설화빙</text><g><circle cx="522.7" cy="275.1" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="522.7" y="279.1" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text></g><text x="518.7" y="257.1" text-anchor="end" font-size="13" class="ml">싱푸탕</text><g><circle cx="547.6" cy="282.3" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="547.6" y="286.3" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text></g><text x="547.6" y="312.3" text-anchor="middle" font-size="13" class="ml">아종면선</text><g><circle cx="519.8" cy="377.5" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="519.8" y="381.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">6</text></g><text x="503.8" y="382.5" text-anchor="end" font-size="13" class="ml">파출소</text><g><circle cx="143.7" cy="514.9" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="143.7" y="518.9" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">7</text></g><text x="159.7" y="519.9" text-anchor="start" font-size="13" class="ml">이갑자</text><g><circle cx="514.8" cy="804.7" r="11" fill="#c8102e" stroke="#fff" stroke-width="2"/><text x="514.8" y="808.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">8</text></g><text x="530.8" y="809.7" text-anchor="start" font-size="13" class="ml">과일가게</text><g><rect x="563.7" y="248.7" width="22" height="22" rx="5" fill="#111" stroke="#fff" stroke-width="2"/><text x="574.7" y="264.2" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">숙</text></g><text x="591" y="256" font-size="13" font-weight="700" class="ml">숙소</text><g transform="translate(14,867)"><line x1="0" x2="145" y1="0" y2="0" class="sc" stroke-width="3"/><line x1="0" x2="0" y1="-5" y2="5" class="sc" stroke-width="2"/><line x1="145" x2="145" y1="-5" y2="5" class="sc" stroke-width="2"/><text x="72" y="-8" text-anchor="middle" font-size="11" class="ml">200m (도보 약 3분)</text></g><text x="690" y="877" text-anchor="end" font-size="10" class="sl">개략도 · 위가 북쪽</text></svg></div>
+<p class="mapnote">번호는 아래 장소 카드 번호와 같습니다. 직접 그린 개략도라 정확한 길찾기는 카드의 '지도 열기'나 구글 지도 앱의 '대만' 목록을 이용하세요.</p>
+<div class="note warn"><b>요일별 주의</b><b style="display:inline">11/8(일) 휴무:</b> 이갑자(一甲子), 류산동 우육면, 연길 과일가게<br><b style="display:inline">브레이크타임:</b> 문문푸드 14~17시, 신예 대만요리 14:30~17시<br><b style="display:inline">일찍 닫는 곳:</b> 류산동 18시, 이갑자 19시(토 14시)</div>
+<h3 class="ghead">🏨 숙소 근처 · 시먼딩 (걸어서 가능)</h3><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">誠品書店 西門店</div><div class="pko">에슬라이트 서점 시먼점</div></div><a class="pmap" href="https://maps.app.goo.gl/4ftSFapMdfe2B1by8" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>텀블러백(뻬이따이)</b></div><p class="pdesc">대만의 대표 대형 서점입니다. 책 외에 문구, 굿즈, 기념품이 많고 안에 카페도 있습니다. 메모의 '뻬이따이(杯袋)'는 컵·텀블러를 넣어 들고 다니는 가방으로, 대만 여행 기념품으로 인기가 많습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:30~22:00 </dd></div><div><dt>주소</dt><dd>台北市萬華區峨眉街52號3樓 (Eslite Spectrum Ximen 건물)</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2388 6588</dd></div></dl><div class="ptip">💡 숙소와 같은 峨眉街에 있어 걸어서 몇 분 거리입니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">發發 萬華西門牧場</div><div class="pko">파파목장 (The Far Far Farm) 시먼점</div></div><a class="pmap" href="https://maps.app.goo.gl/Za6mRiDaTukx95zG6" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>텀블러백</b></div><p class="pdesc">키위 캐릭터 로고가 귀여운 우유·밀크티·요거트 음료 가게입니다. 음료 외에 로고 굿즈도 팝니다. 당도를 10%까지 낮출 수 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:00~22:00 </dd></div><div><dt>주소</dt><dd>台北市萬華區西寧南路72之1號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2389 9700</dd></div></dl><div class="ptip">💡 에슬라이트 서점 바로 근처입니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">三兄妹雪花冰</div><div class="pko">삼형매 설화빙</div></div><a class="pmap" href="https://maps.app.goo.gl/XbVKkbcuQ7tGPSJf7" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">시먼딩의 유명한 빙수 가게입니다. '설화빙(雪花冰)'은 우유 얼음을 눈처럼 얇게 갈아낸 빙수입니다. 양이 많아 2~3명이 하나를 나눠 먹어도 됩니다. 지하에 앉을 자리가 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 10:30~23:00 </dd></div><div><dt>주소</dt><dd>台北市萬華區漢中街23號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2381 2650</dd></div></dl></article><article class="place"><div class="ptop"><div><div class="pzh">幸福堂</div><div class="pko">싱푸탕 (흑당 버블티)</div></div><a class="pmap" href="https://maps.app.goo.gl/HqauqexNWAhbXUhw6" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">가게 앞에서 흑당 타피오카를 큰 냄비에 직접 볶는 모습을 볼 수 있는 흑당 버블티 가게입니다. 대표 메뉴는 흑당 타피오카 우유(黑糖珍珠鮮奶)입니다. 줄이 길 수 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 08:30~다음 날 00:30 </dd></div><div><dt>주소</dt><dd>台北市萬華區漢中街101號</dd></div><div><dt>전화</dt><dd class="mono">+886 900 620 585</dd></div></dl></article><article class="place"><div class="ptop"><div><div class="pzh">阿宗麵線</div><div class="pko">아종면선 (곱창국수)</div></div><a class="pmap" href="https://maps.app.goo.gl/GKoTDDKxZjKwWJCx6" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>곱창국수</b></div><p class="pdesc">걸쭉한 국물에 가는 국수와 곱창(大腸)이 들어간 '대창면선'으로 유명한 노점입니다. <b>의자가 없어서 서서 먹습니다.</b> 고수를 빼려면 '不要香菜(부야오 샹차이)'라고 말하세요. 테이블의 마늘·식초·고추 소스를 넣어 먹으면 더 맛있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>월~목·일 07:30~22:30 / 금·토 07:30~23:00 </dd></div><div><dt>주소</dt><dd>台北市萬華區峨眉街8之1號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2388 8808</dd></div></dl><div class="ptip">💡 <b>숙소(峨眉街5號) 바로 옆입니다.</b> 아침에 가면 줄이 짧습니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">漢中街派出所</div><div class="pko">한중가 파출소</div></div><a class="pmap" href="https://maps.app.goo.gl/oRmUfzPexy6W3uKQ7" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>숙소 근처</b></div><p class="pdesc">숙소에서 가장 가까운 경찰서(파출소)로 24시간 운영합니다. 분실·도난 신고가 필요할 때 이곳으로 가시면 됩니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>24시간 </dd></div><div><dt>주소</dt><dd>台北市萬華區漢中街122號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2331 2212</dd></div></dl><div class="ptip">💡 긴급 상황에는 110에 전화하세요.</div></article><article class="place"><div class="ptop"><div><div class="pzh">一甲子餐飲</div><div class="pko">이갑자 (60년 식당)</div></div><a class="pmap" href="https://maps.app.goo.gl/ASd6rnXJnp7dyed1A" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">60년 넘은 대만 서민 식당입니다. 루러우판(滷肉飯, 간장 돼지고기 덮밥), 콩러우판(焢肉飯, 큼직한 돼지고기 덮밥), 꽈바오(刈包, 대만식 햄버거)가 유명합니다. 사진이 있는 영어 메뉴가 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>월~금 09:00~19:00 / 토 09:00~14:00 <span class="closed">일요일 휴무</span></dd></div><div><dt>주소</dt><dd>台北市萬華區康定路79號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2311 5241</dd></div></dl><div class="ptip">💡 숙소에서 걸어서 약 10~15분입니다. <b>11/8(일)은 쉬고, 토요일은 14시까지입니다.</b></div></article><article class="place"><div class="ptop"><div><div class="pzh">延桔水果行</div><div class="pko">연길 과일가게</div></div><a class="pmap" href="https://maps.app.goo.gl/oj1fEH4zifZsSuKG6" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>과일가게</b></div><p class="pdesc">다양한 대만 과일을 파는 과일가게입니다. 손질된 과일을 사서 바로 먹을 수 있습니다. 리뷰에 따르면 고른 과일 상태를 확인해 주기도 하지만, 가격이 비싸다는 평도 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>월~금 08:00~20:00 / 토 08:00~19:00 <span class="closed">일요일 휴무</span></dd></div><div><dt>주소</dt><dd>台北市中正區愛國西路52號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2314 4162</dd></div></dl><div class="ptip">💡 숙소에서 걸어서 약 15분입니다. <b>과일은 한국으로 가져올 수 없으니</b> 현지에서 드세요.</div></article></div><h3 class="ghead">🚉 타이베이역 · 중정기념당 주변</h3><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">劉山東牛肉麵</div><div class="pko">류산동 우육면</div></div><a class="pmap" href="https://maps.app.goo.gl/Xx4jmMsafnEZugPw8" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">타이베이역 근처 골목에 있는 우육면(소고기 국수) 맛집입니다. 고기가 넉넉하고 양이 많아 한 그릇을 나눠 먹어도 됩니다. 가게가 좁아 합석할 수 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>월~토 08:00~18:00 <span class="closed">일요일 휴무</span></dd></div><div><dt>주소</dt><dd>台北市中正區開封街一段14巷2號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2311 3581</dd></div></dl><div class="ptip">💡 저녁 6시에 문을 닫으니 점심에 가세요. <b>11/8(일)은 쉽니다.</b></div></article><article class="place"><div class="ptop"><div><div class="pzh">添好運 忠孝西店</div><div class="pko">팀호완 (딤섬) 충샤오시점</div></div><a class="pmap" href="https://maps.app.goo.gl/E5CfjzxFr1DVsvZ98" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">홍콩에서 시작한 딤섬 체인입니다. 대표 메뉴는 차슈바오(酥皮焗叉燒包, 바삭한 소보로 차슈번)입니다. 영어 메뉴가 있고, 계산서에 10% 봉사료가 붙습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>월~금 10:00~21:30 / 토·일 10:00~22:00 </dd></div><div><dt>주소</dt><dd>台北市中正區忠孝西路一段36號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2370 7078</dd></div></dl><div class="ptip">💡 타이베이역 Z2 출구 쪽에서 가깝습니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">雙月食品社 青島店</div><div class="pko">문문푸드 (쌍월식품사) 칭다오점</div></div><a class="pmap" href="https://maps.app.goo.gl/YrCvby8pPK9RP8UT9" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">몸에 좋은 대만식 국물 요리로 인기 있는 식당입니다. 대표 메뉴는 조개 닭고기 수프(蛤蜊燉雞湯)와 고추기름 비빔면(紅油乾拌麵)입니다. 입구에서 번호표와 QR코드를 받아 휴대폰으로 주문합니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:00~14:00, 17:00~20:00 <span class="closed">14:00~17:00 브레이크타임</span></dd></div><div><dt>주소</dt><dd>台北市中正區青島東路6之2號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 3393 8953</dd></div></dl><div class="ptip">💡 대기가 긴 편입니다. 점심 늦게(13시 이후) 가면 덜 기다립니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">自由廣場</div><div class="pko">자유광장 (중정기념당)</div></div><a class="pmap" href="https://maps.app.goo.gl/V3GEho54RJKQVJTx9" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">장제스(蔣介石)를 기리는 중정기념당(中正紀念堂) 정문 광장입니다. 흰색과 파란색의 큰 아치문이 상징입니다. 광장은 24시간 열려 있고, 해 질 녘 사진이 예쁩니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>광장 24시간 </dd></div><div><dt>주소</dt><dd>台北市中正區中山南路21號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2343 1100</dd></div></dl><div class="ptip">💡 MRT 중정기념당역(中正紀念堂)에서 내리면 됩니다. 본관 근위병 교대식 시간은 현장에서 확인하세요.</div></article></div><h3 class="ghead">🚇 MRT로 이동 (중산 · 둥취 · 융캉제 · 스린)</h3><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">欣葉台菜 南西店</div><div class="pko">신예 대만요리 난시점</div></div><a class="pmap" href="https://maps.app.goo.gl/BFaerd2wkn456k1B7" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>마늘쫑 삼겹살</b></div><p class="pdesc">대만 가정식 요리를 코스 없이 골라 먹는 유명 레스토랑입니다. 메모의 마늘쫑 삼겹살(蒜苗炒五花肉 계열 볶음)을 비롯해 싼베이(三杯) 오징어, 돼지간 요리 등이 인기입니다. 현지인이 많이 찾는 곳이라 붐빕니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:00~14:30, 17:00~21:30 <span class="closed">14:30~17:00 브레이크타임</span></dd></div><div><dt>주소</dt><dd>台北市中山區南京西路12號 新光三越 南西店 8樓</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2523 6757</dd></div></dl><div class="ptip">💡 <b>예약을 권합니다.</b> MRT 중산역(中山) 바로 앞 백화점 8층입니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">頂好紫琳蒸餃館</div><div class="pko">딩하오 쯔린 만둣집</div></div><a class="pmap" href="https://maps.app.goo.gl/yf2ZP4DaWLcLZyZW7" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>캡틴따거</b></div><p class="pdesc">찐만두(蒸餃)와 군만두(鍋貼), 쑤안라탕(酸辣湯, 시큼하고 매콤한 수프)으로 유명한 만둣집입니다. 건물 지하 푸드코트에 있습니다. 줄이 길어도 빨리 빠지고, 영어 메뉴가 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:00~21:00 </dd></div><div><dt>주소</dt><dd>台北市大安區忠孝東路四段97號B1</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2752 0962</dd></div></dl><div class="ptip">💡 15~18시에 가면 덜 붐빕니다. 포장도 됩니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">永康牛肉麵</div><div class="pko">융캉 우육면</div></div><a class="pmap" href="https://maps.app.goo.gl/hdDqXobNQ772JaQY9" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">융캉제(永康街) 골목의 유명 우육면집입니다. 홍소(紅燒, 간장 매콤 국물) 우육면과 분증배골(粉蒸排骨, 쌀가루 찐 갈비)이 인기입니다. 2층까지 자리가 있고 회전이 빠릅니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 11:00~20:30 </dd></div><div><dt>주소</dt><dd>台北市大安區金山南路二段31巷17號</dd></div><div><dt>전화</dt><dd class="mono">+886 2 2351 1051</dd></div></dl><div class="ptip">💡 MRT 동먼역(東門)에서 가깝습니다. 주변 융캉제에 딘타이펑 본점 등 맛집이 많습니다.</div></article><article class="place"><div class="ptop"><div><div class="pzh">士林夜市</div><div class="pko">스린 야시장</div></div><a class="pmap" href="https://maps.app.goo.gl/t6Hm8KTJD4oqqXGH7" target="_blank" rel="noopener">지도 열기 ↗</a></div><div class="memo">📝 우리 메모: <b>가장 큰 야시장</b></div><p class="pdesc">타이베이에서 가장 큰 야시장입니다. 지파이(雞排, 대왕 닭튀김), 굴전(蚵仔煎), 땅콩 아이스크림 롤(花生捲冰淇淋) 등 먹거리와 게임·쇼핑 노점이 많습니다. 지하에 에어컨 있는 푸드코트도 있습니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>매일 16:00~24:00 </dd></div><div><dt>주소</dt><dd>台北市士林區基河路101號</dd></div></dl><div class="ptip">💡 MRT 젠탄역(劍潭, 빨간선)에서 내리세요. <b>현금을 준비하세요.</b> 사람이 많으니 소지품 주의.</div></article></div><h3 class="ghead">🚌 근교 (반나절~하루)</h3><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">九份老街</div><div class="pko">지우펀 라오지에 (구분 옛거리)</div></div><a class="pmap" href="https://maps.app.goo.gl/weGvWnepJYKfrpVn8" target="_blank" rel="noopener">지도 열기 ↗</a></div><p class="pdesc">산비탈에 홍등이 걸린 옛 광산 마을 골목입니다. 해 질 녘부터 등이 켜질 때가 가장 예쁩니다. 땅콩 아이스크림, 위위안(芋圓, 토란 경단 디저트) 같은 간식이 유명합니다.</p><dl class="pinfo"><div><dt>영업</dt><dd>가게들은 대략 10:00~20:00 </dd></div><div><dt>주소</dt><dd>新北市瑞芳區基山街</dd></div></dl><div class="ptip">💡 타이베이에서 버스나 기차+버스로 1~1.5시간 걸립니다. 오후 2~3시쯤 출발해 노을과 야경을 보고 돌아오는 일정이 좋습니다. 주말에 특히 붐빕니다.</div></article></div>
+<h3 class="ghead">🥟 추가: 딘타이펑 (鼎泰豐)</h3><div class="plist"><article class="place" id="pl-dtf"><div class="ptop"><div><div class="pzh">鼎泰豐</div><div class="pko">딘타이펑 (샤오룽바오)</div></div><a class="pmap" href="https://www.google.com/maps/search/%E9%BC%8E%E6%B3%B0%E8%B1%90+%E5%8F%B0%E5%8C%97" target="_blank" rel="noopener">지점 찾기 ↗</a></div><div class="memo">📝 우리 메모: <b>일정 중 한 번은 꼭</b></div><p class="pdesc">샤오룽바오(小籠包)로 유명한 대만 대표 딤섬 레스토랑입니다. 샤오룽바오 외에 새우볶음밥(蝦仁蛋炒飯), 새우 샤오마이, 오이무침도 인기입니다.</p><dl class="pinfo"><div><dt>지점</dt><dd><b>신이 본점(信義店)</b>: MRT 동먼역(東門) 근처, 융캉제 입구. 융캉 우육면(15번)과 가까움<br><b>타이베이 101점</b>: 101 빌딩 지하. 101 전망대와 묶기 좋음<br>그 외 시내 백화점에 여러 지점</dd></div></dl><div class="ptip">💡 대기가 매우 길 수 있습니다. 현장에서 번호표를 받고 주변을 구경하다 오거나, <b>우버이츠로 숙소에 배달</b>시키는 방법도 있습니다. 지점별 영업시간과 대기 현황은 가기 전에 구글 지도로 확인하세요.</div></article></div><p style="font-size:13px;color:var(--sub)">※ 영업시간은 2026년 11월 6일 구글 지도 기준입니다. 공휴일이나 가게 사정으로 바뀔 수 있으니 가기 전에 '지도 열기'로 확인해 주세요.</p></section></div><div class="pane" id="tab-local" role="tabpanel"><section id="money"><h2>결제와 현금</h2>
+<div class="card tbl"><h3 style="margin-top:0">👛 우리 결제 수단 정리</h3>
+<div class="card tbl">
+  <table>
+    <tr><th>수단</th><th>용도</th><th>메모</th></tr>
+    <tr><td><b>트래블월렛</b> (TWD 충전함)</td><td>주 결제, ATM 출금, 우버이츠</td><td>원화결제 차단 확인</td></tr>
+    <tr><td><b>토스 체크카드</b> (와이프)</td><td>현지 ATM 현금 출금</td><td>토스 외화통장을 해외결제 계좌로 설정해야 ATM 수수료가 면제됩니다. 현지 ATM 수수료는 따로 붙을 수 있으니 위 수수료 없는 은행 ATM을 쓰세요.</td></tr>
+    <tr><td><b>신한카드</b></td><td>예비, 호텔 보증금</td><td>트래블월렛 결제가 안 될 때</td></tr>
+    <tr><td><b>라인페이</b></td><td>QR 결제 (야시장·편의점 등)</td><td>출발 전 탭의 확인 사항 참고</td></tr>
+  </table>
+</div>
+</div>
+<h3>현금은 얼마나, 어디서?</h3>
+  <div class="card">
+    <p style="margin-top:0"><b>야시장, 로컬 식당, 노점은 현금만 받는 곳이 많습니다.</b> 4일이면 <b>NT$3,000~5,000</b> 정도 현금을 갖고 다니시면 넉넉합니다. 도착하자마자 공항에서 트래블월렛으로 인출하시면 됩니다.</p>
+    <h3>수수료 없이 인출 가능한 은행 ATM</h3>
+    <div class="tbl">
+    <table>
+      <tr><th>은행</th><th>간판 한자</th><th>주로 있는 곳</th></tr>
+      <tr><td>Cathay United Bank (국태세화)</td><td><b>國泰世華</b></td><td>공항, <b>패밀리마트</b>, MRT 역</td></tr>
+      <tr><td>Bank of Taiwan (대만은행)</td><td><b>臺灣銀行</b></td><td>공항 수하물 찾는 곳 근처, 시내 지점</td></tr>
+      <tr><td>Mega Bank (조풍은행)</td><td><b>兆豐銀行</b></td><td>공항, 시내 지점</td></tr>
+      <tr><td>Shin Kong Bank (신광은행)</td><td><b>新光銀行</b></td><td>시내 지점</td></tr>
+      <tr><td>First Bank (제일은행)</td><td><b>第一銀行</b></td><td>시내 지점</td></tr>
+    </table>
+    </div>
+    <p style="font-size:13px;color:var(--sub)">※ 은행 목록은 국내 카드·여행 블로그 안내 기준입니다. 정확한 조건은 트래블월렛 앱에서 확인해 주세요.</p>
+
+    <h3>ATM 인출 순서</h3>
+    <svg viewBox="0 0 640 110" role="img" aria-label="ATM 인출 순서">
+      <g font-size="13" text-anchor="middle" fill="currentColor">
+        <rect x="4" y="18" width="140" height="62" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+        <text x="74" y="44" font-weight="700">① 카드 넣기</text><text x="74" y="64" fill-opacity=".7">언어: 한국어/English</text>
+        <rect x="166" y="18" width="140" height="62" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+        <text x="236" y="44" font-weight="700">② PIN 입력</text><text x="236" y="64" fill-opacity=".7">카드 비밀번호</text>
+        <rect x="328" y="18" width="140" height="62" rx="12" fill="none" stroke="#c8102e" stroke-width="2"/>
+        <text x="398" y="44" font-weight="700" fill="#c8102e">③ Savings 선택</text><text x="398" y="64" fill-opacity=".7">Credit 고르지 않기</text>
+        <rect x="490" y="18" width="140" height="62" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+        <text x="560" y="44" font-weight="700">④ 금액 선택</text><text x="560" y="64" fill-opacity=".7">현금·카드 챙기기</text>
+      </g>
+      <g stroke="currentColor" stroke-opacity=".5" stroke-width="2">
+        <line x1="146" y1="49" x2="162" y2="49"/><line x1="308" y1="49" x2="324" y2="49"/><line x1="470" y1="49" x2="486" y2="49"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="note bad"><b>⚠ 결제할 때 원화(KRW) 말고 대만달러(TWD)를 고르세요</b>결제기나 점원이 "KRW로 결제할까요?"라고 물으면 반드시 <b>TWD</b>를 고르세요. 원화로 결제하면 수수료가 3~8% 정도 더 붙습니다. 출발 전에 두 카드 모두 앱에서 "해외 원화결제 차단"을 켜두면 안전합니다.</div>
+  <div class="note warn"><b>동전은 한국에서 환전할 수 없습니다</b>마지막 날 편의점이나 공항에서 다 쓰세요.</div>
+
+</section><section id="ubereats"><h2>우버이츠로 숙소에 배달시키기</h2>
+<div class="note ok"><b>준비</b>앱 로그인과 카드 등록은 <a href="#apps" data-go="before">출발 전 탭</a>에서 미리 해두세요.</div>
+<div class="card">
+<h3 style="margin-top:0">주문하는 순서</h3>
+  <ol>
+    <li><b>배달 주소 입력</b>: <span class="mono">台北市萬華區峨眉街5號</span>를 검색해서 넣습니다. 핀이 50~100m 어긋나는 일이 많으니 <b>지도에서 핀을 숙소 입구로 옮기세요.</b></li>
+    <li><b>건물 정보·배달 메모</b>: 숙소 이름(한자)과 호수를 적고, 아래 문장을 복사해 메모에 붙여넣으세요. 대부분 앱에서 '문 앞에서 만나기(Meet at door)'를 고르면 됩니다.</li>
+    <li><b>가게 검색</b>: 한자 이름으로 찾는 게 정확합니다. 예: <span class="mono">一甲子</span>, <span class="mono">鼎泰豐</span>. 또는 구글 지도에서 가게를 열고 '주문 → 배달'을 누르면 우버이츠·푸드판다 중 어디서 배달되는지 보입니다.</li>
+    <li><b>결제</b>: 카드 결제가 기본입니다. 배달비·서비스 수수료가 따로 붙고, <b>팁은 안 줘도 됩니다</b> (대만은 팁 문화 없음).</li>
+    <li><b>수령</b>: 기사님이 앱 채팅이나 전화로 연락합니다. 한국 번호는 전화 수신이 어려울 수 있으니 <b>앱 알림과 채팅을 잘 확인하세요.</b> 숙소에 따라 로비나 1층에서만 받아야 할 수 있으니 체크인할 때 물어보세요.</li>
+  </ol>
+  <h3>복사해서 쓰는 배달 메모</h3>
+  <table>
+    <tr><td><b>到了請在門口打電話或傳訊息，謝謝！</b><br><span style="color:var(--sub);font-size:14px">도착하면 입구에서 전화나 메시지 주세요, 감사합니다!</span></td></tr>
+    <tr><td><b>我是外國人，請用App訊息聯絡，謝謝！</b><br><span style="color:var(--sub);font-size:14px">외국인이라 앱 메시지로 연락 부탁드려요, 감사합니다!</span></td></tr>
+    <tr><td><b>請放在一樓大門口，謝謝！</b><br><span style="color:var(--sub);font-size:14px">1층 현관 앞에 놓아주세요, 감사합니다!</span></td></tr>
+  </table>
+  <div class="note info" style="margin-bottom:0"><b>이갑자(一甲子) 주문 팁</b>앱에서 <span class="mono">一甲子</span>로 검색하세요. 영업은 월~금 09:00~19:00, 토 09:00~14:00, 일요일 휴무입니다. 대표 메뉴는 콩러우판(焢肉飯), 루러우판(滷肉飯), 꽈바오(刈包)입니다. 앱에 안 나오면 걸어서 10~15분이라 직접 가셔도 됩니다.</div>
+  <p style="font-size:13px;color:var(--sub);margin:8px 0 0">대안: 푸드판다(foodpanda)도 대만에서 많이 쓰지만, 외국인은 가입·결제가 우버이츠보다 덜 안정적이라는 평이 있습니다.</p>
+</div></section><section id="lang">
+  <h2>언어와 유용한 표현</h2>
+  <div class="card">
+    <p style="margin-top:0">공용어는 <b>중국어(표준 중국어, 만다린)</b>이고, 글자는 중국 본토의 간체자가 아닌 <b>번체자</b>를 씁니다. 일상에서 대만어(台語, 민남어)도 많이 쓰지만 여행자는 중국어만 알아도 충분합니다. MRT와 관광지는 영어 안내가 잘 되어 있고, 식당에서는 파파고나 구글 번역의 <b>카메라 번역</b>이 유용합니다.</p>
+    <div class="phrase"><span class="zh">你好</span><span class="py">nǐ hǎo · 니하오</span><span class="ko">안녕하세요</span></div>
+    <div class="phrase"><span class="zh">謝謝</span><span class="py">xièxie · 씨에씨에</span><span class="ko">감사합니다</span></div>
+    <div class="phrase"><span class="zh">多少錢？</span><span class="py">duōshǎo qián · 뚜어샤오 치엔</span><span class="ko">얼마예요?</span></div>
+    <div class="phrase"><span class="zh">可以刷卡嗎？</span><span class="py">kěyǐ shuākǎ ma · 커이 슈아카 마</span><span class="ko">카드 되나요?</span></div>
+    <div class="phrase"><span class="zh">這個</span><span class="py">zhège · 쩌거</span><span class="ko">이거요 (메뉴를 가리키며)</span></div>
+    <div class="phrase"><span class="zh">不要香菜</span><span class="py">bú yào xiāngcài · 부야오 샹차이</span><span class="ko">고수 빼주세요</span></div>
+    <div class="phrase"><span class="zh">買單</span><span class="py">mǎidān · 마이딴</span><span class="ko">계산할게요</span></div>
+    <div class="phrase"><span class="zh">廁所在哪裡？</span><span class="py">cèsuǒ zài nǎlǐ · 처쑤오 짜이 나리</span><span class="ko">화장실 어디예요?</span></div>
+    <div class="phrase"><span class="zh">我要去這裡</span><span class="py">wǒ yào qù zhèlǐ · 워 야오 취 쩌리</span><span class="ko">여기로 가주세요 (택시에서 주소를 보여주며)</span></div>
+  </div>
+
+<h3>📸 상황별로 어떤 번역을 쓰나요?</h3>
+<div class="card tbl"><table>
+  <tr><th>상황</th><th>🤖 폴드7</th><th>🍎 아이폰</th></tr>
+  <tr><td>메뉴판·간판</td><td>구글 번역 카메라 / 파파고 이미지</td><td>번역 앱 카메라 / 카메라 글자 인식 → 번역</td></tr>
+  <tr><td>점원·기사님과 대화</td><td>갤럭시 <b>통역</b></td><td>번역 앱 <b>대화</b></td></tr>
+  <tr><td>메시지 보내기</td><td>삼성 키보드 번역 버튼</td><td>번역 앱에서 번역 후 복사</td></tr>
+  <tr><td>찍어둔 사진 글자</td><td>갤러리 → 글자 인식 → 번역</td><td>사진 앱 → 글자 인식 → 번역</td></tr>
+  <tr><td>앱·웹 화면 글자</td><td>서클 투 서치</td><td>구글 렌즈</td></tr>
+  <tr><td>인터넷 없을 때</td><td colspan="2">구글 번역 카메라(오프라인 언어 받은 경우), 기기 번역(언어 받은 경우)</td></tr>
+</table></div></section><section id="tips">
+  <h2>현지에서 주의할 점</h2>
+  <div class="grid">
+    <div class="card"><b>🚇 MRT 안에서 먹고 마시기 금지</b><p style="margin:6px 0 0;font-size:15px">물과 껌도 안 됩니다. 노란 선 안쪽부터 적용되고 벌금은 NT$1,500부터입니다.</p></div>
+    <div class="card"><b>↗ 에스컬레이터는 오른쪽에 서기</b><p style="margin:6px 0 0;font-size:15px">왼쪽은 걸어가는 사람을 위해 비워둡니다.</p></div>
+    <div class="card"><b>🚰 수돗물은 바로 마시지 않기</b><p style="margin:6px 0 0;font-size:15px">정수기나 생수를 이용하세요. 공공 정수기가 많아 물병을 가져가면 편합니다.</p></div>
+    <div class="card"><b>🗑 쓰레기통이 거의 없음</b><p style="margin:6px 0 0;font-size:15px">쓰레기는 들고 다니다가 편의점이나 숙소에서 버리세요.</p></div>
+    <div class="card"><b>🛵 오토바이 조심</b><p style="margin:6px 0 0;font-size:15px">오토바이가 매우 많습니다. 길을 건널 때, 특히 좌회전하는 오토바이를 조심하세요.</p></div>
+    <div class="card"><b>💁 팁 문화 없음</b><p style="margin:6px 0 0;font-size:15px">일부 식당은 10% 봉사료를 계산서에 넣어 받습니다.</p></div>
+  </div>
+</section></div><div class="pane" id="tab-sos" role="tabpanel"><section id="sos">
+  <h2>비상 연락처</h2>
+  <div class="card tbl">
+    <table>
+      <tr><th>상황</th><th>번호</th></tr>
+      <tr><td>경찰</td><td class="mono"><b>110</b></td></tr>
+      <tr><td>구급·소방</td><td class="mono"><b>119</b></td></tr>
+      <tr><td>대만 관광 안내 (24시간, 무료)</td><td class="mono">0800-011-765</td></tr>
+      <tr><td>주타이베이 대한민국 대표부 (대표번호)</td><td class="mono">+886-2-2758-8320</td></tr>
+      <tr><td>주타이베이 대한민국 대표부 (근무시간 외 긴급)</td><td class="mono">+886-912-069-230</td></tr>
+      <tr><td>외교부 영사콜센터 (24시간)</td><td class="mono">+82-2-3210-0404</td></tr>
+      <tr><td>카드 분실 시</td><td>트래블월렛 앱과 신한카드 앱에서 바로 정지</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--sub);margin:8px 0 0">※ 대표부 번호는 출발 전 외교부 해외안전여행 사이트에서 한 번 더 확인해 주세요.</p>
+  </div>
+
+<h3>🛡 여행자 보험 (카카오페이)</h3>
+<div class="card">
+  <ul>
+    <li>아프거나 다쳐서 병원에 가면 <b>진료비 영수증, 진단서(또는 소견서), 약 처방전·약제비 영수증</b>을 꼭 받아오세요. 귀국 후 청구할 때 필요합니다.</li>
+    <li>물건을 도난당하면 <b>가까운 파출소(漢中街派出所, 숙소 근처 24시간)에서 도난 신고 증명서</b>를 받아두세요. 보상 범위는 가입한 플랜에 따라 다릅니다.</li>
+    <li>카카오페이 앱의 보험 메뉴에서 <b>가입 내역과 해외 긴급지원 연락처</b>를 출국 전에 미리 확인해 두세요.</li>
+  </ul>
+</div>
+<h3>💳 카드·휴대폰을 잃어버렸을 때</h3>
+<div class="card"><ol>
+  <li>트래블월렛·토스·신한카드 앱에서 <b>바로 카드 정지</b></li>
+  <li>다른 사람 카드와 현금으로 버티기 (현금은 두 사람이 나눠서 보관)</li>
+  <li>도난이면 <b>漢中街派出所</b>(숙소 근처, 24시간)에서 신고 → 보험 청구용 증명서 받기</li>
+  <li>여권 분실은 주타이베이 대한민국 대표부에 연락</li>
+</ol></div></section></div>
+<footer>
+  <p>2026년 11월 5일 작성 · 예보, 요금, 정책은 바뀔 수 있으니 출발 전에 다시 확인해 주세요.</p>
+  <p>참고 자료:
+    <a href="https://blog.wego.com/taiwan-arrival-card-twac/">Wego TWAC 가이드</a> ·
+    <a href="https://www.immigration.gov.tw/5475/5478/141457/142068/393075">대만 이민서</a> ·
+    <a href="https://www.tripool.app/ko/articles/what-to-pack-for-taiwan-travel">트립풀 반입금지 물품</a> ·
+    <a href="https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%ED%99%98%EC%A0%84-%EA%B2%BD%EB%B9%84-%EC%88%98%EC%88%98%EB%A3%8C-%ED%8C%81">트립스토어 환전 가이드</a> ·
+    <a href="https://www.card-gorilla.com/contents/detail/4040">카드고릴라 트래블월렛 비교</a> ·
+    <a href="https://www.trvlogue.com/en/taoyuan-airport-mrt-taipei-2026">trvlogue 공항 MRT</a> ·
+    <a href="https://flyasiana.com/C/KR/EN/travel/airport?airportCd=TPE">아시아나 TPE 공항 안내</a> ·
+    <a href="https://www.google.com/maps">구글 지도(장소 정보)</a> ·
+    <a href="https://biz.newdaily.co.kr/site/data/html/2026/01/14/2026011400175.html">아시아나 인천 T2 이전</a>
+  </p>
+</footer>
+
+</main>
+<script>
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('nav.tabs button'));
+  function show(k){
+    if(!document.getElementById('tab-'+k)) k='home';
+    btns.forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===k)});
+    [].forEach.call(document.querySelectorAll('.pane'),function(p){p.classList.toggle('on',p.id==='tab-'+k)});
+  }
+  document.addEventListener('click',function(e){var a=e.target.closest('[data-go]'); if(a){e.preventDefault(); var b=document.querySelector('nav.tabs button[data-tab="'+a.dataset.go+'"]'); b&&b.click(); var t=a.getAttribute('href'); var el=t&&t.length>1&&document.getElementById(t.slice(1)); if(el&&el.tagName==='SECTION') setTimeout(function(){el.scrollIntoView()},60);}});
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    if(history.replaceState) history.replaceState(null,'','#'+b.dataset.tab); show(b.dataset.tab); window.scrollTo(0,0);
+  })});
+  var h=(location.hash||'#home').slice(1); var el=document.getElementById(h); var p=el&&el.closest&&el.closest('.pane'); show(p?p.id.replace('tab-',''):h); if(p&&el.tagName==='SECTION') setTimeout(function(){el.scrollIntoView()},0);
+})();
+</script>
+<script>
+(function(){
+  var C={near:'#c8102e',main:'#1f5fbf',city:'#1f8a4c',trip:'#7b3fb3'};
+  var G=['near','near','near','near','near','near','near','near','main','main','main','main','city','city','city','city','trip'];
+  var Z=['誠品','發發','三兄妹','幸福堂','阿宗','漢中街','一甲子','延桔','劉山東','添好運','雙月','自由','欣葉','頂好','永康','士林','九份'];
+  [].forEach.call(document.querySelectorAll('#tab-places article.place'),function(a){
+    var t=a.querySelector('.pzh'); var i=Z.findIndex(function(z){return t.textContent.indexOf(z)===0});
+    if(i<0) return; var n=document.createElement('span'); n.className='num'; n.style.background=C[G[i]]; n.textContent=i+1; t.prepend(n); a.id='pl-'+(i+1);
+  });
+})();
+</script>
+<button class="sbtn" id="sbtn" aria-label="검색">🔍</button>
+<div class="sov" id="sov" role="dialog" aria-label="가이드 검색"><div class="sbox">
+  <div class="shead"><input id="sq" type="search" placeholder="예: 우버이츠, 택시, ATM, 지우펀" autocomplete="off"><button id="sclose">닫기</button></div>
+  <div class="schips" id="schips"></div>
+  <div class="sres" id="sres"></div>
+</div></div>
+<script>
+(function(){
+  var SEL='h2,h3,p,li,td,dd,dt,.pzh,.pko,.memo,.pdesc,.ptip,.big-addr,.timeline .t,.note,.phrase';
+  var TAB={home:'요약',before:'출발 전',move:'이동',places:'장소',local:'대만에서',sos:'비상'};
+  var sov=document.getElementById('sov'), sq=document.getElementById('sq'), sres=document.getElementById('sres');
+  var idx=null;
+  function build(){
+    idx=[];
+    [].forEach.call(document.querySelectorAll('.pane'),function(p){
+      var tab=p.id.replace('tab-','');
+      [].forEach.call(p.querySelectorAll(SEL),function(el){
+        if(el.closest('svg')) return;
+        if(el.querySelector(SEL)) return; // leaf only
+        var t=el.textContent.replace(/\s+/g,' ').trim(); if(t.length<2) return;
+        var sec=el.closest('section'); var h=sec&&sec.querySelector('h2');
+        var card=el.closest('article.place'); var cname=card&&card.querySelector('.pzh');
+        idx.push({el:el,tab:tab,t:t,low:t.toLowerCase(),where:TAB[tab]+' › '+(h?h.textContent.trim():'')+(cname?' › '+cname.textContent.replace(/^\d+/,'').trim():'')});
+      });
+    });
+  }
+  function esc(x){return x.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function snip(t,q){var i=t.toLowerCase().indexOf(q); var a=Math.max(0,i-30), b=Math.min(t.length,i+q.length+50);
+    var pre=(a>0?'…':'')+esc(t.slice(a,i)), mid=esc(t.slice(i,i+q.length)), post=esc(t.slice(i+q.length,b))+(b<t.length?'…':'');
+    return pre+'<mark class="hl">'+mid+'</mark>'+post;}
+  function search(){
+    if(!idx) build();
+    var q=sq.value.trim().toLowerCase(); sres.innerHTML='';
+    if(!q) return;
+    var terms=q.split(/\s+/);
+    var hits=idx.filter(function(r){return terms.every(function(w){return r.low.indexOf(w)>=0})});
+    var c=document.createElement('div'); c.className='scount'; c.textContent=hits.length?('결과 '+hits.length+'개'+(hits.length>40?' (40개까지 표시)':'')):'결과가 없습니다. 다른 단어로 찾아보세요.'; sres.appendChild(c);
+    hits.slice(0,40).forEach(function(r){
+      var b=document.createElement('button'); b.className='sitem';
+      b.innerHTML='<div class="where">'+esc(r.where)+'</div><div class="snip">'+snip(r.t,terms[0])+'</div>';
+      b.addEventListener('click',function(){go(r,terms[0])}); sres.appendChild(b);
+    });
+  }
+  function clearMarks(){[].forEach.call(document.querySelectorAll('.pane mark.hl'),function(m){var p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();});}
+  function markIn(el,q){
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null), n, list=[];
+    while(n=w.nextNode()) list.push(n);
+    list.forEach(function(n){var i=n.nodeValue.toLowerCase().indexOf(q); if(i<0) return;
+      var r=n.splitText(i); r.splitText(q.length); var m=document.createElement('mark'); m.className='hl'; m.textContent=r.nodeValue; r.parentNode.replaceChild(m,r);});
+  }
+  function go(r,q){
+    close(); clearMarks();
+    var btn=document.querySelector('nav.tabs button[data-tab="'+r.tab+'"]'); if(btn) btn.click();
+    setTimeout(function(){
+      markIn(r.el,q); idx=null;
+      var y=r.el.getBoundingClientRect().top+window.pageYOffset-100; window.scrollTo(0,y);
+      r.el.classList.remove('flash'); void r.el.offsetWidth; r.el.classList.add('flash');
+    },80);
+  }
+  function open(){sov.classList.add('on'); setTimeout(function(){sq.focus(); sq.select();},30);}
+  function close(){sov.classList.remove('on');}
+  document.getElementById('sbtn').addEventListener('click',open);
+  document.getElementById('sclose').addEventListener('click',close);
+  sov.addEventListener('click',function(e){if(e.target===sov) close();});
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='f'){e.preventDefault();open();}
+    if(e.key==='Escape') close();
+  });
+  var t; sq.addEventListener('input',function(){clearTimeout(t); t=setTimeout(search,150);});
+  ['주소','우버이츠','택시','ATM','지우펀','스린','딘타이펑','언어팩','오프라인 지도','휴무','보험','경찰'].forEach(function(k){
+    var b=document.createElement('button'); b.textContent=k; b.addEventListener('click',function(){sq.value=k; search();}); document.getElementById('schips').appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
