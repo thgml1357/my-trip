@@ -1,7 +1,8 @@
 /* 공통 스크립트: 대만·일본 가이드가 함께 씁니다. 페이지에서 window.TRIP 설정을 먼저 정의하세요.
-   TRIP = {tabKey, chkKey, tabNames, searchChips, accOpen, accSkip, planHomeOpen, plan, kw, onTab?, after?} */
+   TRIP = {trip, tabKey, chkKey, tabNames, searchChips, accOpen, accSkip, planHomeOpen, plan, kw, onTab?, after?} */
 (function(){
 var T=window.TRIP;
+try{ if(T.trip) localStorage.setItem('trip-last',T.trip); }catch(e){} /* 다음에 앱을 열면 이 여행으로 바로 열림 */
 
 /* ---------- tabs ---------- */
 (function(){
@@ -46,7 +47,7 @@ var T=window.TRIP;
   function rows(d){
     return '<div class="sched">'+d[1].map(function(i){
       var a=i[4]||[], sd=a.filter(side), un=a.filter(function(x){return !side(x)});
-      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+(i[5]?'<ol class="stp">'+i[5].map(function(t){return '<li>'+e(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>'}).join('')+'</ol>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+'</div>';
+      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+(i[5]?'<ol class="stp">'+i[5].map(function(t){return '<li>'+e(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>'}).join('')+'</ol>':'')+'</div>';
     }).join('')+'</div>';
   }
   function render(h,open){
