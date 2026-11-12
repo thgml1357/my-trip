@@ -1,7 +1,8 @@
 /* 공통 스크립트: 대만·일본 가이드가 함께 씁니다. 페이지에서 window.TRIP 설정을 먼저 정의하세요.
-   TRIP = {tabKey, chkKey, tabNames, searchChips, accOpen, accSkip, planHomeOpen, plan, kw, onTab?, after?} */
+   TRIP = {trip, tabKey, chkKey, tabNames, searchChips, accOpen, accSkip, planHomeOpen, plan, kw, onTab?, after?} */
 (function(){
 var T=window.TRIP;
+try{ if(T.trip) localStorage.setItem('trip-last',T.trip); }catch(e){} /* 다음에 앱을 열면 이 여행으로 바로 열림 */
 
 /* ---------- tabs ---------- */
 (function(){
