@@ -16,54 +16,82 @@
 <title>교토 벚꽃 여행 가이드</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
+:root{--brand:#2a7de1;--brand-soft:#e7f1fd;--on-brand:#fff;--sun:#f0b400;--sun-soft:#fff6d6;--sun-ink:#8a6200;--pink:#d94a78;--pink-soft:#fdebf1}
+@media (prefers-color-scheme: dark){:root{--brand:#6ab0ff;--brand-soft:#12233a;--on-brand:#07203f;--sun:#ffd24a;--sun-soft:#2b2410;--sun-ink:#ffd24a;--pink:#ff8fb0;--pink-soft:#2e1620}}
 body{font-size:18px}
-h2{font-size:28px}
+h2{font-size:28px;border-left:6px solid var(--brand);padding-left:12px}
 .top .in{height:58px}
-.top b{font-size:21px}
+.top b{font-size:21px;color:var(--brand)}
 .top span{font-size:14px}
+.top .back{color:var(--brand)}
 nav.tabs .in{grid-template-columns:repeat(4,1fr)}
 nav.tabs button{font-size:14px;gap:4px;letter-spacing:0}
 nav.tabs svg{width:26px;height:26px}
+nav.tabs button[aria-selected="true"]{color:var(--brand)}
 .big-btns{display:grid;gap:10px;margin:20px 0 6px}
 .bbtn{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:12px 18px;font:inherit;font-size:20px;font-weight:800;text-align:left;border:2px solid var(--ink);border-radius:16px;background:none;color:var(--ink);text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.bbtn:active{background:var(--soft)}
+.bbtn:active{filter:brightness(.96)}
 .bbtn svg{width:30px;height:30px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .bbtn small{display:block;font-size:14px;font-weight:500;color:var(--sub);letter-spacing:0}
 .bbtn .go{margin-left:auto;font-size:24px;font-weight:400}
-.bbtn.red{border-color:var(--accent);color:var(--accent)}
+.bbtn.f{background:var(--brand-soft);border-color:var(--brand)}
+.bbtn.f svg,.bbtn.f .go{color:var(--brand)}
+.bbtn.e{background:var(--sun-soft);border-color:var(--sun)}
+.bbtn.e svg,.bbtn.e .go{color:var(--sun-ink)}
+.bbtn.red{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .sched .r{grid-template-columns:62px 1fr;gap:8px;padding:13px 0 13px 10px}
-.sched .tm{font-size:15px}
+.sched .r.hasra{grid-template-columns:62px 1fr auto}
+.sched .tm{font-size:15px;color:var(--brand)}
+.sched .r.key{background:var(--brand-soft);border-left-color:var(--brand)}
+.sched .r.key .tm{color:var(--brand)}
 .sched .tx{font-size:19px;line-height:1.5}
 .sched .tx small{font-size:16px;margin-top:3px}
 .sched .r.mv .tx{font-size:16px}
 .sched .r.mv .tx::before{display:none}
-.act{height:44px;font-size:16px;padding:0 18px}
-.dayh{font-size:21px}
+.act{height:44px;font-size:16px;padding:0 18px;border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.sched .ra .act{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.dayh{font-size:21px;border-left:6px solid var(--brand);background:var(--brand-soft)}
+.day:nth-child(2) .dayh{border-color:var(--pink);background:var(--pink-soft)}
+.day:nth-child(3) .dayh{border-color:var(--green);background:var(--green-soft)}
+.day:nth-child(4) .dayh{border-color:var(--sun);background:var(--sun-soft)}
+.day:nth-child(5) .dayh{border-color:var(--purple);background:var(--purple-soft)}
 .place{padding:20px 0}
 .pzh{font-size:24px}
-.pko{font-size:16px}
+.pko{font-size:16px;color:var(--brand)}
 .place .pdesc{font-size:17px}
 .place .ptip{font-size:16px}
 .ptop{cursor:auto;align-items:flex-start}
-.ptop .pmap{width:auto;height:auto;padding:10px 16px;border-radius:999px;display:inline-block;font-size:15px;font-weight:700;border:1.5px solid var(--ink)}
+.ptop .pmap{width:auto;height:auto;padding:10px 16px;border-radius:999px;display:inline-block;font-size:15px;font-weight:700;border:1.5px solid var(--brand);color:var(--brand);background:var(--brand-soft)}
 .check label{font-size:18px;padding:12px 0}
-.check input{width:26px;height:26px}
+.check input{width:26px;height:26px;accent-color:var(--brand)}
 .steps li,.card li{font-size:18px}
 table{font-size:16px}
+th{color:var(--brand)}
 .note{font-size:17px}
+.mylist{border-color:var(--brand);background:var(--brand-soft)}
 .mylist b{font-size:18px}
 .mylist small{font-size:14px}
+.mylist i{color:var(--brand)}
+.kw{background:var(--brand-soft)}
 .kw b{font-size:19px}
 .kw span{font-size:15px}
+.docslot{border-color:var(--brand);background:var(--brand-soft)}
+.pbox .pri{background:var(--brand);color:var(--on-brand)}
+.pbox h3{color:var(--brand)}
 .tel{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 4px;border-top:1px solid var(--line);text-decoration:none;color:inherit;font-size:18px}
-.tel b{font-family:var(--mono);font-size:20px;white-space:nowrap}
+.tel b{font-family:var(--mono);font-size:20px;white-space:nowrap;color:var(--accent)}
 .fl{margin:6px 0 14px}
-.fh{font-size:18px;font-weight:800;margin:0 0 4px;background:var(--soft);padding:8px 12px;border-radius:10px}
+.fh{font-size:18px;font-weight:800;margin:0 0 4px;background:var(--brand-soft);padding:8px 12px;border-radius:10px;border-left:5px solid var(--brand)}
 .fr{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);font-size:19px}
-.fr b{font-size:26px;letter-spacing:0}
+.fr b{font-size:26px;letter-spacing:0;color:var(--brand)}
 .fs{font-size:15px;color:var(--sub);margin:8px 0 0}
 .help{background:var(--soft);border-radius:12px;padding:12px 15px;margin:12px 0;font-size:16px}
 .help .t{display:block;font-size:17px;margin-bottom:2px}
+.fine{margin-top:36px;padding-top:14px;border-top:1px solid var(--line)}
+.fine h3{font-size:14px;color:var(--sub);margin:0 0 6px}
+.fine ul{padding-left:18px}
+.fine li{font-size:13px;color:var(--sub);margin:4px 0;line-height:1.5}
+.fine a{color:var(--brand)}
 </style>
 </head>
 <body>
@@ -75,8 +103,8 @@ table{font-size:16px}
 <main class="wrap">
 <div class="pane" id="tab-home" role="tabpanel">
   <div class="big-btns">
-    <button class="bbtn" type="button" data-pop="flight"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 9 .5L17 6.5a2 2 0 0 1 3 3L16 13l.5 9-1.5 1.5-2.5-7.5-3 3 .5 2.5-1.5 1.5-1.5-4L4 20.5 5.5 19"/></svg><span>항공 정보<small>가는 편 · 오는 편 시간</small></span><span class="go">›</span></button>
-    <a class="bbtn" href="https://vjw-lp.digital.go.jp/ko/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg><span>입국심사 신청<small>Visit Japan Web · 출발 전에 미리 해 두세요</small></span><span class="go">↗</span></a>
+    <button class="bbtn f" type="button" data-pop="flight"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 9 .5L17 6.5a2 2 0 0 1 3 3L16 13l.5 9-1.5 1.5-2.5-7.5-3 3 .5 2.5-1.5 1.5-1.5-4L4 20.5 5.5 19"/></svg><span>항공 정보<small>가는 편 · 오는 편 시간</small></span><span class="go">›</span></button>
+    <button class="bbtn e" type="button" data-doc-open="vjw" data-else-pop="entry"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg><span>입국심사 QR<small>신청하고 QR 사진을 넣어 두세요</small></span><span class="go">›</span></button>
     <button class="bbtn red" type="button" data-pop="sos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.4v.2"/></svg><span>비상 연락처<small>경찰 · 구급 · 영사콜센터</small></span><span class="go">›</span></button>
   </div>
   <section id="plan"><h2>일정</h2><div id="plan-body"></div></section>
@@ -104,33 +132,34 @@ table{font-size:16px}
 </ul></div>
 <div id="talk-body"></div>
 </section></div><div class="pane" id="tab-guide" role="tabpanel">
+<section id="docs"><h2>내 서류 사진</h2>
+<p class="more" style="margin-top:0">QR이나 예약 확인서를 캡처해서 넣어 두면 인터넷이 없어도 크게 볼 수 있어요. 사진은 이 폰 안에만 저장돼요.</p>
+<div class="docs">
+  <div class="docslot" data-doc="vjw" data-label="입국심사 QR"></div>
+  <div class="docslot" data-doc="ticket" data-label="항공권 · 탑승권"></div>
+  <div class="docslot" data-doc="hotel" data-label="숙소 예약 확인서"></div>
+  <div class="docslot" data-doc="passport" data-label="여권 사진"></div>
+</div>
+</section>
 <section id="check"><h2>출발 전 챙기기</h2>
 <div class="card"><ul class="check">
 <li><label><input type="checkbox"><span><b>여권</b> (남은 기간 6개월 이상이면 안전해요)</span></label></li>
 <li><label><input type="checkbox"><span><b>입국심사 QR 만들기</b> (Visit Japan Web) <a class="act" style="margin-left:6px" target="_blank" rel="noopener" href="https://vjw-lp.digital.go.jp/ko/">신청하기</a></span></label></li>
 <li><label><input type="checkbox"><span><b>엔화 현금</b>과 해외 결제 카드</span></label></li>
 <li><label><input type="checkbox"><span><b>eSIM</b> 또는 로밍 (구글 지도가 필요해요)</span></label></li>
-<li><label><input type="checkbox"><span><b>플러그 어댑터</b> (일본은 100V, 납작한 2핀)</span></label></li>
-<li><label><input type="checkbox"><span>겉옷 · 우산 · <b>편한 신발</b> (많이 걸어요)</span></label></li>
-<li><label><input type="checkbox"><span>마스크 · 알레르기약 (3월은 꽃가루가 많아요) · 상비약</span></label></li>
-<li><label><input type="checkbox"><span>에코백 · 쓰레기 봉투 (길에 쓰레기통이 거의 없어요)</span></label></li>
-<li><label><input type="checkbox"><span>동전지갑 · 손수건 (화장실에 핸드드라이어가 없는 곳이 많아요)</span></label></li>
+<li><label><input type="checkbox"><span><b>플러그 어댑터</b> (납작한 2핀)</span></label></li>
+<li><label><input type="checkbox"><span>겉옷 · 우산 · <b>편한 신발</b></span></label></li>
+<li><label><input type="checkbox"><span>마스크 · 알레르기약 · 상비약</span></label></li>
+<li><label><input type="checkbox"><span>에코백 · 쓰레기 봉투</span></label></li>
+<li><label><input type="checkbox"><span>동전지갑 · 손수건</span></label></li>
 <li><label><input type="checkbox"><span>구글 지도에서 <b>교토 오프라인 지도</b> 받기</span></label></li>
 <li><label><input type="checkbox"><span>보조배터리는 <b>기내 가방</b>에 넣기</span></label></li>
 </ul></div>
 </section>
-<section id="bloom"><h2>벚꽃 시기와 날씨</h2>
-<div class="card"><ul>
-  <li>교토 벚꽃은 보통 <b>3월 말~4월 초</b>가 가장 예뻐요. 해마다 조금씩 달라요.</li>
-  <li>낮에는 14~18도, 아침저녁은 3~9도예요. <b>겉옷</b>을 챙기세요.</li>
-  <li>비가 올 수 있어요. 접이식 우산이 있으면 좋아요.</li>
-</ul></div>
-<a class="mylist" target="_blank" rel="noopener" href="https://tenki.jp/sakura/"><span><b>벚꽃 개화 현황 보기</b><small>일본 날씨 사이트 · 인터넷 필요</small></span><i>↗</i></a>
-</section>
 <section id="entry"><h2>입국 순서</h2>
 <div class="card"><ol class="steps">
   <li><b>출발 전에</b> Visit Japan Web에서 입국심사·세관신고 QR을 만들어요.</li>
-  <li>QR 화면을 <b>캡처</b>해서 사진첩에 저장해 두세요.</li>
+  <li>QR 화면을 <b>캡처</b>해서 위의 <b>내 서류 사진</b>에 넣어 두세요.</li>
   <li>비행기에서 내리면 <b>입국심사 → 짐 찾기 → 세관</b> 순서예요.</li>
   <li>입국심사에서 <b>여권과 QR</b>을 보여 주세요.</li>
   <li>QR이 없으면 비행기에서 나눠 주는 <b>종이 서류</b>를 쓰면 돼요. 대신 줄이 길어져요.</li>
@@ -166,16 +195,6 @@ table{font-size:16px}
   <li>카드로 결제할 때 <b>원화(KRW)가 아니라 엔(JPY)</b>으로 결제하세요.</li>
   <li><b>팁은 주지 않아요.</b></li>
 </ul></div>
-<div class="note info"><b>면세 쇼핑</b>2026년 11월부터는 세금을 포함해 결제한 뒤 <b>출국할 때 환급</b>받아요. 쇼핑하는 날 여권을 챙기고, 공항에서 짐을 부치기 전에 세관 확인을 받으세요.</div>
-</section>
-<section id="manners"><h2>알아두기</h2>
-<div class="card"><ul>
-  <li><b>걸어 다니며 먹지 않아요.</b> 가게 앞에서 먹고, 쓰레기는 사 온 가게나 편의점에서 버려요.</li>
-  <li><b>기온의 좁은 골목</b>은 사진 촬영이 금지된 곳이 있어요. 마이코에게 다가가 찍지 마세요.</li>
-  <li>전철과 버스 안에서는 <b>통화하지 않아요.</b></li>
-  <li>교토시 <b>숙박세</b>가 2026년 3월에 올랐어요. 숙소에서 따로 받을 수 있어요.</li>
-  <li>짐이 많으면 <b>코인로커</b>(교토역)나 숙소에 맡기세요.</li>
-</ul></div>
 </section>
 <section id="back"><h2>귀국하는 날</h2>
 <div class="card"><ol class="steps">
@@ -185,6 +204,19 @@ table{font-size:16px}
   <li>남은 동전은 공항에서 쓰세요. 한국에서는 엔화 동전을 바꿔 주지 않아요.</li>
 </ol></div>
 </section>
+<section id="fine" class="fine"><h3>참고</h3>
+<ul>
+  <li>교토 벚꽃은 보통 3월 말~4월 초가 가장 예뻐요. 해마다 조금 달라요. <a target="_blank" rel="noopener" href="https://tenki.jp/sakura/">개화 현황 보기 ↗</a></li>
+  <li>낮 14~18도, 아침저녁 3~9도 정도예요. 비가 올 수 있어요.</li>
+  <li>3월은 꽃가루가 많아요. 마스크와 알레르기약을 챙기세요.</li>
+  <li>걸어 다니며 먹지 않아요. 쓰레기는 사 온 가게나 편의점에서 버려요.</li>
+  <li>기온의 좁은 골목은 사진 촬영이 금지된 곳이 있어요. 마이코에게 다가가 찍지 마세요.</li>
+  <li>전철과 버스 안에서는 통화하지 않아요.</li>
+  <li>화장실에 핸드드라이어가 없는 곳이 많아요. 손수건이 있으면 좋아요.</li>
+  <li>2026년 11월부터 면세는 세금을 포함해 결제한 뒤 출국할 때 환급받아요. 쇼핑하는 날 여권을 챙기세요.</li>
+  <li>교토시 숙박세가 2026년 3월에 올라 숙소에서 따로 받을 수 있어요.</li>
+  <li>짐이 많으면 교토역 코인로커나 숙소에 맡기세요.</li>
+</ul></section>
 </div>
 <footer>
   <p>2026년 11월 작성 · 요금, 시간, 규정은 바뀔 수 있으니 출발 전에 다시 확인해 주세요.</p>
@@ -196,7 +228,7 @@ table{font-size:16px}
 <button role="tab" data-tab="home"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>일정</button>
 <button role="tab" data-tab="places"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>장소</button>
 <button role="tab" data-tab="talk"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>회화</button>
-<button role="tab" data-tab="guide"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>안내</button>
+<button role="tab" data-tab="guide"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>준비</button>
 </div></nav>
 
 <div class="big" id="big" role="dialog" aria-label="크게 보기">
@@ -214,22 +246,35 @@ table{font-size:16px}
 <div class="fr"><span>간사이 (KIX) 출발</span><b>16:30</b></div>
 <div class="fr"><span>인천 (ICN) 도착</span><b>18:30</b></div>
 <p class="fs">간사이공항에 <b>14:30</b>까지 도착하세요 (출발 2시간 전)</p></div>
-<p class="fs">한국과 일본은 시차가 없어요. 편명과 터미널은 예약 확인서와 같은지 확인하세요.</p></template>
+<p class="fs">한국과 일본은 시차가 없어요. 편명과 터미널은 예약 확인서와 같은지 확인하세요.</p>
+<div class="docs"><div class="docslot" data-doc="ticket" data-label="항공권 · 탑승권"></div></div></template>
+<template id="pop-entry"><h3>입국심사 준비</h3>
+<a class="bbtn e" href="https://vjw-lp.digital.go.jp/ko/" target="_blank" rel="noopener"><span>신청하러 가기<small>Visit Japan Web</small></span><span class="go">↗</span></a>
+<p class="fs" style="font-size:16px;color:inherit;margin:14px 0 8px">신청이 끝나면 <b>QR 화면을 캡처</b>해서 아래에 넣어 두세요. 나중에 첫 화면의 <b>입국심사 QR</b> 버튼을 누르면 바로 크게 열려요.</p>
+<div class="docs"><div class="docslot" data-doc="vjw" data-label="입국심사 QR"></div></div>
+<p class="fs">사진은 이 폰 안에만 저장돼요.</p></template>
 <template id="pop-sos"><h3>비상 연락처</h3>
 <a class="tel" href="tel:110"><span>경찰</span><b>110</b></a>
 <a class="tel" href="tel:119"><span>구급 · 소방</span><b>119</b></a>
 <a class="tel" href="tel:+81-50-3816-2787"><span>일본 방문 외국인 핫라인 (24시간)</span><b>050-3816-2787</b></a>
 <a class="tel" href="tel:+82-2-3210-0404"><span>영사콜센터 (24시간)</span><b>+82-2-3210-0404</b></a>
 <p class="fs">교토는 주오사카 대한민국 총영사관 관할이에요. 번호는 외교부 해외안전여행(0404.go.kr)에서 확인하세요.</p>
-<p class="fs">카드를 잃어버리면 카드 앱에서 바로 정지하세요. 도난은 가까운 파출소(交番)에 알리세요.</p></template>
+<p class="fs">카드를 잃어버리면 카드 앱에서 바로 정지하세요. 도난은 가까운 파출소(交番)에 알리세요.</p></template><input type="file" id="docfile" accept="image/*" hidden>
+<div class="docv" id="docv" role="dialog" aria-modal="true" data-titles='{"vjw":"입국심사 QR","ticket":"항공권 · 탑승권","hotel":"숙소 예약 확인서","passport":"여권 사진"}'>
+  <div class="dt" id="doct"></div>
+  <div class="di"><img id="docimg" alt=""></div>
+  <p class="dh">화면을 밝게 하고 QR을 스캐너에 대세요</p>
+  <div class="db"><button type="button" data-doc-change>바꾸기</button><button type="button" data-doc-del>지우기</button><button class="pri" type="button" data-doc-close>닫기</button></div>
+</div>
 <script>
+window.DOCS_NS='japan';
 window.TRIP={
-  tabKey:'kyoto-tab', chkKey:'kyoto-chk-v2', flat:true, planHomeOpen:true, accOpen:{}, accSkip:{},
+  tabKey:'kyoto-tab', chkKey:'kyoto-chk-v3', flat:true, planHomeOpen:true, accOpen:{}, accSkip:{},
   plan:[
    ['Day 1 · 3/29 (월) 도착 · 가모강 벚꽃',[
     ['07:30','인천공항 도착 · 짐 부치기','출발 2시간 전','',[['pop','flight','항공 정보']]],
     ['09:30','인천 → 간사이공항 출발','11:15 도착 (비행 약 1시간 45분)','k'],
-    ['11:15','입국심사 · 짐 찾기','출국 전에 만든 QR을 보여 주세요','',[['link','https://vjw-lp.digital.go.jp/ko/','입국심사 QR']]],
+    ['11:15','입국심사 · 짐 찾기','출국 전에 만든 QR을 보여 주세요','',[['doc','vjw','entry','입국심사 QR']]],
     ['12:30','간사이공항 → 교토역','JR 하루카 열차 약 75분','m',[['route','関西空港駅','京都駅']]],
     ['14:00','교토역 → 숙소','지하철 약 5분 · 짐만 맡기고 나와요','m',[['route','京都駅','四条烏丸 京都']]],
     ['15:00','니시키 시장 구경 · 간식','숙소에서 걸어서 약 10분','',[['map','錦市場 京都']]],
@@ -386,6 +431,7 @@ window.TALK={
 };
 </script>
 <script src="../assets/talk.js"></script>
+<script src="../assets/docs.js"></script>
 <script src="../assets/common.js"></script>
 </body>
 </html>

@@ -30,23 +30,23 @@ var T=window.TRIP;
 })();
 
 /* ---------- 일정: 요약의 접이식 목록(#plan-body)과 일정 탭(#plan-body2). T.flat이면 접지 않고 펼쳐서 보여줌 ----------
-   행: [시간, 내용, 메모, 표시(k=중요,w=주의,m=이동), 버튼들]  버튼: ['map',장소] ['route',출발,도착] ['link',주소,이름] ['pop',팝업이름,이름]
+   행: [시간, 내용, 메모, 표시(k=중요,w=주의,m=이동), 버튼들]  버튼: ['map',장소] ['route',출발,도착] ['link',주소,이름] ['pop',팝업이름,이름] ['doc',사진키,팝업이름,이름]
    날: [제목, 행들, 하루 코스 장소들(선택)] */
 (function(){
   function e(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
   var q=encodeURIComponent, G='https://www.google.com/maps/';
-  function acts(a){
-    if(!a) return '';
-    return '<span class="acts">'+a.map(function(x){
-      if(x[0]==='map') return '<a class="act" target="_blank" rel="noopener" href="'+G+'search/?api=1&query='+q(x[1])+'">지도</a>';
-      if(x[0]==='route') return '<a class="act" target="_blank" rel="noopener" href="'+G+'dir/?api=1&origin='+q(x[1])+'&destination='+q(x[2])+'&travelmode=transit">길찾기</a>';
-      if(x[0]==='link') return '<a class="act" target="_blank" rel="noopener" href="'+x[1]+'">'+e(x[2])+'</a>';
-      return '<button class="act" type="button" data-pop="'+x[1]+'">'+e(x[2])+'</button>';
-    }).join('')+'</span>';
+  function act(x){
+    if(x[0]==='map') return '<a class="act" target="_blank" rel="noopener" href="'+G+'search/?api=1&query='+q(x[1])+'">지도</a>';
+    if(x[0]==='route') return '<a class="act" target="_blank" rel="noopener" href="'+G+'dir/?api=1&origin='+q(x[1])+'&destination='+q(x[2])+'&travelmode=transit">길찾기</a>';
+    if(x[0]==='link') return '<a class="act" target="_blank" rel="noopener" href="'+x[1]+'">'+e(x[2])+'</a>';
+    if(x[0]==='doc') return '<button class="act" type="button" data-doc-open="'+x[1]+'" data-else-pop="'+x[2]+'">'+e(x[3])+'</button>';
+    return '<button class="act" type="button" data-pop="'+x[1]+'">'+e(x[2])+'</button>';
   }
+  function side(x){return x[0]==='map'||x[0]==='route'}
   function rows(d){
     return '<div class="sched">'+d[1].map(function(i){
-      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+acts(i[4])+'</span></div>';
+      var a=i[4]||[], sd=a.filter(side), un=a.filter(function(x){return !side(x)});
+      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+'</div>';
     }).join('')+'</div>';
   }
   function render(h,open){
@@ -212,7 +212,7 @@ window.openAnc=function(el){
   var body=document.getElementById('pbody');
   document.addEventListener('click',function(e){
     var b=e.target.closest('[data-pop]');
-    if(b){var t=document.getElementById('pop-'+b.dataset.pop); if(!t) return; body.innerHTML=t.innerHTML; pop.classList.add('on'); pop.querySelector('.pbox').scrollTop=0; return;}
+    if(b){var t=document.getElementById('pop-'+b.dataset.pop); if(!t) return; body.innerHTML=t.innerHTML; if(window.docsRefresh) docsRefresh(); pop.classList.add('on'); pop.querySelector('.pbox').scrollTop=0; return;}
     if(e.target===pop||e.target.closest('#pclose')) pop.classList.remove('on');
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape') pop.classList.remove('on')});
