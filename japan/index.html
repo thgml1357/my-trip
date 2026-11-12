@@ -16,54 +16,102 @@
 <title>교토 벚꽃 여행 가이드</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
+:root{--brand:#2a7de1;--brand-soft:#e7f1fd;--on-brand:#fff;--sun:#f0b400;--sun-soft:#fff6d6;--sun-ink:#8a6200;--pink:#d94a78;--pink-soft:#fdebf1}
+@media (prefers-color-scheme: dark){:root{--brand:#6ab0ff;--brand-soft:#12233a;--on-brand:#07203f;--sun:#ffd24a;--sun-soft:#2b2410;--sun-ink:#ffd24a;--pink:#ff8fb0;--pink-soft:#2e1620}}
 body{font-size:18px}
-h2{font-size:28px}
+h2{font-size:28px;border-left:6px solid var(--brand);padding-left:12px}
 .top .in{height:58px}
-.top b{font-size:21px}
+.top b{font-size:21px;color:var(--brand)}
 .top span{font-size:14px}
+.top .back{color:var(--brand)}
 nav.tabs .in{grid-template-columns:repeat(4,1fr)}
 nav.tabs button{font-size:14px;gap:4px;letter-spacing:0}
 nav.tabs svg{width:26px;height:26px}
+nav.tabs button[aria-selected="true"]{color:var(--brand)}
 .big-btns{display:grid;gap:10px;margin:20px 0 6px}
 .bbtn{display:flex;align-items:center;gap:14px;width:100%;min-height:66px;padding:12px 18px;font:inherit;font-size:20px;font-weight:800;text-align:left;border:2px solid var(--ink);border-radius:16px;background:none;color:var(--ink);text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.bbtn:active{background:var(--soft)}
+.bbtn:active{filter:brightness(.96)}
 .bbtn svg{width:30px;height:30px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .bbtn small{display:block;font-size:14px;font-weight:500;color:var(--sub);letter-spacing:0}
 .bbtn .go{margin-left:auto;font-size:24px;font-weight:400}
-.bbtn.red{border-color:var(--accent);color:var(--accent)}
+.bbtn.f{background:var(--brand-soft);border-color:var(--brand)}
+.bbtn.f svg,.bbtn.f .go{color:var(--brand)}
+.bbtn.e{background:var(--sun-soft);border-color:var(--sun)}
+.bbtn.e svg,.bbtn.e .go{color:var(--sun-ink)}
+.bbtn.red{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .sched .r{grid-template-columns:62px 1fr;gap:8px;padding:13px 0 13px 10px}
-.sched .tm{font-size:15px}
+.sched .r.hasra{grid-template-columns:62px 1fr auto}
+.sched .tm{font-size:15px;color:var(--brand)}
+.sched .r.key{background:var(--brand-soft);border-left-color:var(--brand)}
+.sched .r.key .tm{color:var(--brand)}
 .sched .tx{font-size:19px;line-height:1.5}
 .sched .tx small{font-size:16px;margin-top:3px}
 .sched .r.mv .tx{font-size:16px}
 .sched .r.mv .tx::before{display:none}
-.act{height:44px;font-size:16px;padding:0 18px}
-.dayh{font-size:21px}
+.act{height:44px;font-size:16px;padding:0 18px;border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.sched .ra .act{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.dayh{font-size:21px;border-left:6px solid var(--brand);background:var(--brand-soft)}
+.day:nth-child(2) .dayh{border-color:var(--pink);background:var(--pink-soft)}
+.day:nth-child(3) .dayh{border-color:var(--green);background:var(--green-soft)}
+.day:nth-child(4) .dayh{border-color:var(--sun);background:var(--sun-soft)}
+.day:nth-child(5) .dayh{border-color:var(--purple);background:var(--purple-soft)}
 .place{padding:20px 0}
 .pzh{font-size:24px}
-.pko{font-size:16px}
+.pko{font-size:16px;color:var(--brand)}
 .place .pdesc{font-size:17px}
 .place .ptip{font-size:16px}
 .ptop{cursor:auto;align-items:flex-start}
-.ptop .pmap{width:auto;height:auto;padding:10px 16px;border-radius:999px;display:inline-block;font-size:15px;font-weight:700;border:1.5px solid var(--ink)}
+.ptop .pmap{width:auto;height:auto;padding:10px 16px;border-radius:999px;display:inline-block;font-size:15px;font-weight:700;border:1.5px solid var(--brand);color:var(--brand);background:var(--brand-soft)}
 .check label{font-size:18px;padding:12px 0}
-.check input{width:26px;height:26px}
+.check input{width:26px;height:26px;accent-color:var(--brand)}
 .steps li,.card li{font-size:18px}
 table{font-size:16px}
+th{color:var(--brand)}
 .note{font-size:17px}
+.mylist{border-color:var(--brand);background:var(--brand-soft)}
 .mylist b{font-size:18px}
 .mylist small{font-size:14px}
+.mylist i{color:var(--brand)}
+.kw{background:var(--brand-soft)}
 .kw b{font-size:19px}
 .kw span{font-size:15px}
+.docslot{border-color:var(--brand);background:var(--brand-soft)}
+.pbox .pri{background:var(--brand);color:var(--on-brand)}
+.pbox h3{color:var(--brand)}
 .tel{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 4px;border-top:1px solid var(--line);text-decoration:none;color:inherit;font-size:18px}
-.tel b{font-family:var(--mono);font-size:20px;white-space:nowrap}
+.tel b{font-family:var(--mono);font-size:20px;white-space:nowrap;color:var(--accent)}
 .fl{margin:6px 0 14px}
-.fh{font-size:18px;font-weight:800;margin:0 0 4px;background:var(--soft);padding:8px 12px;border-radius:10px}
+.fh{font-size:18px;font-weight:800;margin:0 0 4px;background:var(--brand-soft);padding:8px 12px;border-radius:10px;border-left:5px solid var(--brand)}
 .fr{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);font-size:19px}
-.fr b{font-size:26px;letter-spacing:0}
+.fr b{font-size:26px;letter-spacing:0;color:var(--brand)}
 .fs{font-size:15px;color:var(--sub);margin:8px 0 0}
 .help{background:var(--soft);border-radius:12px;padding:12px 15px;margin:12px 0;font-size:16px}
 .help .t{display:block;font-size:17px;margin-bottom:2px}
+.fine{margin-top:36px;padding-top:14px;border-top:1px solid var(--line)}
+.fine h3{font-size:14px;color:var(--sub);margin:0 0 6px}
+.fine ul{padding-left:18px}
+.fine li{font-size:13px;color:var(--sub);margin:4px 0;line-height:1.5}
+.fine a{color:var(--brand)}
+:root{--orange:#e0792a;--orange-soft:#fdeee0}
+@media (prefers-color-scheme: dark){:root{--orange:#ffa75a;--orange-soft:#33200f}}
+.stp{list-style:none;counter-reset:s;margin:10px 0 0;padding:0}
+.stp li{counter-increment:s;position:relative;padding-left:36px;margin:9px 0;font-size:17px;line-height:1.5}
+.stp li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--on-brand);font-weight:800;font-size:14px;display:grid;place-items:center}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.pcard{--c:var(--brand);--cs:var(--brand-soft);position:relative;text-align:left;font:inherit;color:inherit;cursor:pointer;border:2px solid var(--c);background:var(--cs);border-radius:16px;padding:14px 12px 12px;min-height:104px;-webkit-tap-highlight-color:transparent}
+.pcard:active{filter:brightness(.96)}
+.pcard i{display:inline-block;font-style:normal;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--c);color:var(--on-brand);margin-bottom:6px}
+.pcard b{display:block;font-size:21px;line-height:1.3;letter-spacing:0;word-break:normal}
+.pcard span{display:block;font-size:14px;color:var(--sub);margin-top:2px;line-height:1.4}
+.pcard.c2{--c:var(--pink);--cs:var(--pink-soft)}
+.pcard.c3{--c:var(--green);--cs:var(--green-soft)}
+.pcard.c4{--c:var(--sun);--cs:var(--sun-soft)}
+.pcard.c5{--c:var(--purple);--cs:var(--purple-soft)}
+.pcard.cf{--c:var(--orange);--cs:var(--orange-soft)}
+.pcard.c4 i{color:#3d2d00}
+.pko2{margin:0 0 8px;color:var(--brand);font-weight:700;font-size:17px}
+.pd{font-size:18px;margin:8px 0}
+.pt{font-size:16px;color:var(--sub);margin:8px 0 12px}
 </style>
 </head>
 <body>
@@ -75,17 +123,17 @@ table{font-size:16px}
 <main class="wrap">
 <div class="pane" id="tab-home" role="tabpanel">
   <div class="big-btns">
-    <button class="bbtn" type="button" data-pop="flight"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 9 .5L17 6.5a2 2 0 0 1 3 3L16 13l.5 9-1.5 1.5-2.5-7.5-3 3 .5 2.5-1.5 1.5-1.5-4L4 20.5 5.5 19"/></svg><span>항공 정보<small>가는 편 · 오는 편 시간</small></span><span class="go">›</span></button>
-    <a class="bbtn" href="https://vjw-lp.digital.go.jp/ko/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg><span>입국심사 신청<small>Visit Japan Web · 출발 전에 미리 해 두세요</small></span><span class="go">↗</span></a>
+    <button class="bbtn f" type="button" data-pop="flight"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L3 11l1.5-1.5 9 .5L17 6.5a2 2 0 0 1 3 3L16 13l.5 9-1.5 1.5-2.5-7.5-3 3 .5 2.5-1.5 1.5-1.5-4L4 20.5 5.5 19"/></svg><span>항공 정보<small>가는 편 · 오는 편 시간</small></span><span class="go">›</span></button>
+    <button class="bbtn e" type="button" data-doc-open="vjw" data-else-pop="entry"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg><span>입국심사 QR<small>신청하고 QR 사진을 넣어 두세요</small></span><span class="go">›</span></button>
     <button class="bbtn red" type="button" data-pop="sos"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.4v.2"/></svg><span>비상 연락처<small>경찰 · 구급 · 영사콜센터</small></span><span class="go">›</span></button>
   </div>
   <section id="plan"><h2>일정</h2><div id="plan-body"></div></section>
 </div><div class="pane" id="tab-places" role="tabpanel">
 <a class="mylist" target="_blank" rel="noopener" href="https://maps.app.goo.gl/2SVbruanmLLmFfDZ6"><span><b>내 구글지도 목록 열기</b><small>저장해 둔 교토 음식점 · 인터넷 필요</small></span><i>↗</i></a>
-<section id="spots"><h2>일정에 나오는 곳</h2><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">錦市場</div><div class="pko">니시키 시장 (1일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E9%8C%A6%E5%B8%82%E5%A0%B4%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">교토의 먹거리 시장이에요. 꼬치, 어묵, 절임, 두유 도넛 등을 구경하며 간식을 먹어요.</p><p class="ptip">길에서 먹는 걸 막는 가게가 있어요. 가게 앞에서 드세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">鴨川</div><div class="pko">가모강변 (1일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E9%B4%A8%E5%B7%9D%20%E5%9B%9B%E6%9D%A1%E5%A4%A7%E6%A9%8B" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">시내 한가운데 강변 길이에요. 벚꽃을 보며 천천히 걸어요.</p><p class="ptip">벤치에 앉아 쉬어 가기 좋아요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">清水寺</div><div class="pko">기요미즈데라 (2일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E6%B0%B4%E5%AF%BA" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">무대에서 내려다보는 벚꽃 풍경이 유명해요.</p><p class="ptip">아침 일찍 가면 사람이 적어요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">円山公園</div><div class="pko">마루야마 공원 (2일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%86%86%E5%B1%B1%E5%85%AC%E5%9C%92%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">큰 수양벚꽃이 있는 공원이에요. 밤에는 조명이 켜져요.</p><p class="ptip">야사카 신사 바로 뒤에 있어요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">哲学の道</div><div class="pko">철학의 길 (2일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%93%B2%E5%AD%A6%E3%81%AE%E9%81%93" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">물길을 따라 벚나무가 이어지는 산책길이에요. 걸어서 30~40분 걸려요.</p><p class="ptip">힘들면 난젠지까지만 가도 좋아요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">平安神宮</div><div class="pko">헤이안 신궁 (2일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B3%E5%AE%89%E7%A5%9E%E5%AE%AE" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">붉은 대문이 큰 신사예요. 뒤쪽 정원에 수양벚꽃이 많아요.</p><p class="ptip">정원은 입장료가 있어요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">嵐山</div><div class="pko">아라시야마 (3일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%B5%90%E5%B1%B1%20%E6%B8%A1%E6%9C%88%E6%A9%8B" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">대나무숲, 도게츠교, 강변 벚꽃을 함께 볼 수 있는 곳이에요.</p><p class="ptip">벚꽃철에 가장 붐벼요. 아침 일찍 가세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">金閣寺</div><div class="pko">킨카쿠지 · 금각사 (3일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E9%96%A3%E5%AF%BA" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">금색으로 빛나는 절이에요. 연못에 비친 모습이 예뻐요.</p><p class="ptip">입장 마감 시간을 확인하세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">伏見稲荷大社</div><div class="pko">후시미 이나리 (4일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E5%A4%A7%E7%A4%BE" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">붉은 문(도리이)이 길게 이어지는 신사예요. 24시간 열려 있어요.</p><p class="ptip">이른 아침이 한산해요. 중간까지만 올라가도 괜찮아요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">宇治 平等院</div><div class="pko">우지 뵤도인 (4일차)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B3%E7%AD%89%E9%99%A2%20%E5%AE%87%E6%B2%BB" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">말차로 유명한 도시예요. 뵤도인 건물과 우지강을 둘러보고 말차 디저트를 먹어요.</p><p class="ptip">점심 무렵 말차 가게 줄이 길어요.</p></article></div></section>
-<section id="food"><h2>음식점 · 카페</h2><div class="plist"><article class="place"><div class="ptop"><div><div class="pzh">先斗町</div><div class="pko">폰토초 · 저녁 식당 골목</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%85%88%E6%96%97%E7%94%BA%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">가모강 옆 좁은 골목에 식당이 이어져 있어요. 저녁 분위기가 좋아요.</p><p class="ptip">벚꽃철 저녁은 예약하면 편해요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">南禅寺 順正</div><div class="pko">난젠지 준세이 · 유도후(두부 전골)</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%97%E7%A6%85%E5%AF%BA%20%E9%A0%86%E6%AD%A3%20%E6%B9%AF%E8%B1%86%E8%85%90" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">정원을 보며 먹는 두부 요리가 유명해요. 2일차 난젠지 근처예요.</p><p class="ptip">점심 대기가 길 수 있어요. 예약 가능한지 확인하세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">% Arabica 京都 東山</div><div class="pko">야사카 탑 근처 카페</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%AB%20%E4%BA%AC%E9%83%BD%20%E6%9D%B1%E5%B1%B1" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">기요미즈 가는 길에 쉬기 좋은 커피집이에요.</p><p class="ptip">줄이 길어서 오전 일찍이 덜 기다려요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">中村藤吉 本店</div><div class="pko">나카무라 도키치 · 우지 말차</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E6%9D%91%E8%97%A4%E5%90%89%E6%9C%AC%E5%BA%97%20%E5%AE%87%E6%B2%BB" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">말차 파르페와 차소바가 대표 메뉴예요. 4일차 우지에서 가요.</p><p class="ptip">대기가 길어서 오픈 시간에 맞춰 가세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">イノダコーヒ 本店</div><div class="pko">이노다 커피 · 교토 클래식 커피</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A4%E3%83%8E%E3%83%80%E3%82%B3%E3%83%BC%E3%83%92%20%E6%9C%AC%E5%BA%97%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">오래된 커피집으로 아침 메뉴가 유명해요.</p><p class="ptip">시간은 구글지도로 확인하세요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">本家 第一旭 / 新福菜館</div><div class="pko">교토역 근처 라멘</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AC%E5%AE%B6%E7%AC%AC%E4%B8%80%E6%97%AD%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">교토역 가까이에 오래된 라멘집이 모여 있어요. 마지막 날 점심에 좋아요.</p><p class="ptip">줄이 길 수 있어요.</p></article><article class="place"><div class="ptop"><div><div class="pzh">出町ふたば</div><div class="pko">데마치 후타바 · 마메모치</div></div><a class="pmap" href="https://www.google.com/maps/search/?api=1&query=%E5%87%BA%E7%94%BA%E3%81%B5%E3%81%9F%E3%81%B0%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener">지도 보기</a></div><p class="pdesc">콩이 들어간 찹쌀떡으로 유명한 가게예요.</p><p class="ptip">줄이 길고 일찍 닫아요. 오전에 가세요.</p></article></div>
-<p class="more">영업시간과 휴무는 '지도 보기'에서 확인하세요.</p></section>
+<section id="spots"><h2>일정에 나오는 곳</h2><p class="more" style="margin-top:0">카드를 누르면 자세한 설명이 나와요.</p><div class="pgrid"><button class="pcard c1" type="button" data-pop="place-1"><i>1일차</i><b>錦市場</b><span>니시키 시장</span></button><button class="pcard c1" type="button" data-pop="place-2"><i>1일차</i><b>鴨川</b><span>가모강변</span></button><button class="pcard c1" type="button" data-pop="place-3"><i>1일차</i><b>祇園白川</b><span>기온 시라카와</span></button><button class="pcard c2" type="button" data-pop="place-4"><i>2일차</i><b>清水寺</b><span>기요미즈데라</span></button><button class="pcard c2" type="button" data-pop="place-5"><i>2일차</i><b>円山公園</b><span>마루야마 공원</span></button><button class="pcard c2" type="button" data-pop="place-6"><i>2일차</i><b>平安神宮</b><span>헤이안 신궁</span></button><button class="pcard c2" type="button" data-pop="place-7"><i>2일차</i><b>哲学の道</b><span>철학의 길</span></button><button class="pcard c3" type="button" data-pop="place-8"><i>3일차</i><b>嵐山</b><span>아라시야마</span></button><button class="pcard c3" type="button" data-pop="place-9"><i>3일차</i><b>金閣寺</b><span>킨카쿠지 · 금각사</span></button><button class="pcard c4" type="button" data-pop="place-10"><i>4일차</i><b>伏見稲荷大社</b><span>후시미 이나리</span></button><button class="pcard c4" type="button" data-pop="place-11"><i>4일차</i><b>宇治 平等院</b><span>우지 뵤도인</span></button></div></section>
+<section id="food"><h2>음식점 · 카페</h2><div class="pgrid"><button class="pcard cf" type="button" data-pop="place-12"><i>음식</i><b>先斗町</b><span>폰토초 · 저녁 식당 골목</span></button><button class="pcard cf" type="button" data-pop="place-13"><i>음식</i><b>南禅寺 順正</b><span>난젠지 준세이 · 유도후</span></button><button class="pcard cf" type="button" data-pop="place-14"><i>음식</i><b>% Arabica</b><span>야사카 탑 근처 카페</span></button><button class="pcard cf" type="button" data-pop="place-15"><i>음식</i><b>中村藤吉</b><span>나카무라 도키치 · 우지 말차</span></button><button class="pcard cf" type="button" data-pop="place-16"><i>음식</i><b>イノダコーヒ</b><span>이노다 커피 · 클래식 커피</span></button><button class="pcard cf" type="button" data-pop="place-17"><i>음식</i><b>第一旭 · 新福菜館</b><span>교토역 근처 라멘</span></button><button class="pcard cf" type="button" data-pop="place-18"><i>음식</i><b>出町ふたば</b><span>데마치 후타바 · 마메모치</span></button></div></section>
 <section id="kw"><h2>주변 찾기</h2><div id="kw-body"></div></section>
+<template id="pop-place-1"><h3>錦市場</h3><p class="pko2">니시키 시장</p><p class="pd">교토의 먹거리 시장이에요. 꼬치, 어묵, 절임, 두유 도넛 등을 구경하며 간식을 먹어요.</p><p class="pt">길에서 먹는 걸 막는 가게가 있어요. 가게 앞에서 드세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E9%8C%A6%E5%B8%82%E5%A0%B4%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-2"><h3>鴨川</h3><p class="pko2">가모강변</p><p class="pd">시내 한가운데 강변 길이에요. 벚꽃을 보며 천천히 걸어요.</p><p class="pt">벤치에 앉아 쉬어 가기 좋아요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E9%B4%A8%E5%B7%9D%20%E5%9B%9B%E6%9D%A1%E5%A4%A7%E6%A9%8B" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-3"><h3>祇園白川</h3><p class="pko2">기온 시라카와</p><p class="pd">작은 물길을 따라 벚나무와 옛 가게들이 이어져요. 해 질 무렵이 예뻐요.</p><p class="pt">골목은 사유지라 사진 촬영이 금지된 곳이 있어요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E7%A5%87%E5%9C%92%E7%99%BD%E5%B7%9D%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-4"><h3>清水寺</h3><p class="pko2">기요미즈데라</p><p class="pd">무대에서 내려다보는 벚꽃 풍경이 유명해요.</p><p class="pt">아침 일찍 가면 사람이 적어요. 언덕길이라 편한 신발이 좋아요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%85%E6%B0%B4%E5%AF%BA" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-5"><h3>円山公園</h3><p class="pko2">마루야마 공원</p><p class="pd">큰 수양벚꽃이 있는 공원이에요. 밤에는 조명이 켜져요.</p><p class="pt">야사카 신사 바로 뒤에 있어요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%86%86%E5%B1%B1%E5%85%AC%E5%9C%92%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-6"><h3>平安神宮</h3><p class="pko2">헤이안 신궁</p><p class="pd">붉은 대문이 큰 신사예요. 뒤쪽 정원에 수양벚꽃이 많아요.</p><p class="pt">정원은 입장료가 있어요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B3%E5%AE%89%E7%A5%9E%E5%AE%AE" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-7"><h3>哲学の道</h3><p class="pko2">철학의 길</p><p class="pd">물길을 따라 벚나무가 이어지는 산책길이에요. 걸어서 30~40분 걸려요.</p><p class="pt">힘들면 난젠지까지만 가도 좋아요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%93%B2%E5%AD%A6%E3%81%AE%E9%81%93" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-8"><h3>嵐山</h3><p class="pko2">아라시야마</p><p class="pd">대나무숲, 도게츠교, 강변 벚꽃을 함께 볼 수 있는 곳이에요.</p><p class="pt">벚꽃철에 가장 붐벼요. 아침 일찍 가세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%B5%90%E5%B1%B1%20%E6%B8%A1%E6%9C%88%E6%A9%8B" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-9"><h3>金閣寺</h3><p class="pko2">킨카쿠지 · 금각사</p><p class="pd">금색으로 빛나는 절이에요. 연못에 비친 모습이 예뻐요.</p><p class="pt">입장 마감 시간을 확인하세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E9%96%A3%E5%AF%BA" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-10"><h3>伏見稲荷大社</h3><p class="pko2">후시미 이나리</p><p class="pd">붉은 문(도리이)이 길게 이어지는 신사예요. 24시간 열려 있어요.</p><p class="pt">이른 아침이 한산해요. 중간까지만 올라가도 괜찮아요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E5%A4%A7%E7%A4%BE" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-11"><h3>宇治 平等院</h3><p class="pko2">우지 뵤도인</p><p class="pd">말차로 유명한 도시예요. 뵤도인 건물과 우지강을 둘러보고 말차 디저트를 먹어요.</p><p class="pt">점심 무렵 말차 가게 줄이 길어요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%B9%B3%E7%AD%89%E9%99%A2%20%E5%AE%87%E6%B2%BB" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-12"><h3>先斗町</h3><p class="pko2">폰토초 · 저녁 식당 골목</p><p class="pd">가모강 옆 좁은 골목에 식당이 이어져 있어요. 저녁 분위기가 좋아요.</p><p class="pt">벚꽃철 저녁은 예약하면 편해요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%85%88%E6%96%97%E7%94%BA%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-13"><h3>南禅寺 順正</h3><p class="pko2">난젠지 준세이 · 유도후</p><p class="pd">정원을 보며 먹는 두부 전골이 유명해요. 2일차 난젠지 근처예요.</p><p class="pt">점심 대기가 길 수 있어요. 예약 가능한지 확인하세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%97%E7%A6%85%E5%AF%BA%20%E9%A0%86%E6%AD%A3%20%E6%B9%AF%E8%B1%86%E8%85%90" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-14"><h3>% Arabica</h3><p class="pko2">야사카 탑 근처 카페</p><p class="pd">기요미즈 가는 길에 쉬기 좋은 커피집이에요.</p><p class="pt">줄이 길어서 오전 일찍이 덜 기다려요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%A9%E3%83%93%E3%82%AB%20%E4%BA%AC%E9%83%BD%20%E6%9D%B1%E5%B1%B1" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-15"><h3>中村藤吉</h3><p class="pko2">나카무라 도키치 · 우지 말차</p><p class="pd">말차 파르페와 차소바가 대표 메뉴예요. 4일차 우지에서 가요.</p><p class="pt">대기가 길어서 오픈 시간에 맞춰 가세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E6%9D%91%E8%97%A4%E5%90%89%E6%9C%AC%E5%BA%97%20%E5%AE%87%E6%B2%BB" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-16"><h3>イノダコーヒ</h3><p class="pko2">이노다 커피 · 클래식 커피</p><p class="pd">오래된 커피집으로 아침 메뉴가 유명해요.</p><p class="pt">시간은 구글지도로 확인하세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E3%82%A4%E3%83%8E%E3%83%80%E3%82%B3%E3%83%BC%E3%83%92%20%E6%9C%AC%E5%BA%97%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-17"><h3>第一旭 · 新福菜館</h3><p class="pko2">교토역 근처 라멘</p><p class="pd">교토역 가까이에 오래된 라멘집이 모여 있어요. 마지막 날 점심에 좋아요.</p><p class="pt">줄이 길 수 있어요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AC%E5%AE%B6%E7%AC%AC%E4%B8%80%E6%97%AD%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template><template id="pop-place-18"><h3>出町ふたば</h3><p class="pko2">데마치 후타바 · 마메모치</p><p class="pd">콩이 들어간 찹쌀떡으로 유명한 가게예요.</p><p class="pt">줄이 길고 일찍 닫아요. 오전에 가세요.</p><a class="bbtn f" href="https://www.google.com/maps/search/?api=1&query=%E5%87%BA%E7%94%BA%E3%81%B5%E3%81%9F%E3%81%B0%20%E4%BA%AC%E9%83%BD" target="_blank" rel="noopener"><span>지도 보기</span><span class="go">↗</span></a></template>
 </div><div class="pane" id="tab-talk" role="tabpanel"><section id="talk">
 <h2>일본어 회화</h2>
 <p>문장을 누르면 <b>큰 글씨</b>로 보여주고, ▶를 누르면 <b>소리</b>가 나요.</p>
@@ -104,46 +152,33 @@ table{font-size:16px}
 </ul></div>
 <div id="talk-body"></div>
 </section></div><div class="pane" id="tab-guide" role="tabpanel">
+<section id="docs"><h2>내 서류 사진</h2>
+<p class="more" style="margin-top:0">QR이나 예약 확인서를 캡처해서 넣어 두면 인터넷이 없어도 크게 볼 수 있어요. 사진은 이 폰 안에만 저장돼요.</p>
+<div class="docs">
+  <div class="docslot" data-doc="vjw" data-label="입국심사 QR"></div>
+  <div class="docslot" data-doc="ticket" data-label="항공권 · 탑승권"></div>
+  <div class="docslot" data-doc="hotel" data-label="숙소 예약 확인서"></div>
+  <div class="docslot" data-doc="passport" data-label="여권 사진"></div>
+</div>
+</section>
+<section id="apply"><h2>입국심사 신청</h2>
+<p class="more" style="margin-top:0">출발 전에 미리 신청하고, QR 화면을 캡처해서 위의 <b>내 서류 사진</b>에 넣어 두세요.</p>
+<a class="bbtn e" href="https://vjw-lp.digital.go.jp/ko/" target="_blank" rel="noopener"><span>입국심사 신청하기<small>Visit Japan Web · 인터넷 필요</small></span><span class="go">↗</span></a>
+</section>
 <section id="check"><h2>출발 전 챙기기</h2>
 <div class="card"><ul class="check">
 <li><label><input type="checkbox"><span><b>여권</b> (남은 기간 6개월 이상이면 안전해요)</span></label></li>
 <li><label><input type="checkbox"><span><b>입국심사 QR 만들기</b> (Visit Japan Web) <a class="act" style="margin-left:6px" target="_blank" rel="noopener" href="https://vjw-lp.digital.go.jp/ko/">신청하기</a></span></label></li>
 <li><label><input type="checkbox"><span><b>엔화 현금</b>과 해외 결제 카드</span></label></li>
 <li><label><input type="checkbox"><span><b>eSIM</b> 또는 로밍 (구글 지도가 필요해요)</span></label></li>
-<li><label><input type="checkbox"><span><b>플러그 어댑터</b> (일본은 100V, 납작한 2핀)</span></label></li>
-<li><label><input type="checkbox"><span>겉옷 · 우산 · <b>편한 신발</b> (많이 걸어요)</span></label></li>
-<li><label><input type="checkbox"><span>마스크 · 알레르기약 (3월은 꽃가루가 많아요) · 상비약</span></label></li>
-<li><label><input type="checkbox"><span>에코백 · 쓰레기 봉투 (길에 쓰레기통이 거의 없어요)</span></label></li>
-<li><label><input type="checkbox"><span>동전지갑 · 손수건 (화장실에 핸드드라이어가 없는 곳이 많아요)</span></label></li>
+<li><label><input type="checkbox"><span><b>플러그 어댑터</b> (납작한 2핀)</span></label></li>
+<li><label><input type="checkbox"><span>겉옷 · 우산 · <b>편한 신발</b></span></label></li>
+<li><label><input type="checkbox"><span>마스크 · 알레르기약 · 상비약</span></label></li>
+<li><label><input type="checkbox"><span>에코백 · 쓰레기 봉투</span></label></li>
+<li><label><input type="checkbox"><span>동전지갑 · 손수건</span></label></li>
 <li><label><input type="checkbox"><span>구글 지도에서 <b>교토 오프라인 지도</b> 받기</span></label></li>
 <li><label><input type="checkbox"><span>보조배터리는 <b>기내 가방</b>에 넣기</span></label></li>
 </ul></div>
-</section>
-<section id="bloom"><h2>벚꽃 시기와 날씨</h2>
-<div class="card"><ul>
-  <li>교토 벚꽃은 보통 <b>3월 말~4월 초</b>가 가장 예뻐요. 해마다 조금씩 달라요.</li>
-  <li>낮에는 14~18도, 아침저녁은 3~9도예요. <b>겉옷</b>을 챙기세요.</li>
-  <li>비가 올 수 있어요. 접이식 우산이 있으면 좋아요.</li>
-</ul></div>
-<a class="mylist" target="_blank" rel="noopener" href="https://tenki.jp/sakura/"><span><b>벚꽃 개화 현황 보기</b><small>일본 날씨 사이트 · 인터넷 필요</small></span><i>↗</i></a>
-</section>
-<section id="entry"><h2>입국 순서</h2>
-<div class="card"><ol class="steps">
-  <li><b>출발 전에</b> Visit Japan Web에서 입국심사·세관신고 QR을 만들어요.</li>
-  <li>QR 화면을 <b>캡처</b>해서 사진첩에 저장해 두세요.</li>
-  <li>비행기에서 내리면 <b>입국심사 → 짐 찾기 → 세관</b> 순서예요.</li>
-  <li>입국심사에서 <b>여권과 QR</b>을 보여 주세요.</li>
-  <li>QR이 없으면 비행기에서 나눠 주는 <b>종이 서류</b>를 쓰면 돼요. 대신 줄이 길어져요.</li>
-</ol></div>
-<a class="mylist" target="_blank" rel="noopener" href="https://vjw-lp.digital.go.jp/ko/"><span><b>입국심사 신청 (Visit Japan Web)</b><small>인터넷 필요</small></span><i>↗</i></a>
-</section>
-<section id="airport"><h2>공항에서 교토까지</h2>
-<div class="card"><ol class="steps">
-  <li>입국장에서 <b>엔화를 인출</b>하고 <b>ICOCA</b>(교통카드)를 사요. 지하철·버스·편의점에서 쓸 수 있어요.</li>
-  <li><b>JR 간사이공항역</b>으로 가요.</li>
-  <li><b>하루카(はるか)</b> 열차를 타요. 교토역까지 바로 가고 약 75분 걸려요. 짐 놓을 곳이 있어요.</li>
-</ol></div>
-<div class="note info"><b>다른 방법</b>공항 리무진버스도 교토역까지 약 90분이에요 (약 2,800엔). 열차 요금은 약 3천 엔 안팎이고 조금 달라질 수 있어요.</div>
 </section>
 <section id="transit"><h2>교토 시내 이동</h2>
 <div class="card"><ul>
@@ -166,25 +201,30 @@ table{font-size:16px}
   <li>카드로 결제할 때 <b>원화(KRW)가 아니라 엔(JPY)</b>으로 결제하세요.</li>
   <li><b>팁은 주지 않아요.</b></li>
 </ul></div>
-<div class="note info"><b>면세 쇼핑</b>2026년 11월부터는 세금을 포함해 결제한 뒤 <b>출국할 때 환급</b>받아요. 쇼핑하는 날 여권을 챙기고, 공항에서 짐을 부치기 전에 세관 확인을 받으세요.</div>
 </section>
-<section id="manners"><h2>알아두기</h2>
-<div class="card"><ul>
-  <li><b>걸어 다니며 먹지 않아요.</b> 가게 앞에서 먹고, 쓰레기는 사 온 가게나 편의점에서 버려요.</li>
-  <li><b>기온의 좁은 골목</b>은 사진 촬영이 금지된 곳이 있어요. 마이코에게 다가가 찍지 마세요.</li>
-  <li>전철과 버스 안에서는 <b>통화하지 않아요.</b></li>
-  <li>교토시 <b>숙박세</b>가 2026년 3월에 올랐어요. 숙소에서 따로 받을 수 있어요.</li>
-  <li>짐이 많으면 <b>코인로커</b>(교토역)나 숙소에 맡기세요.</li>
-</ul></div>
+<section id="sos"><h2>비상 연락처</h2>
+<div class="card">
+<a class="tel" href="tel:110"><span>경찰</span><b>110</b></a>
+<a class="tel" href="tel:119"><span>구급 · 소방</span><b>119</b></a>
+<a class="tel" href="tel:+81-50-3816-2787"><span>일본 방문 외국인 핫라인 (24시간)</span><b>050-3816-2787</b></a>
+<a class="tel" href="tel:+82-2-3210-0404"><span>영사콜센터 (24시간)</span><b>+82-2-3210-0404</b></a>
+</div>
+<p class="fs">교토는 주오사카 대한민국 총영사관 관할이에요. 번호는 외교부 해외안전여행(0404.go.kr)에서 확인하세요.</p>
+<p class="fs">카드를 잃어버리면 카드 앱에서 바로 정지하세요. 도난은 가까운 파출소(交番)에 알리세요.</p>
 </section>
-<section id="back"><h2>귀국하는 날</h2>
-<div class="card"><ol class="steps">
-  <li>교토역에서 <b>하루카</b>를 타요 (약 75분).</li>
-  <li>비행기 출발 <b>2시간 전</b>까지 공항에 도착해요.</li>
-  <li>면세 쇼핑을 했다면 <b>짐을 부치기 전에</b> 세관 확인을 받아요.</li>
-  <li>남은 동전은 공항에서 쓰세요. 한국에서는 엔화 동전을 바꿔 주지 않아요.</li>
-</ol></div>
-</section>
+<section id="fine" class="fine"><h3>참고</h3>
+<ul>
+  <li>교토 벚꽃은 보통 3월 말~4월 초가 가장 예뻐요. 해마다 조금 달라요. <a target="_blank" rel="noopener" href="https://tenki.jp/sakura/">개화 현황 보기 ↗</a></li>
+  <li>낮 14~18도, 아침저녁 3~9도 정도예요. 비가 올 수 있어요.</li>
+  <li>3월은 꽃가루가 많아요. 마스크와 알레르기약을 챙기세요.</li>
+  <li>걸어 다니며 먹지 않아요. 쓰레기는 사 온 가게나 편의점에서 버려요.</li>
+  <li>기온의 좁은 골목은 사진 촬영이 금지된 곳이 있어요. 마이코에게 다가가 찍지 마세요.</li>
+  <li>전철과 버스 안에서는 통화하지 않아요.</li>
+  <li>화장실에 핸드드라이어가 없는 곳이 많아요. 손수건이 있으면 좋아요.</li>
+  <li>2026년 11월부터 면세는 세금을 포함해 결제한 뒤 출국할 때 환급받아요. 쇼핑하는 날 여권을 챙기세요.</li>
+  <li>교토시 숙박세가 2026년 3월에 올라 숙소에서 따로 받을 수 있어요.</li>
+  <li>짐이 많으면 교토역 코인로커나 숙소에 맡기세요.</li>
+</ul></section>
 </div>
 <footer>
   <p>2026년 11월 작성 · 요금, 시간, 규정은 바뀔 수 있으니 출발 전에 다시 확인해 주세요.</p>
@@ -196,7 +236,7 @@ table{font-size:16px}
 <button role="tab" data-tab="home"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>일정</button>
 <button role="tab" data-tab="places"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>장소</button>
 <button role="tab" data-tab="talk"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>회화</button>
-<button role="tab" data-tab="guide"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>안내</button>
+<button role="tab" data-tab="guide"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>준비</button>
 </div></nav>
 
 <div class="big" id="big" role="dialog" aria-label="크게 보기">
@@ -214,64 +254,78 @@ table{font-size:16px}
 <div class="fr"><span>간사이 (KIX) 출발</span><b>16:30</b></div>
 <div class="fr"><span>인천 (ICN) 도착</span><b>18:30</b></div>
 <p class="fs">간사이공항에 <b>14:30</b>까지 도착하세요 (출발 2시간 전)</p></div>
-<p class="fs">한국과 일본은 시차가 없어요. 편명과 터미널은 예약 확인서와 같은지 확인하세요.</p></template>
+<p class="fs">한국과 일본은 시차가 없어요. 편명과 터미널은 예약 확인서와 같은지 확인하세요.</p>
+<div class="docs"><div class="docslot" data-doc="ticket" data-label="항공권 · 탑승권"></div></div></template>
+<template id="pop-entry"><h3>입국심사 준비</h3>
+<a class="bbtn e" href="https://vjw-lp.digital.go.jp/ko/" target="_blank" rel="noopener"><span>신청하러 가기<small>Visit Japan Web</small></span><span class="go">↗</span></a>
+<p class="fs" style="font-size:16px;color:inherit;margin:14px 0 8px">신청이 끝나면 <b>QR 화면을 캡처</b>해서 아래에 넣어 두세요. 나중에 첫 화면의 <b>입국심사 QR</b> 버튼을 누르면 바로 크게 열려요.</p>
+<div class="docs"><div class="docslot" data-doc="vjw" data-label="입국심사 QR"></div></div>
+<p class="fs">사진은 이 폰 안에만 저장돼요.</p></template>
 <template id="pop-sos"><h3>비상 연락처</h3>
 <a class="tel" href="tel:110"><span>경찰</span><b>110</b></a>
 <a class="tel" href="tel:119"><span>구급 · 소방</span><b>119</b></a>
 <a class="tel" href="tel:+81-50-3816-2787"><span>일본 방문 외국인 핫라인 (24시간)</span><b>050-3816-2787</b></a>
 <a class="tel" href="tel:+82-2-3210-0404"><span>영사콜센터 (24시간)</span><b>+82-2-3210-0404</b></a>
 <p class="fs">교토는 주오사카 대한민국 총영사관 관할이에요. 번호는 외교부 해외안전여행(0404.go.kr)에서 확인하세요.</p>
-<p class="fs">카드를 잃어버리면 카드 앱에서 바로 정지하세요. 도난은 가까운 파출소(交番)에 알리세요.</p></template>
+<p class="fs">카드를 잃어버리면 카드 앱에서 바로 정지하세요. 도난은 가까운 파출소(交番)에 알리세요.</p></template><input type="file" id="docfile" accept="image/*" hidden>
+<div class="docv" id="docv" role="dialog" aria-modal="true" data-titles='{"vjw":"입국심사 QR","ticket":"항공권 · 탑승권","hotel":"숙소 예약 확인서","passport":"여권 사진"}'>
+  <div class="dt" id="doct"></div>
+  <div class="di"><img id="docimg" alt=""></div>
+  <p class="dh">화면을 밝게 하고 QR을 스캐너에 대세요</p>
+  <div class="db"><button type="button" data-doc-change>바꾸기</button><button type="button" data-doc-del>지우기</button><button class="pri" type="button" data-doc-close>닫기</button></div>
+</div>
 <script>
+window.DOCS_NS='japan';
 window.TRIP={
-  tabKey:'kyoto-tab', chkKey:'kyoto-chk-v2', flat:true, planHomeOpen:true, accOpen:{}, accSkip:{},
+  tabKey:'kyoto-tab', chkKey:'kyoto-chk-v3', flat:true, planHomeOpen:true, accOpen:{}, accSkip:{},
   plan:[
-   ['Day 1 · 3/29 (월) 도착 · 가모강 벚꽃',[
-    ['07:30','인천공항 도착 · 짐 부치기','출발 2시간 전','',[['pop','flight','항공 정보']]],
-    ['09:30','인천 → 간사이공항 출발','11:15 도착 (비행 약 1시간 45분)','k'],
-    ['11:15','입국심사 · 짐 찾기','출국 전에 만든 QR을 보여 주세요','',[['link','https://vjw-lp.digital.go.jp/ko/','입국심사 QR']]],
-    ['12:30','간사이공항 → 교토역','JR 하루카 열차 약 75분','m',[['route','関西空港駅','京都駅']]],
-    ['14:00','교토역 → 숙소','지하철 약 5분 · 짐만 맡기고 나와요','m',[['route','京都駅','四条烏丸 京都']]],
-    ['15:00','니시키 시장 구경 · 간식','숙소에서 걸어서 약 10분','',[['map','錦市場 京都']]],
-    ['16:30','가모강 벚꽃 산책','시장에서 걸어서 약 10분','k',[['map','鴨川 四条大橋']]],
-    ['18:00','기온에서 저녁','시라카와 강변 벚꽃도 보세요','',[['map','祇園白川 京都']]],
+   ['Day 1 · 3/29 (월)',[
+    ['07:30','인천공항 도착 · 짐 부치기','','',[['pop','flight','항공 정보']],['**항공권에 적힌 터미널**로 가요','항공사 카운터에서 **체크인**하고 짐을 부쳐요 (여권 필요)','보안검색을 받고 **출국심사**를 해요','탑승 게이트로 가요 (출발 전에 탑승이 시작돼요)']],
+    ['09:30','인천 → 간사이공항 출발','11:15 도착 · 비행 약 1시간 45분','k'],
+    ['11:15','간사이공항 도착 · 입국','','',[['doc','vjw','entry','입국심사 QR']],['비행기에서 내려 **입국심사(Immigration)** 표지판을 따라가요','입국심사대에서 **여권**과 **QR**을 보여 줘요','**짐 찾기**: 전광판에서 내 편명의 수취대 번호를 확인해요','**세관(Customs)**을 지나요. 화면 안내에 따라 QR을 보여 줘요','출구로 나오면 도착로비예요']],
+    ['12:15','공항에서 준비하기','','',null,['**ATM**(7-Eleven)에서 엔화를 뽑아요','**ICOCA**(교통카드)를 사요. 지하철·버스·편의점에서 써요','eSIM이나 로밍을 켜고 구글 지도가 되는지 확인해요']],
+    ['12:45','간사이공항 → 교토역','JR 하루카 열차 약 75분','m',[['route','関西空港駅','京都駅']],['**JR 간사이공항역**으로 가요 (공항 안 "JR" 표지판)','발매기나 창구에서 **교토행 하루카(はるか)** 표를 사요','하루카를 타요. 큰 짐은 칸 끝 짐칸에 놓아요','**교토역(京都)**에서 내려요 (약 75분)']],
+    ['14:15','교토역 → 숙소','지하철 약 5분','m',[['route','京都駅','四条烏丸 京都']],['교토역에서 **지하철 가라스마선**을 타요 (국제회관 방면, 지도 확인)','**시조역(四条)**에서 내려요 (약 5분)','숙소까지 걸어가서 **짐을 맡겨요** (체크인은 보통 15시 이후)']],
+    ['15:30','니시키 시장 구경 · 간식','숙소에서 걸어서 약 10분','',[['map','錦市場 京都']],['시장 입구로 들어가요. 길이 **한 줄로 길게** 이어져요','꼬치, 어묵, 두유 도넛 등을 **가게 앞에서** 먹어요','끝까지 걸으면 번화가 **가와라마치**가 나와요']],
+    ['16:30','가모강 벚꽃 산책','시장에서 걸어서 약 10분','k',[['map','鴨川 四条大橋']],['**시조대교(四条大橋)**까지 걸어가요','다리 옆 계단으로 **강변에 내려가요**','벚꽃 길을 걷고 벤치에서 쉬어요']],
+    ['18:00','기온에서 저녁','시라카와 강변 벚꽃도 보세요','',[['map','祇園白川 京都']],['시조대교를 **건너** 기온 쪽으로 걸어요 (약 10분)','**시라카와** 강변 길에서 벚꽃을 봐요','저녁 식당은 장소 탭에서 골라요']],
     ['20:00','숙소로 돌아가기','걸어서 약 15분 · 힘들면 택시','m']
    ],['錦市場 京都','鴨川 四条大橋','祇園白川 京都']],
-   ['Day 2 · 3/30 (화) 동쪽 벚꽃 코스',[
-    ['08:00','숙소 → 기요미즈데라','버스 약 20분 (걸어서 30분)','m',[['route','四条烏丸 京都','清水寺']]],
-    ['08:30','기요미즈데라','아침 일찍이 사람이 적어요','k',[['map','清水寺']]],
-    ['10:00','산넨자카 · 니넨자카','내리막길을 걸어서 10분','',[['map','三年坂 京都']]],
-    ['11:00','야사카 신사 · 마루야마 공원','수양벚꽃 명소','k',[['map','円山公園 京都']]],
+   ['Day 2 · 3/30 (화)',[
+    ['08:00','숙소 → 기요미즈데라','버스 약 20분 · 걸어서는 약 30분','m',[['route','四条烏丸 京都','清水寺']],['**길찾기** 버튼을 눌러 구글 지도를 열어요','**시내버스**를 타요 (206·207번 등, 지도에서 확인)','**기요미즈미치(清水道)** 정류장에서 내려요','**언덕길**을 걸어 올라가요 (약 10~15분)']],
+    ['08:30','기요미즈데라','아침 일찍이 사람이 적어요','k',[['map','清水寺']],['**입장권**을 사서 들어가요','**본당 무대**에서 벚꽃 풍경을 봐요','**오토와 폭포**까지 내려가 구경해요']],
+    ['10:00','산넨자카 · 니넨자카','내리막길을 걸어서 약 10분','',[['map','三年坂 京都']],['기요미즈데라에서 **내리막 돌길**로 내려가요','가게 구경과 **간식**','**야사카 탑**(오층탑) 앞에서 사진을 찍어요']],
+    ['11:00','야사카 신사 · 마루야마 공원','수양벚꽃 명소','k',[['map','円山公園 京都']],['야사카 탑에서 **야사카 신사**까지 걸어요 (약 10분)','신사를 지나 **마루야마 공원**으로 들어가요','**큰 수양벚꽃** 앞에서 사진을 찍어요']],
     ['12:00','점심','기온 근처 식당 (장소 탭 참고)'],
-    ['13:30','헤이안 신궁','걸어서 약 20분','',[['map','平安神宮']]],
-    ['15:00','케아게 · 난젠지 · 철학의 길','걸어서 이어져요 · 힘들면 철학의 길은 빼요','',[['map','哲学の道']]],
-    ['17:30','숙소로 돌아가기','버스 약 30분','m',[['route','哲学の道','四条烏丸 京都']]],
+    ['13:30','헤이안 신궁','걸어서 약 20분','',[['map','平安神宮']],['마루야마 공원에서 걸어가요 (힘들면 버스)','**붉은 대문** 앞에서 사진을 찍어요','뒤쪽 **정원**에서 수양벚꽃을 봐요 (입장료)']],
+    ['15:00','케아게 · 난젠지 · 철학의 길','걸어서 이어져요 · 힘들면 철학의 길은 빼요','',[['map','哲学の道']],['헤이안 신궁에서 **케아게 인클라인**(벚꽃 철길)까지 걸어요','**난젠지**의 붉은 벽돌 수로각을 구경해요','**철학의 길**을 따라 걸어요 (약 30~40분)']],
+    ['17:30','숙소로 돌아가기','버스 약 30분','m',[['route','哲学の道','四条烏丸 京都']],['철학의 길 끝 근처 **버스 정류장**으로 가요','시조·가와라마치 방면 버스를 타요 (지도 확인)','숙소로 돌아와 쉬어요']],
     ['18:30','저녁','폰토초 또는 기온 (예약하면 편해요)']
    ],['清水寺','円山公園 京都','平安神宮','哲学の道']],
-   ['Day 3 · 3/31 (수) 아라시야마 · 금각사',[
-    ['08:00','숙소 → 아라시야마','지하철로 교토역 → JR 약 15분','m',[['route','四条烏丸 京都','嵐山']]],
-    ['08:30','대나무숲 · 텐류지','아침에 사람이 적어요','',[['map','竹林の小径 嵐山']]],
-    ['10:30','도게츠교 · 강변 벚꽃','','k',[['map','渡月橋']]],
+   ['Day 3 · 3/31 (수)',[
+    ['08:00','숙소 → 아라시야마','지하철 + JR 약 30분','m',[['route','四条烏丸 京都','嵐山']],['**지하철**로 교토역에 가요 (약 5분)','**JR 사가노선(嵯峨野線)**을 타요','**사가아라시야마역(嵯峨嵐山)**에서 내려요 (약 15분)','역에서 걸어서 **텐류지** 쪽으로 가요']],
+    ['08:30','텐류지 · 대나무숲','아침에 사람이 적어요','',[['map','竹林の小径 嵐山']],['**텐류지** 정원을 구경해요 (입장료)','정원 **북문**으로 나가면 바로 **대나무숲**이에요','대나무숲 길을 걸어요','**노노미야 신사**까지 가 봐요']],
+    ['10:30','도게츠교 · 강변 벚꽃','','k',[['map','渡月橋']],['대나무숲에서 **강 쪽**으로 걸어 내려가요 (약 15분)','**도게츠교(渡月橋)** 위에서 강과 산 벚꽃을 봐요','강변을 걸으며 **간식**을 먹어요']],
     ['12:00','점심','소바 · 두부 요리'],
-    ['13:30','아라시야마 → 금각사','버스나 택시 약 30~40분','m',[['route','嵐山','金閣寺']]],
-    ['14:30','킨카쿠지 (금각사)','','',[['map','金閣寺']]],
+    ['13:30','아라시야마 → 금각사','버스나 택시 약 30~40분','m',[['route','嵐山','金閣寺']],['**길찾기** 버튼을 눌러 구글 지도를 열어요','**버스**나 택시로 이동해요 (약 30~40분)','**금각사미치(金閣寺道)** 정류장에서 내려요']],
+    ['14:30','킨카쿠지 (금각사)','','',[['map','金閣寺']],['**입장권**(부적 모양)을 사서 들어가요','**연못 건너편**에서 금각 사진을 찍어요','정원 길을 따라 한 바퀴 돌아요 (약 40분)']],
     ['16:30','숙소로 돌아가 쉬기','버스 약 30분','m'],
     ['18:30','저녁','숙소 근처에서 편하게']
    ],['竹林の小径 嵐山','渡月橋','金閣寺']],
-   ['Day 4 · 4/1 (목) 후시미이나리 · 우지',[
-    ['07:30','숙소 → 후시미이나리','지하철 + JR 약 20분','m',[['route','四条烏丸 京都','伏見稲荷大社']]],
-    ['08:00','후시미이나리 신사','붉은 문(도리이) 길','k',[['map','伏見稲荷大社']]],
-    ['10:00','후시미이나리 → 우지','JR 약 20분','m',[['route','稲荷駅','宇治駅']]],
-    ['10:30','우지 · 뵤도인 · 말차','말차 디저트','',[['map','平等院 宇治']]],
-    ['13:30','우지 → 교토역','JR 약 25분','m'],
+   ['Day 4 · 4/1 (목)',[
+    ['07:30','숙소 → 후시미이나리','지하철 + JR 약 20분','m',[['route','四条烏丸 京都','伏見稲荷大社']],['**지하철**로 교토역에 가요','**JR 나라선**을 타요 (나라 방면)','**이나리역(稲荷)**에서 내려요 (약 5분)','역 바로 앞이 **신사 입구**예요']],
+    ['08:00','후시미이나리 신사','붉은 문(도리이) 길','k',[['map','伏見稲荷大社']],['**본전**에서 인사해요','뒤쪽 **천 개의 도리이** 길로 들어가요','**요츠츠지(四ツ辻)** 전망대까지 올라가요 (약 40분)','힘들면 여기서 **돌아와요**']],
+    ['10:00','후시미이나리 → 우지','JR 약 20분','m',[['route','稲荷駅','宇治駅']],['이나리역에서 **JR 나라선**을 타요','**우지역(宇治)**에서 내려요 (갈아탈 수 있어요, 지도 확인)']],
+    ['10:30','우지 · 뵤도인 · 말차','말차 디저트','',[['map','平等院 宇治']],['우지역에서 **우지강**을 따라 걸어요 (약 10분)','**뵤도인(平等院)** 건물을 구경해요 (입장료)','**말차 가게**에서 디저트를 먹어요 (장소 탭 참고)']],
+    ['13:30','우지 → 교토역','JR 약 25분','m',[['route','宇治駅','京都駅']]],
     ['14:30','교토 시내 쇼핑','기념품 · 면세 쇼핑은 여권을 챙기세요'],
     ['18:00','마지막 저녁','']
    ],['伏見稲荷大社','平等院 宇治']],
-   ['Day 5 · 4/2 (금) 귀국',[
-    ['09:00','체크아웃 · 마지막 산책','짐은 숙소에 맡겨요'],
-    ['11:30','교토역으로 이동','','m'],
-    ['12:30','교토역 → 간사이공항','JR 하루카 약 75분','m',[['route','京都駅','関西空港駅']]],
-    ['14:30','간사이공항 도착 · 체크인','출발 2시간 전','',[['pop','flight','항공 정보']]],
+   ['Day 5 · 4/2 (금)',[
+    ['09:00','체크아웃 · 마지막 산책','','',null,['**방을 한 번 더 확인**해요 (여권, 충전기)','숙소에 **체크아웃**을 알려요','큰 짐은 숙소에 맡기고 **가모강**을 산책해요']],
+    ['11:30','교토역으로 이동','','m',null,['숙소에서 **짐을 찾아요**','지하철로 **교토역**에 가요 (약 5분)']],
+    ['12:30','교토역 → 간사이공항','JR 하루카 약 75분','m',[['route','京都駅','関西空港駅']],['교토역에서 **하루카(はるか)** 표를 사요 (간사이공항행)','**하루카**를 타요 (약 75분)','**간사이공항역**에서 내려요']],
+    ['14:30','간사이공항 도착 · 체크인','출발 2시간 전','',[['pop','flight','항공 정보']],['항공사 **카운터**에서 체크인하고 짐을 부쳐요','면세 쇼핑을 했다면 **짐을 부치기 전에** 세관 확인을 받아요','**보안검색**과 **출국심사**를 해요','남은 동전은 **공항에서 다 써요**']],
     ['16:30','간사이 → 인천 출발','18:30 도착','k'],
     ['18:30','인천공항 도착','집으로']
    ]]
@@ -386,6 +440,7 @@ window.TALK={
 };
 </script>
 <script src="../assets/talk.js"></script>
+<script src="../assets/docs.js"></script>
 <script src="../assets/common.js"></script>
 </body>
 </html>
