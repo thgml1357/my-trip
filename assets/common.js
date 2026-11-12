@@ -30,7 +30,7 @@ var T=window.TRIP;
 })();
 
 /* ---------- 일정: 요약의 접이식 목록(#plan-body)과 일정 탭(#plan-body2). T.flat이면 접지 않고 펼쳐서 보여줌 ----------
-   행: [시간, 내용, 메모, 표시(k=중요,w=주의,m=이동), 버튼들]  버튼: ['map',장소] ['route',출발,도착] ['link',주소,이름] ['pop',팝업이름,이름] ['doc',사진키,팝업이름,이름]
+   행: [시간, 내용, 메모, 표시(k=중요,w=주의,m=이동), 버튼들, 순서 목록(**굵게**)]  버튼: ['map',장소] ['route',출발,도착] ['link',주소,이름] ['pop',팝업이름,이름] ['doc',사진키,팝업이름,이름]
    날: [제목, 행들, 하루 코스 장소들(선택)] */
 (function(){
   function e(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
@@ -46,7 +46,7 @@ var T=window.TRIP;
   function rows(d){
     return '<div class="sched">'+d[1].map(function(i){
       var a=i[4]||[], sd=a.filter(side), un=a.filter(function(x){return !side(x)});
-      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+'</div>';
+      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+(i[5]?'<ol class="stp">'+i[5].map(function(t){return '<li>'+e(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>'}).join('')+'</ol>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+'</div>';
     }).join('')+'</div>';
   }
   function render(h,open){
