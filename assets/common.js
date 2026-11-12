@@ -47,7 +47,7 @@ try{ if(T.trip) localStorage.setItem('trip-last',T.trip); }catch(e){} /* 다음�
   function rows(d){
     return '<div class="sched">'+d[1].map(function(i){
       var a=i[4]||[], sd=a.filter(side), un=a.filter(function(x){return !side(x)});
-      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+(i[5]?'<ol class="stp">'+i[5].map(function(t){return '<li>'+e(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>'}).join('')+'</ol>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+'</div>';
+      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+(sd.length?' hasra':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+(un.length?'<span class="acts">'+un.map(act).join('')+'</span>':'')+'</span>'+(sd.length?'<span class="ra">'+sd.map(act).join('')+'</span>':'')+(i[5]?'<ol class="stp">'+i[5].map(function(t){return '<li>'+e(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')+'</li>'}).join('')+'</ol>':'')+'</div>';
     }).join('')+'</div>';
   }
   function render(h,open){
