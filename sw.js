@@ -1,7 +1,7 @@
 // 오프라인 캐시: 한 번 열어두면 이후엔 인터넷 없이 열립니다.
 // 온라인일 땐 항상 최신본을 먼저 받아오고(3초 안에 응답 없으면 저장본 사용),
 // 오프라인이면 저장본을 보여줍니다. 그래서 GitHub에서 고치면 별도 작업 없이 반영됩니다.
-const VERSION = 'trip-v5';
+const VERSION = 'trip-v6';
 const FILES = ['./', './index.html', './taiwan/', './taiwan/index.html', './japan/', './japan/index.html', './assets/style.css', './assets/common.js', './assets/talk.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-180.png'];
 
 self.addEventListener('install', e => {

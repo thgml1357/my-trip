@@ -253,3 +253,15 @@ h2{font-size:26px}
 body{padding-bottom:0}
 .card,.place,.phrase{break-inside:avoid}
 }
+
+/* 일정 행 버튼(지도·길찾기·팝업), 하루 제목, 팝업 */
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.act{font:inherit;font-size:15px;font-weight:700;height:40px;padding:0 16px;display:inline-flex;align-items:center;border:1.5px solid var(--ink);border-radius:999px;background:none;color:var(--ink);text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.act:active{background:var(--soft)}
+.day{margin-top:26px}
+.dayh{font-size:20px;font-weight:800;letter-spacing:-.02em;background:var(--soft);border-radius:12px;padding:12px 14px;margin:0 0 4px}
+.pop{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center}
+.pop.on{display:flex}
+.pbox{background:var(--bg);width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:20px 20px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom))}
+.pbox h3{margin:0 0 10px;font-size:22px}
+.pbox .pri{display:block;width:100%;margin-top:16px;font:inherit;font-size:18px;font-weight:700;height:54px;border-radius:14px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}

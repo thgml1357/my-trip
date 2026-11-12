@@ -29,15 +29,31 @@ var T=window.TRIP;
   if(p&&el.tagName==='SECTION') setTimeout(function(){openAnc(el);el.scrollIntoView()},0);
 })();
 
-/* ---------- 일정: 요약의 접이식 목록(#plan-body)과 일정 탭(#plan-body2) ---------- */
+/* ---------- 일정: 요약의 접이식 목록(#plan-body)과 일정 탭(#plan-body2). T.flat이면 접지 않고 펼쳐서 보여줌 ----------
+   행: [시간, 내용, 메모, 표시(k=중요,w=주의,m=이동), 버튼들]  버튼: ['map',장소] ['route',출발,도착] ['link',주소,이름] ['pop',팝업이름,이름]
+   날: [제목, 행들, 하루 코스 장소들(선택)] */
 (function(){
   function e(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  var q=encodeURIComponent, G='https://www.google.com/maps/';
+  function acts(a){
+    if(!a) return '';
+    return '<span class="acts">'+a.map(function(x){
+      if(x[0]==='map') return '<a class="act" target="_blank" rel="noopener" href="'+G+'search/?api=1&query='+q(x[1])+'">지도</a>';
+      if(x[0]==='route') return '<a class="act" target="_blank" rel="noopener" href="'+G+'dir/?api=1&origin='+q(x[1])+'&destination='+q(x[2])+'&travelmode=transit">길찾기</a>';
+      if(x[0]==='link') return '<a class="act" target="_blank" rel="noopener" href="'+x[1]+'">'+e(x[2])+'</a>';
+      return '<button class="act" type="button" data-pop="'+x[1]+'">'+e(x[2])+'</button>';
+    }).join('')+'</span>';
+  }
+  function rows(d){
+    return '<div class="sched">'+d[1].map(function(i){
+      return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+acts(i[4])+'</span></div>';
+    }).join('')+'</div>';
+  }
   function render(h,open){
     if(!h) return;
     h.innerHTML=T.plan.map(function(d){
-      return '<details class="daydet"'+(open?' open':'')+'><summary><span><b>'+e(d[0])+'</b><small>'+d[1].filter(function(r){return r[3]!=='m'}).length+'개 일정</small></span></summary><div class="sched">'+d[1].map(function(i){
-        return '<div class="r'+(i[3]==='k'?' key':i[3]==='w'?' warn':i[3]==='m'?' mv':'')+'"><span class="tm">'+e(i[0])+'</span><span class="tx">'+e(i[1])+(i[2]?'<small>'+e(i[2])+'</small>':'')+'</span></div>';
-      }).join('')+'</div></details>';
+      if(T.flat) return '<div class="day"><h3 class="dayh">'+e(d[0])+'</h3>'+(d[2]?'<div class="acts" style="margin:8px 0 6px"><a class="act" target="_blank" rel="noopener" href="'+G+'dir/'+d[2].map(q).join('/')+'">이날 코스를 지도로 보기</a></div>':'')+rows(d)+'</div>';
+      return '<details class="daydet"'+(open?' open':'')+'><summary><span><b>'+e(d[0])+'</b><small>'+d[1].filter(function(r){return r[3]!=='m'}).length+'개 일정</small></span></summary>'+rows(d)+'</details>';
     }).join('');
   }
   render(document.getElementById('plan-body'),T.planHomeOpen);
@@ -80,6 +96,7 @@ var T=window.TRIP;
 
 /* ---------- search ---------- */
 (function(){
+  if(!document.getElementById('sbtn')) return;
   var SEL='h2,h3,p,li,td,dd,dt,.pzh,.pko,.memo,.pdesc,.ptip,.big-addr,.timeline .t,.sched .r,.note,.phrase,.kw';
   var TAB=T.tabNames;
   var sov=document.getElementById('sov'), sq=document.getElementById('sq'), sres=document.getElementById('sres');
@@ -154,6 +171,7 @@ window.openAnc=function(el){
   var pl=el.closest&&el.closest('article.place'); if(pl){var m=pl.querySelector('details.pmore'); if(m) m.open=true;}
 };
 (function(){
+  if(T.flat) return; /* 안 접는 화면: 접기 기능을 쓰지 않음 */
   /* 장소 카드: 줄 전체를 누르면 펼쳐짐. 지도는 아이콘만 */
   var PIN='<svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
   [].forEach.call(document.querySelectorAll('article.place'),function(a){
@@ -186,6 +204,18 @@ window.openAnc=function(el){
   });
   if(T.after) T.after();
   window.addEventListener('beforeprint',function(){[].forEach.call(document.querySelectorAll('details'),function(d){d.open=true})});
+})();
+
+/* ---------- 팝업: [data-pop="이름"] 버튼을 누르면 #pop-이름 템플릿 내용을 띄움 ---------- */
+(function(){
+  var pop=document.getElementById('pop'); if(!pop) return;
+  var body=document.getElementById('pbody');
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-pop]');
+    if(b){var t=document.getElementById('pop-'+b.dataset.pop); if(!t) return; body.innerHTML=t.innerHTML; pop.classList.add('on'); pop.querySelector('.pbox').scrollTop=0; return;}
+    if(e.target===pop||e.target.closest('#pclose')) pop.classList.remove('on');
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') pop.classList.remove('on')});
 })();
 
 /* ---------- offline (installed web app) ---------- */
